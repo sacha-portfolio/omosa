@@ -1,0 +1,36 @@
+{% style %}
+  .block-{{ block.id }} {
+    width: 100%;
+    background-color: {{ block.settings.color_background }};
+  }
+{% endstyle %}
+
+<div
+  class="wrapper block-{{ block.id }}"
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Group",
+  "tag": "div",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background Color"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Group"
+    }
+  ]
+}
+{% endschema %}
