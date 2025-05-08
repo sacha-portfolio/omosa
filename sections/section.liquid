@@ -19,7 +19,7 @@
 {% endstyle %}
 
 <div class="wrapper section-{{ section.id }}">
-  <div class="page-width {{ section.settings.layout | class_list }} {{ section.settings.spacing | class_list }}">
+  <div class="page-width">
     {% content_for 'blocks' %}
   </div>
 </div>
