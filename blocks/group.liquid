@@ -1,11 +1,4 @@
-{% style %}
-  .block-{{ block.id }} {
-    width: 100%;
-    background-color: {{ block.settings.color_background }};
-  }
-{% endstyle %}
-
-<div class="wrapper block-{{ block.id }}">
+<div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
   {% content_for 'blocks' %}
 </div>
 

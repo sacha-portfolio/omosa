@@ -1,25 +1,5 @@
-{% style %}
-  .section-{{ section.id }} {
-    height: {{ section.settings.height }};
-    background-color: {{ section.settings.color_background }};
-
-  }
-  .section-{{ section.id }} .page-width {
-    margin-inline : auto !important;
-    height: 100%;
-
-  }
-  {% if section.settings.image_url %}
-    .section-{{ section.id }} {
-      background-image: linear-gradient(rgba(0, 0, 0, {{ section.settings.image_opacity | divided_by: 100.0 }}), rgba(0, 0, 0, {{ section.settings.image_opacity | divided_by: 100.0 }})), url({{ section.settings.image_url | image_url: width: 1500 }});
-      background-size: cover;
-      background-position: center;
-    }
-  {% endif %}
-{% endstyle %}
-
-<div class="wrapper section-{{ section.id }}">
-  <div class="page-width">
+<div class="wrapper h-[{{ section.settings.height }}] bg-[{{ section.settings.color_background }}] section-{{ section.id }}{% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}">
+  <div class="page-width h-full mx-auto!">
     {% content_for 'blocks' %}
   </div>
 </div>
