@@ -5,7 +5,7 @@
       target="_blank"
     {% endif %}
   {% endif %}
-  class="block bg-[{{ block.settings.color_background }}] text-[{{ block.settings.color }}] text-{{ block.settings.font_size }} font-{{ block.settings.font_weight }} text-{{ block.settings.text_alignment }} {{ block.settings.font_family }}"
+  class="block bg-[{{ block.settings.color_background }}] text-[{{ block.settings.color }}] text-{{ block.settings.font_size }} font-{{ block.settings.font_weight }} text-{{ block.settings.text_alignment }} {{ block.settings.font_family }} {{ block.settings.text_transform }} {{ block.settings.text_decoration }}"
 >
   {{ block.settings.text }}
 </{{ block.settings.tag }}>
@@ -42,6 +42,12 @@
       "default": "base"
     },
     {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left"
+    },
+    {
       "type": "select",
       "id": "font_weight",
       "label": "Font Weight",
@@ -56,17 +62,6 @@
     },
     {
       "type": "select",
-      "id": "text_alignment",
-      "label": "Text Alignment",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "select",
       "id": "font_family",
       "label": "Font Family",
       "options": [
@@ -76,6 +71,30 @@
         { "value": "body_secondary", "label": "Body Secondary" }
       ],
       "default": "body_primary"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "normal-case", "label": "Normal case" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "normal-case"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        { "value": "no-underline", "label": "No underline" },
+        { "value": "underline", "label": "Underline" },
+        { "value": "overline", "label": "Overline" },
+        { "value": "line-through", "label": "Line-through" }
+      ],
+      "default": "no-underline"
     },
     {
       "type": "color",
