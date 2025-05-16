@@ -64,6 +64,8 @@
       "heading_scale": 100,
       "type_body_font": "assistant_n4",
       "body_scale": 100,
+      "type_header_font_secondary": "assistant_n4",
+      "type_body_font_secondary": "assistant_n4",
       "page_width": 1200,
       "spacing_sections": 0,
       "spacing_grid_horizontal": 8,
