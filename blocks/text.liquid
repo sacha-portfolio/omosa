@@ -5,10 +5,22 @@
       target="_blank"
     {% endif %}
   {% endif %}
-  class="block bg-[{{ block.settings.color_background }}] text-[{{ block.settings.color }}] text-{{ block.settings.font_size }} font-{{ block.settings.font_weight }} text-{{ block.settings.text_alignment }} {{ block.settings.font_family }} {{ block.settings.text_transform }} {{ block.settings.text_decoration }}"
+  class="
+    block
+    bg-[{{ block.settings.color_background }}]
+    text-[{{ block.settings.color }}]
+    text-{{ block.settings.font_size }}
+    text-{{ block.settings.text_alignment }}
+    font-{{ block.settings.font_weight }}
+    font-(family-name:--{{ block.settings.font_family }}-family)
+    leading-(--{{ block.settings.font_family }}-line-height)
+    tracking-(--{{ block.settings.font_family }}-letter-spacing)
+    {{ block.settings.font_style }}
+    {{ block.settings.text_transform }}
+    {{ block.settings.text_decoration }}
+  "
 >
   {{ block.settings.text }}
-  {{ settings.type_body_font.family }}
 </{{ block.settings.tag }}>
 
 {% schema %}
@@ -66,12 +78,22 @@
       "id": "font_family",
       "label": "Font Family",
       "options": [
-        { "value": "headings_primary", "label": "Headings Primary" },
-        { "value": "headings_secondary", "label": "Headings Secondary" },
-        { "value": "body_primary", "label": "Body Primary" },
-        { "value": "body_secondary", "label": "Body Secondary" }
+        { "value": "font-heading", "label": "Headings Primary" },
+        { "value": "font-heading-secondary", "label": "Headings Secondary" },
+        { "value": "font-body", "label": "Body Primary" },
+        { "value": "font-body-secondary", "label": "Body Secondary" }
       ],
-      "default": "body_primary"
+      "default": "font-body"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "options": [
+        { "value": "not-italic", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "not-italic"
     },
     {
       "type": "select",

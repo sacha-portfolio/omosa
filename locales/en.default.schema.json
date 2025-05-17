@@ -182,6 +182,12 @@
         "heading_scale": {
           "label": "Scale"
         },
+        "heading_line_height": {
+          "label": "Line Height"
+        },
+        "heading_letter_spacing": {
+          "label": "Letter Spacing"
+        },
         "header__1": {
           "content": "Headings Primary"
         },
@@ -199,6 +205,12 @@
         },
         "body_scale": {
           "label": "Scale"
+        },
+        "body_line_height": {
+          "label": "Line Height"
+        },
+        "body_letter_spacing": {
+          "label": "Letter Spacing"
         }
       }
     },
