@@ -1,6 +1,34 @@
-<div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
-  {% content_for 'blocks' %}
-</div>
+{% if block.settings.display_mode == 'slider' %}
+  <div class="swiper swiper-{{ block.id }} wrapper w-full h-[300px] bg-[{{ block.settings.color_background }}]">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide flex! justify-center items-center">Slide 1</div>
+      <div class="swiper-slide flex! justify-center items-center">Slide 2</div>
+      <div class="swiper-slide flex! justify-center items-center">Slide 3</div>
+    </div>
+    <div class="swiper-button-next flex!"></div>
+    <div class="swiper-button-prev flex!"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <script>
+    (() => {
+      const swiper = new Swiper('.swiper-{{ block.id }}', {
+        loop: true,
+        pagination: {
+          el: '.swiper-{{ block.id }} .swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-{{ block.id }} .swiper-button-next',
+          prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
+        },
+      });
+    })();
+  </script>
+{% else %}
+  <div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
+    {% content_for 'blocks' %}
+  </div>
+{% endif %}
 
 {% schema %}
 {
@@ -16,6 +44,25 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Mode"
+    },
+    {
+      "type": "radio",
+      "id": "display_mode",
+      "label": "Display mode",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "slider", "label": "Slider" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Slider options",
+      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
     }
   ],
   "presets": [
