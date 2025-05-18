@@ -5,7 +5,20 @@
       target="_blank"
     {% endif %}
   {% endif %}
-  class="block bg-[{{ block.settings.color_background }}] text-[{{ block.settings.color }}] text-{{ block.settings.font_size }} text-{{ block.settings.text_alignment }} {{ block.settings.font_family }}"
+  class="
+    block
+    bg-[{{ block.settings.color_background }}]
+    text-[{{ block.settings.color }}]
+    text-{{ block.settings.font_size }}
+    text-{{ block.settings.text_alignment }}
+    font-{{ block.settings.font_weight }}
+    font-(family-name:--{{ block.settings.font_family }}-family)
+    leading-(--{{ block.settings.font_family }}-line-height)
+    tracking-(--{{ block.settings.font_family }}-letter-spacing)
+    {{ block.settings.font_style }}
+    {{ block.settings.text_transform }}
+    {{ block.settings.text_decoration }}
+  "
 >
   {{ block.settings.text }}
 </{{ block.settings.tag }}>
@@ -42,27 +55,69 @@
       "default": "base"
     },
     {
-      "type": "select",
+      "type": "text_alignment",
       "id": "text_alignment",
       "label": "Text Alignment",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
       "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "normal", "label": "Normal" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "semi-bold", "label": "Semi-bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "normal"
     },
     {
       "type": "select",
       "id": "font_family",
       "label": "Font Family",
       "options": [
-        { "value": "heading_primary", "label": "Heading Primary" },
-        { "value": "heading_secondary", "label": "Heading Secondary" },
-        { "value": "body_primary", "label": "Body Primary" },
-        { "value": "body_secondary", "label": "Body Secondary" }
+        { "value": "font-heading", "label": "Headings Primary" },
+        { "value": "font-heading-secondary", "label": "Headings Secondary" },
+        { "value": "font-body", "label": "Body Primary" },
+        { "value": "font-body-secondary", "label": "Body Secondary" }
       ],
-      "default": "body_primary"
+      "default": "font-body"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "options": [
+        { "value": "not-italic", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "not-italic"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "normal-case", "label": "Normal case" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "normal-case"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        { "value": "no-underline", "label": "No underline" },
+        { "value": "underline", "label": "Underline" },
+        { "value": "overline", "label": "Overline" },
+        { "value": "line-through", "label": "Line-through" }
+      ],
+      "default": "no-underline"
     },
     {
       "type": "color",
