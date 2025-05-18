@@ -4,10 +4,10 @@
       background: {{ block.settings.pagination_dots_color }};
     }
   {% endstyle %}
-  <div class="swiper swiper-{{ block.id }} wrapper w-full h-[300px] bg-[{{ block.settings.color_background }}]">
-    <div class="swiper-wrapper">
+  <div class="swiper swiper-{{ block.id }} wrapper w-full bg-[{{ block.settings.color_background }}]">
+    <div class="swiper-wrapper min-h-[300px] items-stretch">
       {% for nested_block in block.blocks %}
-        <div class="swiper-slide flex! justify-center items-center">
+        <div class="swiper-slide h-auto! mx-[48px] w-[calc(100%-96px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
           {% render nested_block %}
         </div>
       {% endfor %}
@@ -23,6 +23,7 @@
   <script>
     (() => {
       const swiper = new Swiper('.swiper-{{ block.id }}', {
+        slidesPerView: 'auto',
         loop: true,
         pagination: {
           el: '.swiper-{{ block.id }} .swiper-pagination',
@@ -73,6 +74,12 @@
     {
       "type": "header",
       "content": "Slider options",
+      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "slides_background_color",
+      "label": "Slides background color",
       "visible_if": "{{ block.settings.display_mode == 'slider' }}"
     },
     {
