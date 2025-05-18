@@ -1,13 +1,24 @@
 {% if block.settings.display_mode == 'slider' %}
+  {% style %}
+    .swiper-pagination-bullet-active {
+      background: {{ block.settings.pagination_dots_color }};
+    }
+  {% endstyle %}
   <div class="swiper swiper-{{ block.id }} wrapper w-full h-[300px] bg-[{{ block.settings.color_background }}]">
     <div class="swiper-wrapper">
-      <div class="swiper-slide flex! justify-center items-center">Slide 1</div>
-      <div class="swiper-slide flex! justify-center items-center">Slide 2</div>
-      <div class="swiper-slide flex! justify-center items-center">Slide 3</div>
+      {% for nested_block in block.blocks %}
+        <div class="swiper-slide flex! justify-center items-center">
+          {% render nested_block %}
+        </div>
+      {% endfor %}
     </div>
-    <div class="swiper-button-next flex!"></div>
-    <div class="swiper-button-prev flex!"></div>
-    <div class="swiper-pagination"></div>
+    {% if block.settings.show_arrow_buttons == true %}
+      <div class="swiper-button-next text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
+      <div class="swiper-button-prev text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
+    {% endif %}
+    {% if block.settings.show_pagination_dots == true %}
+      <div class="swiper-pagination"></div>
+    {% endif %}
   </div>
   <script>
     (() => {
@@ -62,6 +73,34 @@
     {
       "type": "header",
       "content": "Slider options",
+      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow_buttons",
+      "label": "Show arrow buttons",
+      "default": true,
+      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "arrow_buttons_color",
+      "label": "Arrow buttons color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_dots",
+      "label": "Show pagination dots",
+      "default": true,
+      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "pagination_dots_color",
+      "label": "Pagination dots color",
+      "default": "#000",
       "visible_if": "{{ block.settings.display_mode == 'slider' }}"
     }
   ],
