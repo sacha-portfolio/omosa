@@ -11,10 +11,10 @@
   "
 >
   {% if block.settings.image_url %}
-    {% capture image_classes %}h-auto max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}]{% endcapture %}
+    {% capture image_classes %}h-auto max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px]{% endcapture %}
     {{ block.settings.image_url | image_url: width: 1500 | image_tag: class: image_classes | strip }}
   {% else %}
-    {% capture placeholder_classes %}h-full w-full max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] placeholder-svg{% endcapture %}
+    {% capture placeholder_classes %}h-full w-full max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px] placeholder-svg{% endcapture %}
     {{ 'hero-apparel-1' | placeholder_svg_tag: placeholder_classes | strip }}
   {% endif %}
 </{{ block.settings.tag }}>
@@ -37,11 +37,15 @@
       "id": "height",
       "label": "Height",
       "options": [
-        { "value": "600", "label": "Extra Large" },
-        { "value": "450", "label": "Large" },
-        { "value": "300", "label": "Medium" },
-        { "value": "150", "label": "Small" }
-      ]
+        { "value": "1050", "label": "1050" },
+        { "value": "900", "label": "900" },
+        { "value": "750", "label": "750" },
+        { "value": "600", "label": "600" },
+        { "value": "450", "label": "450" },
+        { "value": "300", "label": "300" },
+        { "value": "150", "label": "150" }
+      ],
+      "default": "600"
     },
     {
       "type": "header",
@@ -56,6 +60,48 @@
       "type": "number",
       "id": "aspect_ratio_height",
       "label": "Height"
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Border Style",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "double", "label": "Double" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 0
     },
     {
       "type": "header",
