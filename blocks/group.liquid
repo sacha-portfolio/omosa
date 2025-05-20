@@ -1,4 +1,4 @@
-{% if block.settings.display_mode == 'slider' %}
+{% if block.settings.is_slider_mode %}
   {% style %}
     .swiper-pagination-bullet-active {
       background: {{ block.settings.pagination_dots_color }};
@@ -12,11 +12,11 @@
         </div>
       {% endfor %}
     </div>
-    {% if block.settings.show_arrow_buttons == true %}
+    {% if block.settings.show_arrow_buttons %}
       <div class="swiper-button-next text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
       <div class="swiper-button-prev text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
     {% endif %}
-    {% if block.settings.show_pagination_dots == true %}
+    {% if block.settings.show_pagination_dots %}
       <div class="swiper-pagination"></div>
     {% endif %}
   </div>
@@ -62,53 +62,49 @@
       "content": "Mode"
     },
     {
-      "type": "radio",
-      "id": "display_mode",
-      "label": "Display mode",
-      "options": [
-        { "value": "normal", "label": "Normal" },
-        { "value": "slider", "label": "Slider" }
-      ],
-      "default": "normal"
+      "type": "checkbox",
+      "id": "is_slider_mode",
+      "label": "Slider mode",
+      "default": false
     },
     {
       "type": "header",
       "content": "Slider options",
-      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+      "visible_if": "{{ block.settings.is_slider_mode }}"
     },
     {
       "type": "color",
       "id": "slides_background_color",
       "label": "Slides background color",
-      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+      "visible_if": "{{ block.settings.is_slider_mode }}"
     },
     {
       "type": "checkbox",
       "id": "show_arrow_buttons",
       "label": "Show arrow buttons",
       "default": true,
-      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+      "visible_if": "{{ block.settings.is_slider_mode }}"
     },
     {
       "type": "color",
       "id": "arrow_buttons_color",
       "label": "Arrow buttons color",
       "default": "#000",
-      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+      "visible_if": "{{ block.settings.is_slider_mode and block.settings.show_arrow_buttons }}"
     },
     {
       "type": "checkbox",
       "id": "show_pagination_dots",
       "label": "Show pagination dots",
       "default": true,
-      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+      "visible_if": "{{ block.settings.is_slider_mode }}"
     },
     {
       "type": "color",
       "id": "pagination_dots_color",
       "label": "Pagination dots color",
       "default": "#000",
-      "visible_if": "{{ block.settings.display_mode == 'slider' }}"
+      "visible_if": "{{ block.settings.is_slider_mode and block.settings.show_pagination_dots }}"
     }
   ],
   "presets": [
