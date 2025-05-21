@@ -1,6 +1,48 @@
-<div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
-  {% content_for 'blocks' %}
-</div>
+{% if block.settings.is_slider_mode %}
+  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+  {% style %}
+    .swiper-pagination-bullet-active {
+      background: {{ block.settings.pagination_dots_color }};
+    }
+  {% endstyle %}
+  <div class="swiper swiper-{{ block.id }} wrapper w-full bg-[{{ block.settings.color_background }}]">
+    <div class="swiper-wrapper min-h-[300px] items-stretch">
+      {% for nested_block in block.blocks %}
+        <div class="swiper-slide h-auto! mx-[48px] w-[calc(100%-96px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
+          {% render nested_block %}
+        </div>
+      {% endfor %}
+    </div>
+    {% if block.settings.show_arrow_buttons %}
+      <div class="swiper-button-next text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
+      <div class="swiper-button-prev text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
+    {% endif %}
+    {% if block.settings.show_pagination_dots %}
+      <div class="swiper-pagination"></div>
+    {% endif %}
+  </div>
+  <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const swiper = new Swiper('.swiper-{{ block.id }}', {
+        slidesPerView: 'auto',
+        loop: true,
+        pagination: {
+          el: '.swiper-{{ block.id }} .swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-{{ block.id }} .swiper-button-next',
+          prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
+        },
+      });
+    });
+  </script>
+{% else %}
+  <div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
+    {% content_for 'blocks' %}
+  </div>
+{% endif %}
 
 {% schema %}
 {
@@ -16,6 +58,55 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Mode"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_slider_mode",
+      "label": "Slider mode",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Slider options",
+      "visible_if": "{{ block.settings.is_slider_mode }}"
+    },
+    {
+      "type": "color",
+      "id": "slides_background_color",
+      "label": "Slides background color",
+      "visible_if": "{{ block.settings.is_slider_mode }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow_buttons",
+      "label": "Show arrow buttons",
+      "default": true,
+      "visible_if": "{{ block.settings.is_slider_mode }}"
+    },
+    {
+      "type": "color",
+      "id": "arrow_buttons_color",
+      "label": "Arrow buttons color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.is_slider_mode and block.settings.show_arrow_buttons }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_dots",
+      "label": "Show pagination dots",
+      "default": true,
+      "visible_if": "{{ block.settings.is_slider_mode }}"
+    },
+    {
+      "type": "color",
+      "id": "pagination_dots_color",
+      "label": "Pagination dots color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.is_slider_mode and block.settings.show_pagination_dots }}"
     }
   ],
   "presets": [
