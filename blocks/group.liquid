@@ -1,4 +1,5 @@
 {% if block.settings.is_slider_mode %}
+  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
   {% style %}
     .swiper-pagination-bullet-active {
       background: {{ block.settings.pagination_dots_color }};
@@ -20,8 +21,9 @@
       <div class="swiper-pagination"></div>
     {% endif %}
   </div>
+  <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
   <script>
-    (() => {
+    document.addEventListener('DOMContentLoaded', () => {
       const swiper = new Swiper('.swiper-{{ block.id }}', {
         slidesPerView: 'auto',
         loop: true,
@@ -34,7 +36,7 @@
           prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
         },
       });
-    })();
+    });
   </script>
 {% else %}
   <div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
