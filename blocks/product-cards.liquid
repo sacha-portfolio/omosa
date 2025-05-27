@@ -1,0 +1,131 @@
+{% liquid
+  assign max_items = section.settings.max_products
+
+  if block.settings.collection != blank
+    assign products = block.settings.collection.products
+    assign max_items = products.size | at_most: block.settings.max_products
+  endif
+%}
+
+{% capture product_cards %}
+  {% for i in (1..max_items) %}
+    {% if products.size > 0 %}
+      {% assign index = forloop.index0 %}
+      {% assign product = products[index] %}
+    {% else %}
+      {% assign product = null %}
+    {% endif %}
+    <div class="transition-transform duration-400 hover:-translate-y-[3px]">
+      <a href="{{ product.selected_or_first_available_variant.url }}">
+        {% content_for 'blocks', closest.product: product %}
+      </a>
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% case block.settings.layout_type %}
+  {% when 'grid' %}
+    <div
+      class="w-full grid-cols-{{ block.settings.columns }}"
+      style="display: grid"
+    >
+      {{ product_cards }}
+    </div>
+  {% when 'carousel' %}
+    <div></div>
+{% endcase %}
+
+{% schema %}
+{
+  "name": "Product cards",
+  "tag": "div",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "label": "Product count",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "Columns",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2",
+      "visible_if": "{{ block.settings.layout_type == 'grid' }}"
+    },
+    {
+      "type": "range",
+      "id": "columns_gap",
+      "label": "Horizontal gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "rows_gap",
+      "label": "Vertical gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ block.settings.layout_type == 'grid'}}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product cards",
+      "settings": {
+        "collection": "{{ closest.collection }}"
+      }
+    }
+  ]
+}
+{% endschema %}
