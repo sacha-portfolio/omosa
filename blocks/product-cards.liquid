@@ -15,7 +15,7 @@
     {% else %}
       {% assign product = null %}
     {% endif %}
-    <div class="transition-transform duration-400 hover:-translate-y-[3px]">
+    <div class="transition-transform duration-400 hover:-translate-y-[3px]{% if block.settings.layout_type == 'slider' %} swiper-slide bg-[{{ block.settings.slides_background_color }}]{% endif %}">
       <a href="{{ product.selected_or_first_available_variant.url }}">
         {% content_for 'blocks', closest.product: product %}
       </a>
@@ -26,13 +26,61 @@
 {% case block.settings.layout_type %}
   {% when 'grid' %}
     <div
-      class="w-full grid-cols-{{ block.settings.columns }}"
+      class="w-full grid-cols-{{ block.settings.mobile_columns }} md:grid-cols-{{ block.settings.columns }} gap-x-[{{ block.settings.columns_gap }}px] gap-y-[{{ block.settings.rows_gap }}px]"
       style="display: grid"
     >
       {{ product_cards }}
     </div>
-  {% when 'carousel' %}
-    <div></div>
+  {% when 'slider' %}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      .swiper-pagination-bullet-active {
+        background: {{ block.settings.pagination_dots_color }};
+      }
+    {% endstyle %}
+    <div class="swiper swiper-{{ block.id }} w-full bg-[{{ block.settings.color_background }}]">
+      <div class="swiper-wrapper">
+        {{ product_cards }}
+      </div>
+      {% if block.settings.show_arrow_buttons %}
+        <div class="swiper-button-next text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
+        <div class="swiper-button-prev text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
+      {% endif %}
+      {% if block.settings.show_pagination_dots %}
+        <div class="swiper-pagination"></div>
+      {% endif %}
+    </div>
+    <script id="swiper-js" src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    <script>
+      (() => {
+        const initSwiper{{ block.id }} = () => {
+          if (document.querySelector('.swiper-{{ block.id }}.swiper-initialized')) return;
+          const swiper = new Swiper('.swiper-{{ block.id }}', {
+            slidesPerView: 1,
+            spaceBetween: {{ block.settings.columns_gap }},
+            loop: true,
+            pagination: {
+              el: '.swiper-{{ block.id }} .swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-{{ block.id }} .swiper-button-next',
+              prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: {{ block.settings.columns }},
+              },
+            }
+          });
+        };
+        const libTag = document.getElementById("swiper-js");
+        libTag.addEventListener("load", () => {
+          initSwiper{{ block.id }}();
+          document.addEventListener('shopify:block:select', initSwiper{{ block.id }});
+        });
+      })();
+    </script>
 {% endcase %}
 
 {% schema %}
@@ -56,8 +104,8 @@
           "label": "Grid"
         },
         {
-          "value": "carousel",
-          "label": "Carousel"
+          "value": "slider",
+          "label": "Slider"
         }
       ],
       "default": "grid"
@@ -116,7 +164,46 @@
       "step": 1,
       "unit": "px",
       "default": 8,
-      "visible_if": "{{ block.settings.layout_type == 'grid'}}"
+      "visible_if": "{{ block.settings.layout_type == 'grid' }}"
+    },
+    {
+      "type": "header",
+      "content": "Slider options",
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "slides_background_color",
+      "label": "Slides background color",
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow_buttons",
+      "label": "Show arrow buttons",
+      "default": true,
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "arrow_buttons_color",
+      "label": "Arrow buttons color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.layout_type == 'slider' and block.settings.show_arrow_buttons }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_dots",
+      "label": "Show pagination dots",
+      "default": true,
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "pagination_dots_color",
+      "label": "Pagination dots color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.layout_type == 'slider' and block.settings.show_pagination_dots }}"
     }
   ],
   "presets": [
