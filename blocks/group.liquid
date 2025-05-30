@@ -23,22 +23,30 @@
       <div class="swiper-pagination"></div>
     {% endif %}
   </div>
-  <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+  <script id="swiper-js" src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const swiper = new Swiper('.swiper-{{ block.id }}', {
-        slidesPerView: 'auto',
-        loop: true,
-        pagination: {
-          el: '.swiper-{{ block.id }} .swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.swiper-{{ block.id }} .swiper-button-next',
-          prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
-        },
+    (() => {
+      const initSwiper{{ block.id }} = () => {
+        if (document.querySelector('.swiper-{{ block.id }}.swiper-initialized')) return;
+        const swiper = new Swiper('.swiper-{{ block.id }}', {
+          slidesPerView: 'auto',
+          loop: true,
+          pagination: {
+            el: '.swiper-{{ block.id }} .swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-{{ block.id }} .swiper-button-next',
+            prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
+          },
+        });
+      };
+      const libTag = document.getElementById("swiper-js");
+      libTag.addEventListener("load", () => {
+        initSwiper{{ block.id }}();
+        document.addEventListener('shopify:block:change', initSwiper{{ block.id }});
       });
-    });
+    })();
   </script>
 {% else %}
   <div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
