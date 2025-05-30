@@ -1,21 +1,23 @@
 {% if block.settings.is_slider_mode %}
   {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
   {% style %}
-    .swiper-pagination-bullet-active {
-      background: {{ block.settings.pagination_dots_color }};
+    .swiper-{{ block.id }} {
+      --swiper-navigation-size: 20px;
+      --swiper-navigation-color: {{ block.settings.arrow_buttons_color }};
+      --swiper-pagination-color: {{ block.settings.pagination_dots_color }};
     }
   {% endstyle %}
   <div class="swiper swiper-{{ block.id }} wrapper w-full bg-[{{ block.settings.color_background }}]">
     <div class="swiper-wrapper min-h-[300px] items-stretch">
       {% for nested_block in block.blocks %}
-        <div class="swiper-slide h-auto! mx-[48px] w-[calc(100%-96px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
+        <div class="swiper-slide h-auto! mx-[34px] w-[calc(100%-68px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
           {% render nested_block %}
         </div>
       {% endfor %}
     </div>
     {% if block.settings.show_arrow_buttons %}
-      <div class="swiper-button-next text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
-      <div class="swiper-button-prev text-[{{ block.settings.arrow_buttons_color }}]! flex!"></div>
+      <div class="swiper-button-next flex!"></div>
+      <div class="swiper-button-prev flex!"></div>
     {% endif %}
     {% if block.settings.show_pagination_dots %}
       <div class="swiper-pagination"></div>
