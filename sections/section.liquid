@@ -8,6 +8,15 @@
       pb-[{{ section.settings.padding_bottom }}px]
       pl-[{{ section.settings.padding_left }}px]
       pr-[{{ section.settings.padding_right }}px]
+      {% if section.settings.display == 'flex' -%}
+      flex
+      {{ section.settings.flex_direction }}
+      {{ section.settings.flex_wrap }}
+      gap-x-[{{ section.settings.horizontal_gap }}px]
+      gap-y-[{{ section.settings.vertical_gap }}px]
+      {{ section.settings.justify_content }}
+      {{ section.settings.align_items }}
+      {%- endif -%}
     "
   >
     {% content_for 'blocks' %}
@@ -72,6 +81,149 @@
       "unit": "px",
       "label": "Right",
       "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "display",
+      "label": "Display",
+      "options": [
+        {
+          "value": "block",
+          "label": "Block"
+        },
+        {
+          "value": "flex",
+          "label": "Flex"
+        }
+      ],
+      "default": "block"
+    },
+    {
+      "type": "header",
+      "content": "Flex",
+      "visible_if": "{{ section.settings.display == 'flex' }}"
+    },
+    {
+      "type": "select",
+      "id": "flex_direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-row",
+      "visible_if": "{{ section.settings.display == 'flex' }}"
+    },
+    {
+      "type": "select",
+      "id": "flex_wrap",
+      "label": "Wrap",
+      "options": [
+        {
+          "value": "flex-wrap",
+          "label": "Yes"
+        },
+        {
+          "value": "flex-nowrap",
+          "label": "No"
+        }
+      ],
+      "default": "flex-wrap",
+      "visible_if": "{{ section.settings.display == 'flex' }}"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal gap",
+      "default": 8,
+      "visible_if": "{{ section.settings.display == 'flex' }}"
+    },
+    {
+      "type": "range",
+      "id": "vertical_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical gap",
+      "default": 8,
+      "visible_if": "{{ section.settings.display == 'flex' }}"
+    },
+    {
+      "type": "select",
+      "id": "justify_content",
+      "label": "Justify content",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Start"
+        },
+        {
+          "value": "justify-center",
+          "label": "Center"
+        },
+        {
+          "value": "justify-end",
+          "label": "End"
+        },
+        {
+          "value": "justify-around",
+          "label": "Space around"
+        },
+        {
+          "value": "justify-between",
+          "label": "Space between"
+        },
+        {
+          "value": "justify-evenly",
+          "label": "Space evenly"
+        }
+      ],
+      "default": "justify-start",
+      "visible_if": "{{ section.settings.display == 'flex' }}"
+    },
+    {
+      "type": "select",
+      "id": "align_items",
+      "label": "Align items",
+      "options": [
+        {
+          "value": "items-start",
+          "label": "Start"
+        },
+        {
+          "value": "items-center",
+          "label": "Center"
+        },
+        {
+          "value": "items-end",
+          "label": "End"
+        },
+        {
+          "value": "items-baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "items-stretch",
+          "label": "Stretch"
+        }
+      ],
+      "default": "items-start",
+      "visible_if": "{{ section.settings.display == 'flex' }}"
     },
     {
       "type": "header",
