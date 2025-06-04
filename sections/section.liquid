@@ -2,12 +2,12 @@
   <div
     class="
       h-full
-      max-w-(--page-width)
       mx-auto!
-      pt-[{{ section.settings.padding_top }}px]
-      pb-[{{ section.settings.padding_bottom }}px]
-      pl-[{{ section.settings.padding_left }}px]
-      pr-[{{ section.settings.padding_right }}px]
+      pt-[{{ section.settings.padding_top }}px]!
+      pb-[{{ section.settings.padding_bottom }}px]!
+      {%- if section.settings.apply_page_width %}
+      page-width
+      {%- endif %}
       {% if section.settings.display == 'flex' -%}
       flex
       {{ section.settings.flex_direction }}
@@ -63,28 +63,14 @@
       "default": 0
     },
     {
-      "type": "range",
-      "id": "padding_left",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Left",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "padding_right",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Right",
-      "default": 50
-    },
-    {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "apply_page_width",
+      "label": "Apply page width",
+      "default": true
     },
     {
       "type": "select",
