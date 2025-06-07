@@ -1,0 +1,244 @@
+{% liquid
+  assign max_items = block.settings.max_articles
+
+  if block.settings.blog != blank
+    assign articles = block.settings.blog.articles
+    assign max_items = articles.size | at_most: block.settings.max_articles
+  endif
+%}
+
+{% capture article_cards %}
+  {% for i in (1..max_items) %}
+    {% if articles.size > 0 %}
+      {% assign index = forloop.index0 %}
+      {% assign article = articles[index] %}
+    {% else %}
+      {% assign article = null %}
+    {% endif %}
+    <div class="transition-transform! duration-400 hover:-translate-y-[3px]{% if block.settings.layout_type == 'slider' %} swiper-slide bg-[{{ block.settings.slides_background_color }}]{% endif %}">
+      <a href="{{ article.url }}">
+        {% content_for 'blocks', closest.article: article %}
+      </a>
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% case block.settings.layout_type %}
+  {% when 'grid' %}
+    <div
+      class="w-full grid-cols-{{ block.settings.mobile_columns }} md:grid-cols-{{ block.settings.columns }} gap-x-[{{ block.settings.columns_gap }}px] gap-y-[{{ block.settings.rows_gap }}px]"
+      style="display: grid"
+    >
+      {{ article_cards }}
+    </div>
+  {% when 'slider' %}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      .swiper-{{ block.id }} {
+        --swiper-navigation-size: 20px;
+        --swiper-navigation-color: {{ block.settings.arrow_buttons_color }};
+        --swiper-pagination-color: {{ block.settings.pagination_dots_color }};
+      }
+    {% endstyle %}
+    <div class="swiper swiper-{{ block.id }} w-full bg-[{{ block.settings.color_background }}]">
+      <div class="swiper-wrapper">
+        {{ article_cards }}
+      </div>
+      {% if block.settings.show_arrow_buttons %}
+        <div class="swiper-button-next flex!"></div>
+        <div class="swiper-button-prev flex!"></div>
+      {% endif %}
+      {% if block.settings.show_pagination_dots %}
+        <div class="swiper-pagination relative! mt-4"></div>
+      {% endif %}
+    </div>
+    <script id="swiper-js" src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    <script>
+      (() => {
+        const initSwiper{{ block.id }} = () => {
+          if (document.querySelector('.swiper-{{ block.id }}.swiper-initialized')) return;
+          const swiper = new Swiper('.swiper-{{ block.id }}', {
+            slidesPerView: 1,
+            spaceBetween: {{ block.settings.columns_gap }},
+            loop: true,
+            pagination: {
+              el: '.swiper-{{ block.id }} .swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-{{ block.id }} .swiper-button-next',
+              prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: {{ block.settings.columns }},
+              },
+            }
+          });
+        };
+        const libTag = document.getElementById("swiper-js");
+        libTag.addEventListener("load", () => {
+          initSwiper{{ block.id }}();
+          document.addEventListener('shopify:block:change', initSwiper{{ block.id }});
+        });
+      })();
+    </script>
+{% endcase %}
+
+{% schema %}
+{
+  "name": "Article cards",
+  "tag": "div",
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "max_articles",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "label": "Article count",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "Columns",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2",
+      "visible_if": "{{ block.settings.layout_type == 'grid' }}"
+    },
+    {
+      "type": "range",
+      "id": "columns_gap",
+      "label": "Horizontal gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "rows_gap",
+      "label": "Vertical gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ block.settings.layout_type == 'grid' }}"
+    },
+    {
+      "type": "header",
+      "content": "Slider options",
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "slides_background_color",
+      "label": "Slides background color",
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow_buttons",
+      "label": "Show arrow buttons",
+      "default": true,
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "arrow_buttons_color",
+      "label": "Arrow buttons color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.layout_type == 'slider' and block.settings.show_arrow_buttons }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_dots",
+      "label": "Show pagination dots",
+      "default": true,
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "pagination_dots_color",
+      "label": "Pagination dots color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.layout_type == 'slider' and block.settings.show_pagination_dots }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article cards",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "name": "Image",
+          "settings": {
+            "image_url": "{{ closest.article.image }}"
+          }
+        },
+        "text": {
+          "type": "text",
+          "name": "Text",
+          "settings": {
+            "text": "{{ closest.article.title }}",
+            "font_size": "xl",
+            "color": "#000"
+          }
+        },
+        "article-date": {
+          "type": "article-date",
+          "name": "Article date",
+          "settings": {
+            "article": "{{ closest.article }}",
+            "font_size": "sm"
+          }
+        }
+      },
+      "block_order": ["image", "text", "article-date"]
+    }
+  ]
+}
+{% endschema %}
