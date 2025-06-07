@@ -17,12 +17,16 @@
     assign price = block.settings.product.price
     assign compare_at_price = block.settings.product.compare_at_price
   %}
-  {% if block.settings.show_sale_price_first == false and compare_at_price > price %}
-    <s class="opacity-75">{{ compare_at_price | money }}</s>
-  {% endif %}
-  <span>{{ price | money }}</span>
-  {% if block.settings.show_sale_price_first == true and compare_at_price > price %}
-    <s class="opacity-75">{{ compare_at_price | money }}</s>
+  {% if price and price != '' %}
+    {% if block.settings.show_sale_price_first == false and compare_at_price > price %}
+      <s class="opacity-75">{{ compare_at_price | money }}</s>
+    {% endif %}
+    <span>{{ price | money }}</span>
+    {% if block.settings.show_sale_price_first == true and compare_at_price > price %}
+      <s class="opacity-75">{{ compare_at_price | money }}</s>
+    {% endif %}
+  {% else %}
+    <span>{{ 1999 | money }}</span>
   {% endif %}
 </div>
 
