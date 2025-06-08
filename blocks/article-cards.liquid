@@ -89,7 +89,7 @@
 {
   "name": "Article cards",
   "tag": "div",
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }, { "type": "_article-date" }],
   "settings": [
     {
       "type": "blog",
@@ -211,6 +211,7 @@
   "presets": [
     {
       "name": "Article cards",
+      "category": "t:categories.blog",
       "blocks": {
         "image": {
           "type": "image",
@@ -228,16 +229,16 @@
             "color": "#000"
           }
         },
-        "article-date": {
-          "type": "article-date",
-          "name": "Article date",
+        "date": {
+          "type": "_article-date",
+          "name": "Date",
           "settings": {
             "article": "{{ closest.article }}",
             "font_size": "sm"
           }
         }
       },
-      "block_order": ["image", "text", "article-date"]
+      "block_order": ["image", "text", "date"]
     }
   ]
 }

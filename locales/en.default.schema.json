@@ -1,4 +1,14 @@
 {
+  "categories": {
+    "basic": "Basic",
+    "blog": "Blog",
+    "collection": "Collection",
+    "custom": "Custom",
+    "forms": "Forms",
+    "layout": "Layout",
+    "links": "Links",
+    "product": "Product"
+  },
   "settings_schema": {
     "global": {
       "settings": {
