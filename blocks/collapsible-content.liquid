@@ -1,20 +1,68 @@
-{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-{{ 'collapsible-content.css' | asset_url | stylesheet_tag }}
-
-<div class="accordion" {{ block.shopify_attributes }}>
-  <details id="Details-{{ block.id }}-{{ section.id }}">
-    <summary id="Summary-{{ block.id }}-{{ section.id }}" class="items-center">
+<div
+  class="
+    mt-[1.5625rem]
+    mb-0
+    border-y-[.0625rem]
+    border-solid
+    border-[rgba(var(--color-foreground),.08)]
+  "
+  {{ block.shopify_attributes }}
+>
+  <details id="Details-{{ block.id }}-{{ section.id }}" class="open:[&_.icon-caret]:rotate-180">
+    <summary
+      id="Summary-{{ block.id }}-{{ section.id }}"
+      class="
+        flex
+        relative
+        leading-none
+        items-center
+        py-[.9375rem]
+        px-0
+      "
+    >
       {%- assign file = block.settings.icon | replace: '_', '-' | prepend: 'icon-' | append: '.svg' -%}
-      <span class="svg-wrapper h-[{{ block.settings.icon_size }}px]! w-[{{ block.settings.icon_size }}px]!">
+      <span
+        class="
+          inline-flex
+          justify-center
+          items-center
+          self-center
+          fill-[rgb(var(--color-foreground))]
+          mr-[calc(var(--font-heading-scale)_*_0.625rem)]
+          h-[{{ block.settings.icon_size }}px]!
+          w-[{{ block.settings.icon_size }}px]!
+          [&>svg]:h-full
+          [&>svg]:w-full
+        "
+      >
         {{- file | inline_asset_content -}}
       </span>
-      <h3 class="accordion__title inline-richtext h4">
+      <h3
+        class="
+          inline-block
+          max-w-[calc(100%-3.75rem)]
+          min-h-[1rem]
+          m-0
+          break-all
+          text-[calc(var(--font-heading-scale)*.9375rem)]!
+        "
+      >
         {{ block.settings.heading | default: block.settings.page.title | escape }}
       </h3>
       {{- 'icon-caret.svg' | inline_asset_content -}}
     </summary>
     <div
-      class="accordion__content rte"
+      class="
+        mb-[.9375rem]
+        break-all
+        overflow-x-auto
+        py-0
+        px-[.375rem]
+        after:clear-both
+        after:block
+        [&>*:first-child]:mt-0
+        [&>*:last-child]:mb-0
+      "
       id="CollapsibleAccordion-{{ block.id }}-{{ section.id }}"
       role="region"
       aria-labelledby="Summary-{{ block.id }}-{{ section.id }}"

@@ -1,6 +1,16 @@
 {%- if block.settings.icon != 'none' -%}
   {%- assign file = block.settings.icon | replace: '_', '-' | prepend: 'icon-' | append: '.svg' -%}
-  <span class="svg-wrapper h-[{{ block.settings.icon_size }}px]! w-[{{ block.settings.icon_size }}px]!">
+  <span
+    class="
+      inline-flex
+      justify-center
+      items-center
+      h-[{{ block.settings.icon_size }}px]!
+      w-[{{ block.settings.icon_size }}px]!
+      [&>svg]:h-full
+      [&>svg]:w-full
+    "
+  >
     {{- file | inline_asset_content -}}
   </span>
 {%- endif -%}
