@@ -8,14 +8,14 @@
   class="
     block
     bg-[{{ block.settings.color_background }}]
-    text-[{{ block.settings.color }}]
-    text-{{ block.settings.font_size }}
+    text-[{{ block.settings.color }}]!
+    text-{{ block.settings.font_size }}!
     text-{{ block.settings.text_alignment }}
-    font-{{ block.settings.font_weight }}
-    font-(family-name:--{{ block.settings.font_family }}-family)
-    leading-(--{{ block.settings.font_family }}-line-height)
-    tracking-(--{{ block.settings.font_family }}-letter-spacing)
-    {{ block.settings.font_style }}
+    font-{{ block.settings.font_weight }}!
+    font-(family-name:--{{ block.settings.font_family }}-family)!
+    leading-(--{{ block.settings.font_family }}-line-height)!
+    tracking-(--{{ block.settings.font_family }}-letter-spacing)!
+    {{ block.settings.font_style }}!
     {{ block.settings.text_transform }}
     {{ block.settings.text_decoration }}
   "
@@ -164,7 +164,8 @@
   ],
   "presets": [
     {
-      "name": "Text"
+      "name": "Text",
+      "category": "t:categories.basic"
     }
   ]
 }

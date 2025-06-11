@@ -49,7 +49,20 @@
     })();
   </script>
 {% else %}
-  <div class="wrapper w-full bg-[{{ block.settings.color_background }}]">
+  <div
+    class="
+      wrapper
+      w-full
+      bg-[{{ block.settings.color_background }}]
+      flex
+      {{ block.settings.flex_direction }}
+      {{ block.settings.flex_wrap }}
+      gap-x-[{{ block.settings.horizontal_gap }}px]
+      gap-y-[{{ block.settings.vertical_gap }}px]
+      {{ block.settings.justify_content }}
+      {{ block.settings.align_items }}
+    "
+  >
     {% content_for 'blocks' %}
   </div>
 {% endif %}
@@ -78,6 +91,129 @@
       "id": "is_slider_mode",
       "label": "Slider mode",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Layout",
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+    },
+    {
+      "type": "select",
+      "id": "flex_direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-col",
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+    },
+    {
+      "type": "select",
+      "id": "flex_wrap",
+      "label": "Wrap",
+      "options": [
+        {
+          "value": "flex-wrap",
+          "label": "Yes"
+        },
+        {
+          "value": "flex-nowrap",
+          "label": "No"
+        }
+      ],
+      "default": "flex-nowrap",
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal gap",
+      "default": 8,
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+    },
+    {
+      "type": "range",
+      "id": "vertical_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical gap",
+      "default": 8,
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+    },
+    {
+      "type": "select",
+      "id": "justify_content",
+      "label": "Justify content",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Start"
+        },
+        {
+          "value": "justify-center",
+          "label": "Center"
+        },
+        {
+          "value": "justify-end",
+          "label": "End"
+        },
+        {
+          "value": "justify-around",
+          "label": "Space around"
+        },
+        {
+          "value": "justify-between",
+          "label": "Space between"
+        },
+        {
+          "value": "justify-evenly",
+          "label": "Space evenly"
+        }
+      ],
+      "default": "justify-start",
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+    },
+    {
+      "type": "select",
+      "id": "align_items",
+      "label": "Align items",
+      "options": [
+        {
+          "value": "items-start",
+          "label": "Start"
+        },
+        {
+          "value": "items-center",
+          "label": "Center"
+        },
+        {
+          "value": "items-end",
+          "label": "End"
+        },
+        {
+          "value": "items-baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "items-stretch",
+          "label": "Stretch"
+        }
+      ],
+      "default": "items-start",
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
     },
     {
       "type": "header",
@@ -121,7 +257,8 @@
   ],
   "presets": [
     {
-      "name": "Group"
+      "name": "Group",
+      "category": "t:categories.layout"
     }
   ]
 }

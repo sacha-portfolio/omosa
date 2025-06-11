@@ -1,11 +1,38 @@
-{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
-
-<ul class="footer-block__details-content list-unstyled">
+<ul
+  class="
+    m-0
+    p-0
+    list-none
+    mb-[2.5rem]
+    md:mb-0
+    text-{{ block.settings.text_alignment }}
+    bg-[{{ block.settings.color_background }}]
+  "
+>
   {%- for link in block.settings.menu.links -%}
-    <li>
+    <li class="p-0">
       <a
         href="{{ link.url }}"
-        class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+        class="
+          cursor-pointer
+          border-none
+          shadow-none
+          bg-transparent
+          text-{{ block.settings.font_size }}!
+          text-[{{ block.settings.color }}]!
+          text-{{ block.settings.text_alignment }}
+          font-{{ block.settings.font_weight }}!
+          font-(family-name:--{{ block.settings.font_family }}-family)!
+          leading-(--{{ block.settings.font_family }}-line-height)!
+          tracking-(--{{ block.settings.font_family }}-letter-spacing)!
+          {{ block.settings.font_style }}!
+          {{ block.settings.text_transform }}
+          {{ block.settings.text_decoration }}
+          hover:opacity-75
+          py-[0.3125rem]
+          md:py-[0.625rem]
+          {% if link.active %}underline! underline-offset-[0.1875rem]! md:hover:decoration-[0.125rem]! hover:opacity-100{% endif %}
+        "
       >
         {{ link.title | escape }}
       </a>
@@ -21,11 +48,111 @@
       "type": "link_list",
       "id": "menu",
       "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font Size",
+      "options": [
+        { "value": "5xl", "label": "5xl" },
+        { "value": "4xl", "label": "4xl" },
+        { "value": "3xl", "label": "3xl" },
+        { "value": "2xl", "label": "2xl" },
+        { "value": "xl", "label": "xl" },
+        { "value": "lg", "label": "lg" },
+        { "value": "base", "label": "base" },
+        { "value": "sm", "label": "sm" },
+        { "value": "xs", "label": "xs" }
+      ],
+      "default": "base"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "normal", "label": "Normal" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "semi-bold", "label": "Semi-bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font Family",
+      "options": [
+        { "value": "font-heading", "label": "Headings Primary" },
+        { "value": "font-heading-secondary", "label": "Headings Secondary" },
+        { "value": "font-body", "label": "Body Primary" },
+        { "value": "font-body-secondary", "label": "Body Secondary" }
+      ],
+      "default": "font-body"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "options": [
+        { "value": "not-italic", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "not-italic"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "normal-case", "label": "Normal case" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "normal-case"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        { "value": "no-underline", "label": "No underline" },
+        { "value": "underline", "label": "Underline" },
+        { "value": "overline", "label": "Overline" },
+        { "value": "line-through", "label": "Line-through" }
+      ],
+      "default": "no-underline"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Color"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background Color"
     }
   ],
   "presets": [
     {
-      "name": "Menu"
+      "name": "Menu",
+      "category": "t:categories.links",
+      "settings": {
+        "font_size": "sm"
+      }
     }
   ]
 }
