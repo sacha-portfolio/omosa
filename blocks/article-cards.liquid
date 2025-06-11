@@ -1,17 +1,23 @@
 {% liquid
-  assign max_items = block.settings.max_collections
+  assign max_items = block.settings.max_articles
 
-  if block.settings.collection_list != blank
-    assign collection_list = block.settings.collection_list
-    assign max_items = collection_list.count | at_most: block.settings.max_collections
+  if block.settings.blog != blank
+    assign articles = block.settings.blog.articles
+    assign max_items = articles.size | at_most: block.settings.max_articles
   endif
 %}
 
-{% capture collection_cards %}
-  {% for collection in collection_list limit: max_items %}
+{% capture article_cards %}
+  {% for i in (1..max_items) %}
+    {% if articles.size > 0 %}
+      {% assign index = forloop.index0 %}
+      {% assign article = articles[index] %}
+    {% else %}
+      {% assign article = null %}
+    {% endif %}
     <div class="transition-transform! duration-400 hover:-translate-y-[3px]{% if block.settings.layout_type == 'slider' %} swiper-slide bg-[{{ block.settings.slides_background_color }}]{% endif %}">
-      <a href="{{ collection.url }}">
-        {% content_for 'blocks', closest.collection: collection %}
+      <a href="{{ article.url }}">
+        {% content_for 'blocks', closest.article: article %}
       </a>
     </div>
   {% endfor %}
@@ -23,7 +29,7 @@
       class="w-full grid-cols-{{ block.settings.mobile_columns }} md:grid-cols-{{ block.settings.columns }} gap-x-[{{ block.settings.columns_gap }}px] gap-y-[{{ block.settings.rows_gap }}px]"
       style="display: grid"
     >
-      {{ collection_cards }}
+      {{ article_cards }}
     </div>
   {% when 'slider' %}
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
@@ -36,7 +42,7 @@
     {% endstyle %}
     <div class="swiper swiper-{{ block.id }} w-full bg-[{{ block.settings.color_background }}]">
       <div class="swiper-wrapper">
-        {{ collection_cards }}
+        {{ article_cards }}
       </div>
       {% if block.settings.show_arrow_buttons %}
         <div class="swiper-button-next flex!"></div>
@@ -81,14 +87,14 @@
 
 {% schema %}
 {
-  "name": "Collection cards",
+  "name": "Article cards",
   "tag": "div",
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }, { "type": "_article-date" }],
   "settings": [
     {
-      "type": "collection_list",
-      "id": "collection_list",
-      "label": "Collections"
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
     },
     {
       "type": "select",
@@ -108,11 +114,11 @@
     },
     {
       "type": "range",
-      "id": "max_collections",
+      "id": "max_articles",
       "min": 1,
       "max": 16,
       "step": 1,
-      "label": "Collection count",
+      "label": "Article count",
       "default": 8
     },
     {
@@ -204,26 +210,35 @@
   ],
   "presets": [
     {
-      "name": "Collection cards",
-      "category": "t:categories.collection",
+      "name": "Article cards",
+      "category": "t:categories.blog",
       "blocks": {
         "image": {
           "type": "image",
           "name": "Image",
           "settings": {
-            "image_url": "{{ closest.collection.image }}"
+            "image_url": "{{ closest.article.image }}"
           }
         },
         "text": {
           "type": "text",
           "name": "Text",
           "settings": {
-            "text": "{{ closest.collection.title }}",
+            "text": "{{ closest.article.title }}",
+            "font_size": "xl",
+            "color": "#000"
+          }
+        },
+        "date": {
+          "type": "_article-date",
+          "name": "Date",
+          "settings": {
+            "article": "{{ closest.article }}",
             "font_size": "sm"
           }
         }
       },
-      "block_order": ["image", "text"]
+      "block_order": ["image", "text", "date"]
     }
   ]
 }

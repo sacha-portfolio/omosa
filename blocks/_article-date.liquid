@@ -14,32 +14,23 @@
   "
 >
   {% liquid
-    assign price = block.settings.product.price
-    assign compare_at_price = block.settings.product.compare_at_price
+    assign published_at = block.settings.article.published_at
   %}
-  {% if block.settings.show_sale_price_first == false and compare_at_price > price %}
-    <s class="opacity-75">{{ compare_at_price | money }}</s>
-  {% endif %}
-  <span>{{ price | money }}</span>
-  {% if block.settings.show_sale_price_first == true and compare_at_price > price %}
-    <s class="opacity-75">{{ compare_at_price | money }}</s>
+  {% if published_at and published_at != '' %}
+    <span>{{ published_at | time_tag: format: 'date' }}</span>
+  {% else %}
+    <span>{{ '2025-01-01' | time_tag: format: 'date' }}</span>
   {% endif %}
 </div>
 
 {% schema %}
 {
-  "name": "Price",
+  "name": "Date",
   "settings": [
     {
-      "type": "product",
-      "id": "product",
-      "label": "Product"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_sale_price_first",
-      "label": "Show sale price first",
-      "default": true
+      "type": "article",
+      "id": "article",
+      "label": "Article"
     },
     {
       "type": "header",
@@ -128,9 +119,10 @@
   ],
   "presets": [
     {
-      "name": "Price",
+      "name": "Date",
+      "category": "t:categories.blog",
       "settings": {
-        "product": "{{ closest.product }}"
+        "article": "{{ closest.article }}"
       }
     }
   ]

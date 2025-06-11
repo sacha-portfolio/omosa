@@ -10,7 +10,7 @@
     {{ block.settings.spacing | class_list }}
   "
 >
-  {% if block.settings.image_url %}
+  {% if block.settings.image_url and block.settings.image_url != '' %}
     {% capture image_classes %}h-auto max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px]{% endcapture %}
     {{ block.settings.image_url | image_url: width: 1500 | image_tag: class: image_classes | strip }}
   {% else %}
@@ -135,7 +135,8 @@
   ],
   "presets": [
     {
-      "name": "Image"
+      "name": "Image",
+      "category": "t:categories.basic"
     }
   ]
 }

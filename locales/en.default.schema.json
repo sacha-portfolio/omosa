@@ -1,4 +1,14 @@
 {
+  "categories": {
+    "basic": "Basic",
+    "blog": "Blog",
+    "collection": "Collection",
+    "custom": "Custom",
+    "forms": "Forms",
+    "layout": "Layout",
+    "links": "Links",
+    "product": "Product"
+  },
   "settings_schema": {
     "global": {
       "settings": {
@@ -3265,6 +3275,7 @@
           "settings": {
             "heading": {
               "default": "Collapsible row",
+              "info": "Include a heading that explains the content.",
               "label": "Heading"
             },
             "row_content": {

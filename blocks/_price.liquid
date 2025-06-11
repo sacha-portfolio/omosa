@@ -1,37 +1,49 @@
-<{{ block.settings.tag }}
-  {% if block.settings.tag == 'a' %}
-    href="{{ block.settings.link }}"
-    {% if block.settings.open_on_new_tab %}
-      target="_blank"
-    {% endif %}
-  {% endif %}
+<div
   class="
     block
     bg-[{{ block.settings.color_background }}]
-    text-[{{ block.settings.color }}]!
-    text-{{ block.settings.font_size }}!
+    text-[{{ block.settings.color }}]
+    text-{{ block.settings.font_size }}
     text-{{ block.settings.text_alignment }}
-    font-{{ block.settings.font_weight }}!
-    font-(family-name:--{{ block.settings.font_family }}-family)!
-    leading-(--{{ block.settings.font_family }}-line-height)!
-    tracking-(--{{ block.settings.font_family }}-letter-spacing)!
-    {{ block.settings.font_style }}!
-    {{ block.settings.text_transform }}
+    font-{{ block.settings.font_weight }}
+    font-(family-name:--{{ block.settings.font_family }}-family)
+    leading-(--{{ block.settings.font_family }}-line-height)
+    tracking-(--{{ block.settings.font_family }}-letter-spacing)
+    {{ block.settings.font_style }}
     {{ block.settings.text_decoration }}
   "
 >
-  {{ block.settings.text }}
-</{{ block.settings.tag }}>
+  {% liquid
+    assign price = block.settings.product.price
+    assign compare_at_price = block.settings.product.compare_at_price
+  %}
+  {% if price and price != '' %}
+    {% if block.settings.show_sale_price_first == false and compare_at_price > price %}
+      <s class="opacity-75">{{ compare_at_price | money }}</s>
+    {% endif %}
+    <span>{{ price | money }}</span>
+    {% if block.settings.show_sale_price_first == true and compare_at_price > price %}
+      <s class="opacity-75">{{ compare_at_price | money }}</s>
+    {% endif %}
+  {% else %}
+    <span>{{ 1999 | money }}</span>
+  {% endif %}
+</div>
 
 {% schema %}
 {
-  "name": "Text",
+  "name": "Price",
   "settings": [
     {
-      "type": "text",
-      "id": "text",
-      "label": "Content",
-      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_price_first",
+      "label": "Show sale price first",
+      "default": true
     },
     {
       "type": "header",
@@ -97,18 +109,6 @@
     },
     {
       "type": "select",
-      "id": "text_transform",
-      "label": "Text Transform",
-      "options": [
-        { "value": "normal-case", "label": "Normal case" },
-        { "value": "uppercase", "label": "Uppercase" },
-        { "value": "lowercase", "label": "Lowercase" },
-        { "value": "capitalize", "label": "Capitalize" }
-      ],
-      "default": "normal-case"
-    },
-    {
-      "type": "select",
       "id": "text_decoration",
       "label": "Text Decoration",
       "options": [
@@ -128,44 +128,15 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
-    },
-    {
-      "type": "header",
-      "content": "Link"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
-    },
-    {
-      "type": "checkbox",
-      "id": "open_on_new_tab",
-      "label": "Open on new tab",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "SEO"
-    },
-    {
-      "type": "select",
-      "id": "tag",
-      "label": "Tag Selector",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "div", "label": "DIV" },
-        { "value": "a", "label": "A" }
-      ],
-      "default": "div"
     }
   ],
   "presets": [
     {
-      "name": "Text",
-      "category": "t:categories.basic"
+      "name": "Price",
+      "category": "t:categories.product",
+      "settings": {
+        "product": "{{ closest.product }}"
+      }
     }
   ]
 }

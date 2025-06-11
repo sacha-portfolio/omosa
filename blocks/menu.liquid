@@ -1,37 +1,53 @@
-<{{ block.settings.tag }}
-  {% if block.settings.tag == 'a' %}
-    href="{{ block.settings.link }}"
-    {% if block.settings.open_on_new_tab %}
-      target="_blank"
-    {% endif %}
-  {% endif %}
+<ul
   class="
-    block
-    bg-[{{ block.settings.color_background }}]
-    text-[{{ block.settings.color }}]!
-    text-{{ block.settings.font_size }}!
+    m-0
+    p-0
+    list-none
+    mb-[2.5rem]
+    md:mb-0
     text-{{ block.settings.text_alignment }}
-    font-{{ block.settings.font_weight }}!
-    font-(family-name:--{{ block.settings.font_family }}-family)!
-    leading-(--{{ block.settings.font_family }}-line-height)!
-    tracking-(--{{ block.settings.font_family }}-letter-spacing)!
-    {{ block.settings.font_style }}!
-    {{ block.settings.text_transform }}
-    {{ block.settings.text_decoration }}
+    bg-[{{ block.settings.color_background }}]
   "
 >
-  {{ block.settings.text }}
-</{{ block.settings.tag }}>
+  {%- for link in block.settings.menu.links -%}
+    <li class="p-0">
+      <a
+        href="{{ link.url }}"
+        class="
+          cursor-pointer
+          border-none
+          shadow-none
+          bg-transparent
+          text-{{ block.settings.font_size }}!
+          text-[{{ block.settings.color }}]!
+          text-{{ block.settings.text_alignment }}
+          font-{{ block.settings.font_weight }}!
+          font-(family-name:--{{ block.settings.font_family }}-family)!
+          leading-(--{{ block.settings.font_family }}-line-height)!
+          tracking-(--{{ block.settings.font_family }}-letter-spacing)!
+          {{ block.settings.font_style }}!
+          {{ block.settings.text_transform }}
+          {{ block.settings.text_decoration }}
+          hover:opacity-75
+          py-[0.3125rem]
+          md:py-[0.625rem]
+          {% if link.active %}underline! underline-offset-[0.1875rem]! md:hover:decoration-[0.125rem]! hover:opacity-100{% endif %}
+        "
+      >
+        {{ link.title | escape }}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
 
 {% schema %}
 {
-  "name": "Text",
+  "name": "Menu",
   "settings": [
     {
-      "type": "text",
-      "id": "text",
-      "label": "Content",
-      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
     },
     {
       "type": "header",
@@ -128,44 +144,15 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
-    },
-    {
-      "type": "header",
-      "content": "Link"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
-    },
-    {
-      "type": "checkbox",
-      "id": "open_on_new_tab",
-      "label": "Open on new tab",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "SEO"
-    },
-    {
-      "type": "select",
-      "id": "tag",
-      "label": "Tag Selector",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "div", "label": "DIV" },
-        { "value": "a", "label": "A" }
-      ],
-      "default": "div"
     }
   ],
   "presets": [
     {
-      "name": "Text",
-      "category": "t:categories.basic"
+      "name": "Menu",
+      "category": "t:categories.links",
+      "settings": {
+        "font_size": "sm"
+      }
     }
   ]
 }
