@@ -9,6 +9,7 @@
     text-[{{ block.settings.color }}]
     text-{{ block.settings.font_size }}
     font-{{ block.settings.font_weight }}
+    text-{{ block.settings.text_alignment }}
     font-(family-name:--{{ block.settings.font_family }}-family)
     leading-(--{{ block.settings.font_family }}-line-height)
     tracking-(--{{ block.settings.font_family }}-letter-spacing)
@@ -93,6 +94,12 @@
         { "value": "italic", "label": "Italic" }
       ],
       "default": "not-italic"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left"
     },
     {
       "type": "select",
