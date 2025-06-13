@@ -18,6 +18,12 @@
     {{ block.settings.font_style }}!
     {{ block.settings.text_transform }}
     {{ block.settings.text_decoration }}
+    {%- if block.settings.add_hover_effect %}
+    transition-colors
+    duration-{{ block.settings.transition_duration | times: 1000 | round }}
+    hover:bg-[{{ block.settings.hover_color_background }}]
+    hover:text-[{{ block.settings.hover_color }}]!
+    {%- endif %}
   "
 >
   {{ block.settings.text }}
@@ -128,6 +134,39 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_hover_effect",
+      "label": "Add hover effect",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "transition_duration",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "unit": "s",
+      "label": "Transition duration",
+      "default": 0,
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color_background",
+      "label": "Background Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
     },
     {
       "type": "header",
