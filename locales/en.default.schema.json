@@ -210,7 +210,21 @@
       "font-1": "Font 1",
       "font-2": "Font 2",
       "font-3": "Font 3",
-      "font-4": "Font 4"
+      "font-4": "Font 4",
+      "font_weight": "Weight",
+      "light": "Light",
+      "medium": "Medium",
+      "semi-bold": "Semi-bold",
+      "bold": "Bold",
+      "5xl": "5xl",
+      "4xl": "4xl",
+      "3xl": "3xl",
+      "2xl": "2xl",
+      "xl": "xl",
+      "lg": "lg",
+      "base": "base",
+      "sm": "sm",
+      "xs": "xs"
     },
     "buttons": {
       "name": "Buttons"

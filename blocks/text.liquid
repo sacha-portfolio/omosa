@@ -44,74 +44,10 @@
       "content": "Style"
     },
     {
-      "type": "select",
-      "id": "font_size",
-      "label": "Font Size",
-      "options": [
-        { "value": "5xl", "label": "5xl" },
-        { "value": "4xl", "label": "4xl" },
-        { "value": "3xl", "label": "3xl" },
-        { "value": "2xl", "label": "2xl" },
-        { "value": "xl", "label": "xl" },
-        { "value": "lg", "label": "lg" },
-        { "value": "base", "label": "base" },
-        { "value": "sm", "label": "sm" },
-        { "value": "xs", "label": "xs" }
-      ],
-      "default": "base"
-    },
-    {
       "type": "text_alignment",
       "id": "text_alignment",
       "label": "Text Alignment",
       "default": "left"
-    },
-    {
-      "type": "select",
-      "id": "font_weight",
-      "label": "Font Weight",
-      "options": [
-        { "value": "light", "label": "Light" },
-        { "value": "normal", "label": "Normal" },
-        { "value": "medium", "label": "Medium" },
-        { "value": "semi-bold", "label": "Semi-bold" },
-        { "value": "bold", "label": "Bold" }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "font_family",
-      "label": "Font Family",
-      "options": [
-        { "value": "font-heading", "label": "Headings Primary" },
-        { "value": "font-heading-secondary", "label": "Headings Secondary" },
-        { "value": "font-body", "label": "Body Primary" },
-        { "value": "font-body-secondary", "label": "Body Secondary" }
-      ],
-      "default": "font-body"
-    },
-    {
-      "type": "select",
-      "id": "font_style",
-      "label": "Font Style",
-      "options": [
-        { "value": "not-italic", "label": "Normal" },
-        { "value": "italic", "label": "Italic" }
-      ],
-      "default": "not-italic"
-    },
-    {
-      "type": "select",
-      "id": "text_transform",
-      "label": "Text Transform",
-      "options": [
-        { "value": "normal-case", "label": "Normal case" },
-        { "value": "uppercase", "label": "Uppercase" },
-        { "value": "lowercase", "label": "Lowercase" },
-        { "value": "capitalize", "label": "Capitalize" }
-      ],
-      "default": "normal-case"
     },
     {
       "type": "select",
@@ -126,14 +62,135 @@
       "default": "no-underline"
     },
     {
+      "type": "select",
+      "id": "text_transform",
+      "label": "t:settings_schema.typography.text_case",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:settings_schema.typography.default"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:settings_schema.typography.uppercase"
+        }
+      ],
+      "default": "none",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Preset",
+      "options": [
+        {
+          "value": "paragraph",
+          "label": "Paragraph"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "paragraph"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font Size",
+      "options": [
+        { "value": "5xl", "label": "5xl" },
+        { "value": "4xl", "label": "4xl" },
+        { "value": "3xl", "label": "3xl" },
+        { "value": "2xl", "label": "2xl" },
+        { "value": "xl", "label": "xl" },
+        { "value": "lg", "label": "lg" },
+        { "value": "base", "label": "base" },
+        { "value": "sm", "label": "sm" },
+        { "value": "xs", "label": "xs" }
+      ],
+      "default": "base",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "normal", "label": "Normal" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "semi-bold", "label": "Semi-bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "normal",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font Family",
+      "options": [
+        { "value": "font-heading", "label": "Headings Primary" },
+        { "value": "font-heading-secondary", "label": "Headings Secondary" },
+        { "value": "font-body", "label": "Body Primary" },
+        { "value": "font-body-secondary", "label": "Body Secondary" }
+      ],
+      "default": "font-body",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "options": [
+        { "value": "not-italic", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "not-italic",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
       "type": "color",
       "id": "color",
-      "label": "Color"
+      "label": "Text"
     },
     {
       "type": "color",
       "id": "color_background",
-      "label": "Background Color"
+      "label": "Background"
     },
     {
       "type": "header",
@@ -170,18 +227,21 @@
     },
     {
       "type": "header",
-      "content": "Link"
+      "content": "Link",
+      "visible_if": "{{ block.settings.tag == 'a' }}"
     },
     {
       "type": "url",
       "id": "link",
-      "label": "Link"
+      "label": "Link",
+      "visible_if": "{{ block.settings.tag == 'a' }}"
     },
     {
       "type": "checkbox",
       "id": "open_on_new_tab",
       "label": "Open on new tab",
-      "default": false
+      "default": false,
+      "visible_if": "{{ block.settings.tag == 'a' }}"
     },
     {
       "type": "header",
