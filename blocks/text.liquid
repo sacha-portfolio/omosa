@@ -8,14 +8,14 @@
   class="
     block
     bg-[{{ block.settings.color_background }}]
-    text-[{{ block.settings.color }}]!
-    text-{{ block.settings.font_size }}!
+    text-[{{ block.settings.color }}]
     text-{{ block.settings.text_alignment }}
-    font-{{ block.settings.font_weight }}!
+
+    {{ block.settings.font_size }}
+    {{ block.settings.font_style }}
+    {{ block.settings.font_weight }}
     font-(family-name:{{ block.settings.font_family }})
-    leading-({{ block.settings.font_family }}-line-height)
-    tracking-({{ block.settings.font_family }}-letter-spacing)
-    {{ block.settings.font_style }}!
+
     {{ block.settings.text_transform }}
     {{ block.settings.text_decoration }}
     {%- if block.settings.add_hover_effect %}
@@ -127,17 +127,17 @@
       "id": "font_size",
       "label": "Font Size",
       "options": [
-        { "value": "5xl", "label": "5xl" },
-        { "value": "4xl", "label": "4xl" },
-        { "value": "3xl", "label": "3xl" },
-        { "value": "2xl", "label": "2xl" },
-        { "value": "xl", "label": "xl" },
-        { "value": "lg", "label": "lg" },
-        { "value": "base", "label": "base" },
-        { "value": "sm", "label": "sm" },
-        { "value": "xs", "label": "xs" }
+        { "value": "text-5xl", "label": "5xl (48px)" },
+        { "value": "text-4xl", "label": "4xl (36px)" },
+        { "value": "text-3xl", "label": "3xl (30px)" },
+        { "value": "text-2xl", "label": "2xl (24px)" },
+        { "value": "text-xl", "label": "xl (20px)" },
+        { "value": "text-lg", "label": "lg (18px)" },
+        { "value": "text-base", "label": "base (16px)" },
+        { "value": "text-sm", "label": "sm (14px)" },
+        { "value": "text-xs", "label": "xs (12px)" }
       ],
-      "default": "base",
+      "default": "text-base",
       "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
@@ -145,13 +145,17 @@
       "id": "font_weight",
       "label": "Font Weight",
       "options": [
-        { "value": "light", "label": "Light" },
-        { "value": "normal", "label": "Normal" },
-        { "value": "medium", "label": "Medium" },
-        { "value": "semi-bold", "label": "Semi-bold" },
-        { "value": "bold", "label": "Bold" }
+        { "value": "font-thin", "label": "Thin" },
+        { "value": "font-extralight", "label": "Extra Light" },
+        { "value": "font-light", "label": "Light" },
+        { "value": "font-normal", "label": "Normal" },
+        { "value": "font-medium", "label": "Medium" },
+        { "value": "font-semibold", "label": "Semi Bold" },
+        { "value": "font-bold", "label": "Bold" },
+        { "value": "font-extrabold", "label": "Extra Bold" },
+        { "value": "font-black", "label": "Black" }
       ],
-      "default": "normal",
+      "default": "font-normal",
       "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
