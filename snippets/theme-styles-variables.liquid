@@ -1,0 +1,54 @@
+{%- liquid
+  assign primary_font_bold = settings.type_font_1 | font_modify: 'weight', 'bold'
+  assign primary_font_italic = settings.type_font_1 | font_modify: 'style', 'italic'
+  assign primary_font_bold_italic = primary_font_bold | font_modify: 'style', 'italic'
+
+  assign secondary_font_bold = settings.type_font_2 | font_modify: 'weight', 'bold'
+  assign secondary_font_italic = settings.type_font_2 | font_modify: 'style', 'italic'
+  assign secondary_font_bold_italic = secondary_font_bold | font_modify: 'style', 'italic'
+
+  assign tertiary_font_bold = settings.type_font_3 | font_modify: 'weight', 'bold'
+  assign tertiary_font_italic = settings.type_font_3 | font_modify: 'style', 'italic'
+  assign tertiary_font_bold_italic = tertiary_font_bold | font_modify: 'style', 'italic'
+
+  assign accent_font_bold = settings.type_font_4 | font_modify: 'weight', 'bold'
+  assign accent_font_italic = settings.type_font_4 | font_modify: 'style', 'italic'
+  assign accent_font_bold_italic = accent_font_bold | font_modify: 'style', 'italic'
+%}
+
+{% style %}
+  {{ settings.type_font_1 | font_face: font_display: 'swap' }}
+  {{ primary_font_bold | font_face: font_display: 'swap' }}
+  {{ primary_font_italic | font_face: font_display: 'swap' }}
+  {{ primary_font_bold_italic | font_face: font_display: 'swap' }}
+
+  {{ settings.type_font_2 | font_face: font_display: 'swap' }}
+  {{ secondary_font_bold | font_face: font_display: 'swap' }}
+  {{ secondary_font_italic | font_face: font_display: 'swap' }}
+  {{ secondary_font_bold_italic | font_face: font_display: 'swap' }}
+
+  {{ settings.type_font_3 | font_face: font_display: 'swap' }}
+  {{ tertiary_font_bold | font_face: font_display: 'swap' }}
+  {{ tertiary_font_italic | font_face: font_display: 'swap' }}
+  {{ tertiary_font_bold_italic | font_face: font_display: 'swap' }}
+
+  {{ settings.type_font_4 | font_face: font_display: 'swap' }}
+  {{ accent_font_bold | font_face: font_display: 'swap' }}
+  {{ accent_font_italic | font_face: font_display: 'swap' }}
+  {{ accent_font_bold_italic | font_face: font_display: 'swap' }}
+
+  :root {
+    --font-font-1--family: {{ settings.type_font_1.family }}, {{ settings.type_font_1.fallback_families }};
+    --font-font-1--style: {{ settings.type_font_1.style }};
+    --font-font-1--weight: {{ settings.type_font_1.weight }};
+    --font-font-2--family: {{ settings.type_font_2.family }}, {{ settings.type_font_2.fallback_families }};
+    --font-font-2--style: {{ settings.type_font_2.style }};
+    --font-font-2--weight: {{ settings.type_font_2.weight }};
+    --font-font-3--family: {{ settings.type_font_3.family }}, {{ settings.type_font_3.fallback_families }};
+    --font-font-3--style: {{ settings.type_font_3.style }};
+    --font-font-3--weight: {{ settings.type_font_3.weight }};
+    --font-font-4--family: {{ settings.type_font_4.family }}, {{ settings.type_font_4.fallback_families }};
+    --font-font-4--style: {{ settings.type_font_4.style }};
+    --font-font-4--weight: {{ settings.type_font_4.weight }};
+  }
+{% endstyle %}

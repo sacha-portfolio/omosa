@@ -1,0 +1,50 @@
+{%- unless settings.type_font_1.system?
+  and settings.type_font_2.system?
+  and settings.type_font_3.system?
+  and settings.type_font_4.system?
+-%}
+  <link
+    rel="preconnect"
+    href="https://fonts.shopifycdn.com"
+    crossorigin
+  >
+{%- endunless -%}
+
+{% # theme-check-disable %}
+{%- unless settings.type_font_1.system? -%}
+  <link
+    rel="preload"
+    as="font"
+    href="{{ settings.type_font_1 | font_url }}"
+    type="font/woff2"
+    crossorigin
+  >
+{%- endunless -%}
+{%- unless settings.type_font_2.system? -%}
+  <link
+    rel="preload"
+    as="font"
+    href="{{ settings.type_font_2 | font_url }}"
+    type="font/woff2"
+    crossorigin
+  >
+{%- endunless -%}
+{%- unless settings.type_font_3.system? -%}
+  <link
+    rel="preload"
+    as="font"
+    href="{{ settings.type_font_3 | font_url }}"
+    type="font/woff2"
+    crossorigin
+  >
+{%- endunless -%}
+{%- unless settings.type_font_4.system? -%}
+  <link
+    rel="preload"
+    as="font"
+    href="{{ settings.type_font_4 | font_url }}"
+    type="font/woff2"
+    crossorigin
+  >
+{%- endunless -%}
+{% # theme-check-enable %}

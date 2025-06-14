@@ -12,7 +12,7 @@
     text-{{ block.settings.font_size }}!
     text-{{ block.settings.text_alignment }}
     font-{{ block.settings.font_weight }}!
-    font-(family-name:--{{ block.settings.font_family }}-family)!
+    font-(family-name:--{{ block.settings.font_family }})!
     leading-(--{{ block.settings.font_family }}-line-height)!
     tracking-(--{{ block.settings.font_family }}-letter-spacing)!
     {{ block.settings.font_style }}!
@@ -157,14 +157,26 @@
     {
       "type": "select",
       "id": "font_family",
-      "label": "Font Family",
+      "label": "t:settings_schema.typography.font",
       "options": [
-        { "value": "font-heading", "label": "Headings Primary" },
-        { "value": "font-heading-secondary", "label": "Headings Secondary" },
-        { "value": "font-body", "label": "Body Primary" },
-        { "value": "font-body-secondary", "label": "Body Secondary" }
+        {
+          "value": "var(--font-font-1--family)",
+          "label": "t:settings_schema.typography.font-1"
+        },
+        {
+          "value": "var(--font-font-2--family)",
+          "label": "t:settings_schema.typography.font-2"
+        },
+        {
+          "value": "var(--font-font-3--family)",
+          "label": "t:settings_schema.typography.font-3"
+        },
+        {
+          "value": "var(--font-font-4--family)",
+          "label": "t:settings_schema.typography.font-4"
+        }
       ],
-      "default": "font-body",
+      "default": "var(--font-font-1--family)",
       "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
