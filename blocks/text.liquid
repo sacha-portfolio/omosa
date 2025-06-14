@@ -12,9 +12,9 @@
     text-{{ block.settings.font_size }}!
     text-{{ block.settings.text_alignment }}
     font-{{ block.settings.font_weight }}!
-    font-(family-name:--{{ block.settings.font_family }})!
-    leading-(--{{ block.settings.font_family }}-line-height)!
-    tracking-(--{{ block.settings.font_family }}-letter-spacing)!
+    font-(family-name:{{ block.settings.font_family }})
+    leading-({{ block.settings.font_family }}-line-height)
+    tracking-({{ block.settings.font_family }}-letter-spacing)
     {{ block.settings.font_style }}!
     {{ block.settings.text_transform }}
     {{ block.settings.text_decoration }}
@@ -160,23 +160,23 @@
       "label": "t:settings_schema.typography.font",
       "options": [
         {
-          "value": "var(--font-font-1--family)",
+          "value": "--font-font-1--family",
           "label": "t:settings_schema.typography.font-1"
         },
         {
-          "value": "var(--font-font-2--family)",
+          "value": "--font-font-2--family",
           "label": "t:settings_schema.typography.font-2"
         },
         {
-          "value": "var(--font-font-3--family)",
+          "value": "--font-font-3--family",
           "label": "t:settings_schema.typography.font-3"
         },
         {
-          "value": "var(--font-font-4--family)",
+          "value": "--font-font-4--family",
           "label": "t:settings_schema.typography.font-4"
         }
       ],
-      "default": "var(--font-font-1--family)",
+      "default": "--font-font-1--family",
       "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
