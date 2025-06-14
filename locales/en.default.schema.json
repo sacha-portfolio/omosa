@@ -184,45 +184,33 @@
       }
     },
     "typography": {
+      "fonts": "Fonts",
       "name": "Typography",
-      "settings": {
-        "type_header_font": {
-          "label": "Font"
-        },
-        "heading_scale": {
-          "label": "Scale"
-        },
-        "heading_line_height": {
-          "label": "Line Height"
-        },
-        "heading_letter_spacing": {
-          "label": "Letter Spacing"
-        },
-        "header__1": {
-          "content": "Headings Primary"
-        },
-        "header__1_secondary": {
-          "content": "Headings Secondary"
-        },
-        "header__2": {
-          "content": "Body Primary"
-        },
-        "header__2_secondary": {
-          "content": "Body Secondary"
-        },
-        "type_body_font": {
-          "label": "Font"
-        },
-        "body_scale": {
-          "label": "Scale"
-        },
-        "body_line_height": {
-          "label": "Line Height"
-        },
-        "body_letter_spacing": {
-          "label": "Letter Spacing"
-        }
-      }
+      "default": "Default",
+      "uppercase": "Uppercase",
+      "font": "Font",
+      "heading": "Heading",
+      "accent": "Accent",
+      "subheading": "Subheading",
+      "body": "Body",
+      "size": "Size",
+      "line_height": "Line height",
+      "tight": "Tight",
+      "normal": "Normal",
+      "loose": "Loose",
+      "letter_spacing": "Letter spacing",
+      "text_case": "Text case",
+      "h1": "H1",
+      "h2": "H2",
+      "h3": "H3",
+      "h4": "H4",
+      "h5": "H5",
+      "h6": "H6",
+      "paragraph": "Paragraph",
+      "font-1": "Font 1",
+      "font-2": "Font 2",
+      "font-3": "Font 3",
+      "font-4": "Font 4"
     },
     "buttons": {
       "name": "Buttons"
@@ -3422,6 +3410,7 @@
           }
         }
       },
+      
       "presets": {
         "name": "Collapsible content"
       }
