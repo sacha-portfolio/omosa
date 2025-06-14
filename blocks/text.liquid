@@ -8,16 +8,22 @@
   class="
     block
     bg-[{{ block.settings.color_background }}]
-    text-[{{ block.settings.color }}]
-    text-{{ block.settings.font_size }}
+    text-[{{ block.settings.color }}]!
+    text-{{ block.settings.font_size }}!
     text-{{ block.settings.text_alignment }}
-    font-{{ block.settings.font_weight }}
-    font-(family-name:--{{ block.settings.font_family }}-family)
-    leading-(--{{ block.settings.font_family }}-line-height)
-    tracking-(--{{ block.settings.font_family }}-letter-spacing)
-    {{ block.settings.font_style }}
+    font-{{ block.settings.font_weight }}!
+    font-(family-name:--{{ block.settings.font_family }}-family)!
+    leading-(--{{ block.settings.font_family }}-line-height)!
+    tracking-(--{{ block.settings.font_family }}-letter-spacing)!
+    {{ block.settings.font_style }}!
     {{ block.settings.text_transform }}
     {{ block.settings.text_decoration }}
+    {%- if block.settings.add_hover_effect %}
+    transition-colors
+    duration-{{ block.settings.transition_duration | times: 1000 | round }}
+    hover:bg-[{{ block.settings.hover_color_background }}]
+    hover:text-[{{ block.settings.hover_color }}]!
+    {%- endif %}
   "
 >
   {{ block.settings.text }}
@@ -131,6 +137,39 @@
     },
     {
       "type": "header",
+      "content": "Hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_hover_effect",
+      "label": "Add hover effect",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "transition_duration",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "unit": "s",
+      "label": "Transition duration",
+      "default": 0,
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color_background",
+      "label": "Background Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "header",
       "content": "Link"
     },
     {
@@ -164,7 +203,8 @@
   ],
   "presets": [
     {
-      "name": "Text"
+      "name": "Text",
+      "category": "t:categories.basic"
     }
   ]
 }

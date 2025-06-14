@@ -1,4 +1,10 @@
-<div class="wrapper h-[{{ section.settings.height }}] bg-[{{ section.settings.color_background }}] section-{{ section.id }}{% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}">
+{% style %}
+  .section-{{ section.id }} > div > .shopify-block {
+    width: 100%;
+  }
+{% endstyle %}
+
+<div class="section-{{ section.id }} wrapper h-[{{ section.settings.height }}] bg-[{{ section.settings.color_background }}] section-{{ section.id }}{% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}">
   <div
     class="
       h-full
@@ -8,7 +14,6 @@
       {%- if section.settings.apply_page_width %}
       page-width
       {%- endif %}
-      {% if section.settings.display == 'flex' -%}
       flex
       {{ section.settings.flex_direction }}
       {{ section.settings.flex_wrap }}
@@ -16,7 +21,6 @@
       gap-y-[{{ section.settings.vertical_gap }}px]
       {{ section.settings.justify_content }}
       {{ section.settings.align_items }}
-      {%- endif -%}
     "
   >
     {% content_for 'blocks' %}
@@ -74,27 +78,6 @@
     },
     {
       "type": "select",
-      "id": "display",
-      "label": "Display",
-      "options": [
-        {
-          "value": "block",
-          "label": "Block"
-        },
-        {
-          "value": "flex",
-          "label": "Flex"
-        }
-      ],
-      "default": "block"
-    },
-    {
-      "type": "header",
-      "content": "Flex",
-      "visible_if": "{{ section.settings.display == 'flex' }}"
-    },
-    {
-      "type": "select",
       "id": "flex_direction",
       "label": "Direction",
       "options": [
@@ -107,8 +90,7 @@
           "label": "Column"
         }
       ],
-      "default": "flex-row",
-      "visible_if": "{{ section.settings.display == 'flex' }}"
+      "default": "flex-col"
     },
     {
       "type": "select",
@@ -124,8 +106,7 @@
           "label": "No"
         }
       ],
-      "default": "flex-nowrap",
-      "visible_if": "{{ section.settings.display == 'flex' }}"
+      "default": "flex-nowrap"
     },
     {
       "type": "range",
@@ -135,8 +116,7 @@
       "step": 1,
       "unit": "px",
       "label": "Horizontal gap",
-      "default": 8,
-      "visible_if": "{{ section.settings.display == 'flex' }}"
+      "default": 8
     },
     {
       "type": "range",
@@ -146,8 +126,7 @@
       "step": 1,
       "unit": "px",
       "label": "Vertical gap",
-      "default": 8,
-      "visible_if": "{{ section.settings.display == 'flex' }}"
+      "default": 8
     },
     {
       "type": "select",
@@ -179,8 +158,7 @@
           "label": "Space evenly"
         }
       ],
-      "default": "justify-start",
-      "visible_if": "{{ section.settings.display == 'flex' }}"
+      "default": "justify-start"
     },
     {
       "type": "select",
@@ -208,8 +186,7 @@
           "label": "Stretch"
         }
       ],
-      "default": "items-start",
-      "visible_if": "{{ section.settings.display == 'flex' }}"
+      "default": "items-start"
     },
     {
       "type": "header",
