@@ -138,48 +138,61 @@
       },
       {
         "type": "select",
+        "id": "type_font_paragraph",
+        "label": "t:settings_schema.typography.font",
+        "options": [
+          {
+            "value": "font-1",
+            "label": "t:settings_schema.typography.font-1"
+          },
+          {
+            "value": "font-2",
+            "label": "t:settings_schema.typography.font-2"
+          },
+          {
+            "value": "font-3",
+            "label": "t:settings_schema.typography.font-3"
+          },
+          {
+            "value": "font-4",
+            "label": "t:settings_schema.typography.font-4"
+          }
+        ],
+        "default": "font-1"
+      },
+      {
+        "type": "select",
         "id": "type_size_paragraph",
         "label": "t:settings_schema.typography.size",
         "options": [
-          { "value": "5xl", "label": "t:settings_schema.typography.5xl" },
-          { "value": "4xl", "label": "t:settings_schema.typography.4xl" },
-          { "value": "3xl", "label": "t:settings_schema.typography.3xl" },
-          { "value": "2xl", "label": "t:settings_schema.typography.2xl" },
-          { "value": "xl", "label": "t:settings_schema.typography.xl" },
-          { "value": "lg", "label": "t:settings_schema.typography.lg" },
-          { "value": "base", "label": "t:settings_schema.typography.base" },
-          { "value": "sm", "label": "t:settings_schema.typography.sm" },
-          { "value": "xs", "label": "t:settings_schema.typography.xs" }
+          { "value": "text-5xl", "label": "5xl (48px)" },
+          { "value": "text-4xl", "label": "4xl (36px)" },
+          { "value": "text-3xl", "label": "3xl (30px)" },
+          { "value": "text-2xl", "label": "2xl (24px)" },
+          { "value": "text-xl", "label": "xl (20px)" },
+          { "value": "text-lg", "label": "lg (18px)" },
+          { "value": "text-base", "label": "base (16px)" },
+          { "value": "text-sm", "label": "sm (14px)" },
+          { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "base"
+        "default": "text-base"
       },
       {
         "type": "select",
         "id": "type_font_weight_paragraph",
         "label": "t:settings_schema.typography.font_weight",
         "options": [
-          {
-            "value": "light",
-            "label": "t:settings_schema.typography.light"
-          },
-          {
-            "value": "normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "medium",
-            "label": "t:settings_schema.typography.medium"
-          },
-          {
-            "value": "semi-bold",
-            "label": "t:settings_schema.typography.semi-bold"
-          },
-          {
-            "value": "bold",
-            "label": "t:settings_schema.typography.bold"
-          }
+          { "value": "font-thin", "label": "Thin" },
+          { "value": "font-extralight", "label": "Extra Light" },
+          { "value": "font-light", "label": "Light" },
+          { "value": "font-normal", "label": "Normal" },
+          { "value": "font-medium", "label": "Medium" },
+          { "value": "font-semibold", "label": "Semi Bold" },
+          { "value": "font-bold", "label": "Bold" },
+          { "value": "font-extrabold", "label": "Extra Bold" },
+          { "value": "font-black", "label": "Black" }
         ],
-        "default": "normal"
+        "default": "font-normal"
       },
       {
         "type": "select",
@@ -200,6 +213,42 @@
           }
         ],
         "default": "body-normal"
+      },
+      {
+        "type": "select",
+        "id": "type_letter_spacing_paragraph",
+        "label": "t:settings_schema.typography.letter_spacing",
+        "options": [
+          {
+            "value": "heading-tight",
+            "label": "t:settings_schema.typography.tight"
+          },
+          {
+            "value": "heading-normal",
+            "label": "t:settings_schema.typography.normal"
+          },
+          {
+            "value": "heading-loose",
+            "label": "t:settings_schema.typography.loose"
+          }
+        ],
+        "default": "heading-normal"
+      },
+      {
+        "type": "select",
+        "id": "type_case_paragraph",
+        "label": "t:settings_schema.typography.text_case",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:settings_schema.typography.default"
+          },
+          {
+            "value": "uppercase",
+            "label": "t:settings_schema.typography.uppercase"
+          }
+        ],
+        "default": "none"
       },
       {
         "type": "header",
@@ -234,45 +283,34 @@
         "id": "type_size_h1",
         "label": "t:settings_schema.typography.size",
         "options": [
-          { "value": "5xl", "label": "t:settings_schema.typography.5xl" },
-          { "value": "4xl", "label": "t:settings_schema.typography.4xl" },
-          { "value": "3xl", "label": "t:settings_schema.typography.3xl" },
-          { "value": "2xl", "label": "t:settings_schema.typography.2xl" },
-          { "value": "xl", "label": "t:settings_schema.typography.xl" },
-          { "value": "lg", "label": "t:settings_schema.typography.lg" },
-          { "value": "base", "label": "t:settings_schema.typography.base" },
-          { "value": "sm", "label": "t:settings_schema.typography.sm" },
-          { "value": "xs", "label": "t:settings_schema.typography.xs" }
+          { "value": "text-5xl", "label": "5xl (48px)" },
+          { "value": "text-4xl", "label": "4xl (36px)" },
+          { "value": "text-3xl", "label": "3xl (30px)" },
+          { "value": "text-2xl", "label": "2xl (24px)" },
+          { "value": "text-xl", "label": "xl (20px)" },
+          { "value": "text-lg", "label": "lg (18px)" },
+          { "value": "text-base", "label": "base (16px)" },
+          { "value": "text-sm", "label": "sm (14px)" },
+          { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "base"
+        "default": "text-base"
       },
       {
         "type": "select",
         "id": "type_font_weight_h1",
         "label": "t:settings_schema.typography.font_weight",
         "options": [
-          {
-            "value": "light",
-            "label": "t:settings_schema.typography.light"
-          },
-          {
-            "value": "normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "medium",
-            "label": "t:settings_schema.typography.medium"
-          },
-          {
-            "value": "semi-bold",
-            "label": "t:settings_schema.typography.semi-bold"
-          },
-          {
-            "value": "bold",
-            "label": "t:settings_schema.typography.bold"
-          }
+          { "value": "font-thin", "label": "Thin" },
+          { "value": "font-extralight", "label": "Extra Light" },
+          { "value": "font-light", "label": "Light" },
+          { "value": "font-normal", "label": "Normal" },
+          { "value": "font-medium", "label": "Medium" },
+          { "value": "font-semibold", "label": "Semi Bold" },
+          { "value": "font-bold", "label": "Bold" },
+          { "value": "font-extrabold", "label": "Extra Bold" },
+          { "value": "font-black", "label": "Black" }
         ],
-        "default": "normal"
+        "default": "font-normal"
       },
       {
         "type": "select",
@@ -363,45 +401,34 @@
         "id": "type_size_h2",
         "label": "t:settings_schema.typography.size",
         "options": [
-          { "value": "5xl", "label": "t:settings_schema.typography.5xl" },
-          { "value": "4xl", "label": "t:settings_schema.typography.4xl" },
-          { "value": "3xl", "label": "t:settings_schema.typography.3xl" },
-          { "value": "2xl", "label": "t:settings_schema.typography.2xl" },
-          { "value": "xl", "label": "t:settings_schema.typography.xl" },
-          { "value": "lg", "label": "t:settings_schema.typography.lg" },
-          { "value": "base", "label": "t:settings_schema.typography.base" },
-          { "value": "sm", "label": "t:settings_schema.typography.sm" },
-          { "value": "xs", "label": "t:settings_schema.typography.xs" }
+          { "value": "text-5xl", "label": "5xl (48px)" },
+          { "value": "text-4xl", "label": "4xl (36px)" },
+          { "value": "text-3xl", "label": "3xl (30px)" },
+          { "value": "text-2xl", "label": "2xl (24px)" },
+          { "value": "text-xl", "label": "xl (20px)" },
+          { "value": "text-lg", "label": "lg (18px)" },
+          { "value": "text-base", "label": "base (16px)" },
+          { "value": "text-sm", "label": "sm (14px)" },
+          { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "base"
+        "default": "text-base"
       },
       {
         "type": "select",
         "id": "type_font_weight_h2",
         "label": "t:settings_schema.typography.font_weight",
         "options": [
-          {
-            "value": "light",
-            "label": "t:settings_schema.typography.light"
-          },
-          {
-            "value": "normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "medium",
-            "label": "t:settings_schema.typography.medium"
-          },
-          {
-            "value": "semi-bold",
-            "label": "t:settings_schema.typography.semi-bold"
-          },
-          {
-            "value": "bold",
-            "label": "t:settings_schema.typography.bold"
-          }
+          { "value": "font-thin", "label": "Thin" },
+          { "value": "font-extralight", "label": "Extra Light" },
+          { "value": "font-light", "label": "Light" },
+          { "value": "font-normal", "label": "Normal" },
+          { "value": "font-medium", "label": "Medium" },
+          { "value": "font-semibold", "label": "Semi Bold" },
+          { "value": "font-bold", "label": "Bold" },
+          { "value": "font-extrabold", "label": "Extra Bold" },
+          { "value": "font-black", "label": "Black" }
         ],
-        "default": "normal"
+        "default": "font-normal"
       },
       {
         "type": "select",
@@ -492,45 +519,34 @@
         "id": "type_size_h3",
         "label": "t:settings_schema.typography.size",
         "options": [
-          { "value": "5xl", "label": "t:settings_schema.typography.5xl" },
-          { "value": "4xl", "label": "t:settings_schema.typography.4xl" },
-          { "value": "3xl", "label": "t:settings_schema.typography.3xl" },
-          { "value": "2xl", "label": "t:settings_schema.typography.2xl" },
-          { "value": "xl", "label": "t:settings_schema.typography.xl" },
-          { "value": "lg", "label": "t:settings_schema.typography.lg" },
-          { "value": "base", "label": "t:settings_schema.typography.base" },
-          { "value": "sm", "label": "t:settings_schema.typography.sm" },
-          { "value": "xs", "label": "t:settings_schema.typography.xs" }
+          { "value": "text-5xl", "label": "5xl (48px)" },
+          { "value": "text-4xl", "label": "4xl (36px)" },
+          { "value": "text-3xl", "label": "3xl (30px)" },
+          { "value": "text-2xl", "label": "2xl (24px)" },
+          { "value": "text-xl", "label": "xl (20px)" },
+          { "value": "text-lg", "label": "lg (18px)" },
+          { "value": "text-base", "label": "base (16px)" },
+          { "value": "text-sm", "label": "sm (14px)" },
+          { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "base"
+        "default": "text-base"
       },
       {
         "type": "select",
         "id": "type_font_weight_h3",
         "label": "t:settings_schema.typography.font_weight",
         "options": [
-          {
-            "value": "light",
-            "label": "t:settings_schema.typography.light"
-          },
-          {
-            "value": "normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "medium",
-            "label": "t:settings_schema.typography.medium"
-          },
-          {
-            "value": "semi-bold",
-            "label": "t:settings_schema.typography.semi-bold"
-          },
-          {
-            "value": "bold",
-            "label": "t:settings_schema.typography.bold"
-          }
+          { "value": "font-thin", "label": "Thin" },
+          { "value": "font-extralight", "label": "Extra Light" },
+          { "value": "font-light", "label": "Light" },
+          { "value": "font-normal", "label": "Normal" },
+          { "value": "font-medium", "label": "Medium" },
+          { "value": "font-semibold", "label": "Semi Bold" },
+          { "value": "font-bold", "label": "Bold" },
+          { "value": "font-extrabold", "label": "Extra Bold" },
+          { "value": "font-black", "label": "Black" }
         ],
-        "default": "normal"
+        "default": "font-normal"
       },
       {
         "type": "select",
@@ -621,45 +637,34 @@
         "id": "type_size_h4",
         "label": "t:settings_schema.typography.size",
         "options": [
-          { "value": "5xl", "label": "t:settings_schema.typography.5xl" },
-          { "value": "4xl", "label": "t:settings_schema.typography.4xl" },
-          { "value": "3xl", "label": "t:settings_schema.typography.3xl" },
-          { "value": "2xl", "label": "t:settings_schema.typography.2xl" },
-          { "value": "xl", "label": "t:settings_schema.typography.xl" },
-          { "value": "lg", "label": "t:settings_schema.typography.lg" },
-          { "value": "base", "label": "t:settings_schema.typography.base" },
-          { "value": "sm", "label": "t:settings_schema.typography.sm" },
-          { "value": "xs", "label": "t:settings_schema.typography.xs" }
+          { "value": "text-5xl", "label": "5xl (48px)" },
+          { "value": "text-4xl", "label": "4xl (36px)" },
+          { "value": "text-3xl", "label": "3xl (30px)" },
+          { "value": "text-2xl", "label": "2xl (24px)" },
+          { "value": "text-xl", "label": "xl (20px)" },
+          { "value": "text-lg", "label": "lg (18px)" },
+          { "value": "text-base", "label": "base (16px)" },
+          { "value": "text-sm", "label": "sm (14px)" },
+          { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "base"
+        "default": "text-base"
       },
       {
         "type": "select",
         "id": "type_font_weight_h4",
         "label": "t:settings_schema.typography.font_weight",
         "options": [
-          {
-            "value": "light",
-            "label": "t:settings_schema.typography.light"
-          },
-          {
-            "value": "normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "medium",
-            "label": "t:settings_schema.typography.medium"
-          },
-          {
-            "value": "semi-bold",
-            "label": "t:settings_schema.typography.semi-bold"
-          },
-          {
-            "value": "bold",
-            "label": "t:settings_schema.typography.bold"
-          }
+          { "value": "font-thin", "label": "Thin" },
+          { "value": "font-extralight", "label": "Extra Light" },
+          { "value": "font-light", "label": "Light" },
+          { "value": "font-normal", "label": "Normal" },
+          { "value": "font-medium", "label": "Medium" },
+          { "value": "font-semibold", "label": "Semi Bold" },
+          { "value": "font-bold", "label": "Bold" },
+          { "value": "font-extrabold", "label": "Extra Bold" },
+          { "value": "font-black", "label": "Black" }
         ],
-        "default": "normal"
+        "default": "font-normal"
       },
       {
         "type": "select",
@@ -720,260 +725,6 @@
       {
         "type": "header",
         "content": "t:settings_schema.typography.h5"
-      },
-      {
-        "type": "select",
-        "id": "type_font_h5",
-        "label": "t:settings_schema.typography.font",
-        "options": [
-          {
-            "value": "font-1",
-            "label": "t:settings_schema.typography.font-1"
-          },
-          {
-            "value": "font-2",
-            "label": "t:settings_schema.typography.font-2"
-          },
-          {
-            "value": "font-3",
-            "label": "t:settings_schema.typography.font-3"
-          },
-          {
-            "value": "font-4",
-            "label": "t:settings_schema.typography.font-4"
-          }
-        ],
-        "default": "font-1"
-      },
-      {
-        "type": "select",
-        "id": "type_size_h5",
-        "label": "t:settings_schema.typography.size",
-        "options": [
-          { "value": "5xl", "label": "t:settings_schema.typography.5xl" },
-          { "value": "4xl", "label": "t:settings_schema.typography.4xl" },
-          { "value": "3xl", "label": "t:settings_schema.typography.3xl" },
-          { "value": "2xl", "label": "t:settings_schema.typography.2xl" },
-          { "value": "xl", "label": "t:settings_schema.typography.xl" },
-          { "value": "lg", "label": "t:settings_schema.typography.lg" },
-          { "value": "base", "label": "t:settings_schema.typography.base" },
-          { "value": "sm", "label": "t:settings_schema.typography.sm" },
-          { "value": "xs", "label": "t:settings_schema.typography.xs" }
-        ],
-        "default": "base"
-      },
-      {
-        "type": "select",
-        "id": "type_font_weight_h5",
-        "label": "t:settings_schema.typography.font_weight",
-        "options": [
-          {
-            "value": "light",
-            "label": "t:settings_schema.typography.light"
-          },
-          {
-            "value": "normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "medium",
-            "label": "t:settings_schema.typography.medium"
-          },
-          {
-            "value": "semi-bold",
-            "label": "t:settings_schema.typography.semi-bold"
-          },
-          {
-            "value": "bold",
-            "label": "t:settings_schema.typography.bold"
-          }
-        ],
-        "default": "normal"
-      },
-      {
-        "type": "select",
-        "id": "type_line_height_h5",
-        "label": "t:settings_schema.typography.line_height",
-        "options": [
-          {
-            "value": "display-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "display-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "display-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "display-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_letter_spacing_h5",
-        "label": "t:settings_schema.typography.letter_spacing",
-        "options": [
-          {
-            "value": "heading-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "heading-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "heading-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "heading-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_case_h5",
-        "label": "t:settings_schema.typography.text_case",
-        "options": [
-          {
-            "value": "none",
-            "label": "t:settings_schema.typography.default"
-          },
-          {
-            "value": "uppercase",
-            "label": "t:settings_schema.typography.uppercase"
-          }
-        ],
-        "default": "none"
-      },
-      {
-        "type": "header",
-        "content": "t:settings_schema.typography.h6"
-      },
-      {
-        "type": "select",
-        "id": "type_font_h6",
-        "label": "t:settings_schema.typography.font",
-        "options": [
-          {
-            "value": "font-1",
-            "label": "t:settings_schema.typography.font-1"
-          },
-          {
-            "value": "font-2",
-            "label": "t:settings_schema.typography.font-2"
-          },
-          {
-            "value": "font-3",
-            "label": "t:settings_schema.typography.font-3"
-          },
-          {
-            "value": "font-4",
-            "label": "t:settings_schema.typography.font-4"
-          }
-        ],
-        "default": "font-1"
-      },
-      {
-        "type": "select",
-        "id": "type_size_h6",
-        "label": "t:settings_schema.typography.size",
-        "options": [
-          { "value": "5xl", "label": "t:settings_schema.typography.5xl" },
-          { "value": "4xl", "label": "t:settings_schema.typography.4xl" },
-          { "value": "3xl", "label": "t:settings_schema.typography.3xl" },
-          { "value": "2xl", "label": "t:settings_schema.typography.2xl" },
-          { "value": "xl", "label": "t:settings_schema.typography.xl" },
-          { "value": "lg", "label": "t:settings_schema.typography.lg" },
-          { "value": "base", "label": "t:settings_schema.typography.base" },
-          { "value": "sm", "label": "t:settings_schema.typography.sm" },
-          { "value": "xs", "label": "t:settings_schema.typography.xs" }
-        ],
-        "default": "base"
-      },
-      {
-        "type": "select",
-        "id": "type_font_weight_h6",
-        "label": "t:settings_schema.typography.font_weight",
-        "options": [
-          {
-            "value": "light",
-            "label": "t:settings_schema.typography.light"
-          },
-          {
-            "value": "normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "medium",
-            "label": "t:settings_schema.typography.medium"
-          },
-          {
-            "value": "semi-bold",
-            "label": "t:settings_schema.typography.semi-bold"
-          },
-          {
-            "value": "bold",
-            "label": "t:settings_schema.typography.bold"
-          }
-        ],
-        "default": "normal"
-      },
-      {
-        "type": "select",
-        "id": "type_line_height_h6",
-        "label": "t:settings_schema.typography.line_height",
-        "options": [
-          {
-            "value": "display-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "display-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "display-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "display-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_letter_spacing_h6",
-        "label": "t:settings_schema.typography.letter_spacing",
-        "options": [
-          {
-            "value": "heading-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "heading-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "heading-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "heading-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_case_h6",
-        "label": "t:settings_schema.typography.text_case",
-        "options": [
-          {
-            "value": "none",
-            "label": "t:settings_schema.typography.default"
-          },
-          {
-            "value": "uppercase",
-            "label": "t:settings_schema.typography.uppercase"
-          }
-        ],
-        "default": "none"
       }
     ]
   },
