@@ -196,46 +196,6 @@
       },
       {
         "type": "select",
-        "id": "type_line_height_paragraph",
-        "label": "t:settings_schema.typography.line_height",
-        "options": [
-          {
-            "value": "body-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "body-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "body-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "body-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_letter_spacing_paragraph",
-        "label": "t:settings_schema.typography.letter_spacing",
-        "options": [
-          {
-            "value": "heading-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "heading-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "heading-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "heading-normal"
-      },
-      {
-        "type": "select",
         "id": "type_case_paragraph",
         "label": "t:settings_schema.typography.text_case",
         "options": [
@@ -311,46 +271,6 @@
           { "value": "font-black", "label": "Black" }
         ],
         "default": "font-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_line_height_h1",
-        "label": "t:settings_schema.typography.line_height",
-        "options": [
-          {
-            "value": "display-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "display-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "display-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "display-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_letter_spacing_h1",
-        "label": "t:settings_schema.typography.letter_spacing",
-        "options": [
-          {
-            "value": "heading-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "heading-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "heading-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "heading-normal"
       },
       {
         "type": "select",
@@ -432,46 +352,6 @@
       },
       {
         "type": "select",
-        "id": "type_line_height_h2",
-        "label": "t:settings_schema.typography.line_height",
-        "options": [
-          {
-            "value": "display-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "display-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "display-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "display-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_letter_spacing_h2",
-        "label": "t:settings_schema.typography.letter_spacing",
-        "options": [
-          {
-            "value": "heading-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "heading-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "heading-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "heading-normal"
-      },
-      {
-        "type": "select",
         "id": "type_case_h2",
         "label": "t:settings_schema.typography.text_case",
         "options": [
@@ -550,46 +430,6 @@
       },
       {
         "type": "select",
-        "id": "type_line_height_h3",
-        "label": "t:settings_schema.typography.line_height",
-        "options": [
-          {
-            "value": "display-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "display-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "display-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "display-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_letter_spacing_h3",
-        "label": "t:settings_schema.typography.letter_spacing",
-        "options": [
-          {
-            "value": "heading-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "heading-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "heading-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "heading-normal"
-      },
-      {
-        "type": "select",
         "id": "type_case_h3",
         "label": "t:settings_schema.typography.text_case",
         "options": [
@@ -665,46 +505,6 @@
           { "value": "font-black", "label": "Black" }
         ],
         "default": "font-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_line_height_h4",
-        "label": "t:settings_schema.typography.line_height",
-        "options": [
-          {
-            "value": "display-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "display-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "display-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "display-normal"
-      },
-      {
-        "type": "select",
-        "id": "type_letter_spacing_h4",
-        "label": "t:settings_schema.typography.letter_spacing",
-        "options": [
-          {
-            "value": "heading-tight",
-            "label": "t:settings_schema.typography.tight"
-          },
-          {
-            "value": "heading-normal",
-            "label": "t:settings_schema.typography.normal"
-          },
-          {
-            "value": "heading-loose",
-            "label": "t:settings_schema.typography.loose"
-          }
-        ],
-        "default": "heading-normal"
       },
       {
         "type": "select",
