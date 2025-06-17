@@ -49,8 +49,14 @@
     })();
   </script>
 {% else %}
+  {% style %}
+    .block-{{ block.id }} > .shopify-block {
+      width: 100%;
+    }
+  {% endstyle %}
   <div
     class="
+      block-{{ block.id }}
       wrapper
       w-full
       bg-[{{ block.settings.color_background }}]
