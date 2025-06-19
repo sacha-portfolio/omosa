@@ -51,54 +51,9 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
-    },
-    "section_c7FATY": {
-      "type": "section",
-      "blocks": {
-        "text_EftETa": {
-          "type": "text",
-          "name": "Text",
-          "settings": {
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "font_size": "base",
-            "text_alignment": "left",
-            "font_weight": "normal",
-            "font_family": "font-body",
-            "font_style": "not-italic",
-            "text_transform": "normal-case",
-            "text_decoration": "no-underline",
-            "color": "",
-            "color_background": "",
-            "link": "",
-            "open_on_new_tab": false,
-            "tag": "div"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_EftETa"
-      ],
-      "name": "Section",
-      "settings": {
-        "collection": "",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "apply_page_width": true,
-        "flex_direction": "flex-col",
-        "flex_wrap": "flex-nowrap",
-        "horizontal_gap": 8,
-        "vertical_gap": 8,
-        "justify_content": "justify-start",
-        "align_items": "items-start",
-        "image_opacity": 0,
-        "color_background": "",
-        "height": "auto"
-      }
     }
   },
   "order": [
-    "rich_text_tAADib",
-    "section_c7FATY"
+    "rich_text_tAADib"
   ]
 }
