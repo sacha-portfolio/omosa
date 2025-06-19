@@ -278,8 +278,70 @@
       "name": "Product information",
       "category": "t:categories.product",
       "settings": {
-        "product": "{{ closest.product }}"
-      }
+        "product": "{{ closest.product }}",
+        "flex_direction": "flex-row",
+        "horizontal_gap": 60,
+        "padding_top": 36,
+        "padding_bottom": 12
+      },
+      "blocks": {
+        "media": {
+          "type": "_product-media",
+          "name": "Product media",
+          "settings": {
+            "product": "{{ closest.product }}"
+          }
+        },
+        "group": {
+          "type": "group",
+          "name": "Group",
+          "blocks": {
+            "text": {
+              "type": "text",
+              "name": "Text",
+              "settings": {
+                "text": "{{ closest.product.title }}",
+                "font_size": "4xl",
+                "color": "#121212",
+                "tag": "h1"
+              }
+            },
+            "price": {
+              "type": "product-price",
+              "name": "Price",
+              "settings": {
+                "product": "{{ closest.product }}",
+                "show_tax_info": true,
+                "font_size": "xl",
+                "color": "#121212"
+              }
+            },
+            "variant-picker": {
+              "type": "product-variant-picker",
+              "name": "Variant picker",
+              "settings": {
+                "product": "{{ closest.product }}"
+              }
+            },
+            "quantity-selector": {
+              "type": "product-quantity-selector",
+              "name": "Quantity selector",
+              "settings": {
+                "product": "{{ closest.product }}"
+              }
+            },
+            "buy-buttons": {
+              "type": "product-buy-buttons",
+              "name": "Buy buttons",
+              "settings": {
+                "product": "{{ closest.product }}"
+              }
+            }
+          },
+          "block_order": ["text", "price", "variant-picker", "quantity-selector", "buy-buttons"]
+        }
+      },
+      "block_order": ["media", "group"]
     }
   ]
 }
