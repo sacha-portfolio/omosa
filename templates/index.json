@@ -55,6 +55,111 @@
     "section_VqXBXG": {
       "type": "section",
       "blocks": {
+        "product_cards_LakNPb": {
+          "type": "product-cards",
+          "name": "Product cards",
+          "settings": {
+            "collection": "{{ closest.collection }}",
+            "layout_type": "grid",
+            "max_products": 8,
+            "columns": 4,
+            "mobile_columns": "2",
+            "columns_gap": 8,
+            "rows_gap": 8,
+            "slides_background_color": "",
+            "show_arrow_buttons": true,
+            "arrow_buttons_color": "#000",
+            "show_pagination_dots": true,
+            "pagination_dots_color": "#000"
+          },
+          "blocks": {
+            "image_njrG3T": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image_url": "{{ closest.product.featured_image }}",
+                "height": "600",
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div"
+              },
+              "blocks": {}
+            },
+            "text_9gJMet": {
+              "type": "text",
+              "name": "Text",
+              "settings": {
+                "text": "{{ closest.product.title }}",
+                "font_size": "sm",
+                "text_alignment": "left",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div"
+              },
+              "blocks": {}
+            },
+            "button_wFb6Ew": {
+              "type": "button",
+              "name": "Button",
+              "settings": {
+                "text": "Discover",
+                "font_size": "base",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "padding_left": 10,
+                "padding_right": 10
+              },
+              "blocks": {}
+            },
+            "price_QtaMbQ": {
+              "type": "_price",
+              "name": "Price",
+              "settings": {
+                "product": "{{ closest.product }}",
+                "show_sale_price_first": true,
+                "font_size": "sm",
+                "text_alignment": "left",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_njrG3T",
+            "text_9gJMet",
+            "button_wFb6Ew",
+            "price_QtaMbQ"
+          ]
+        },
         "text_MBJfT3": {
           "type": "text",
           "name": "Text",
@@ -77,11 +182,12 @@
         }
       },
       "block_order": [
+        "product_cards_LakNPb",
         "text_MBJfT3"
       ],
       "name": "Section",
       "settings": {
-        "collection": "",
+        "collection": "frontpage",
         "padding_top": 0,
         "padding_bottom": 0,
         "apply_page_width": true,
