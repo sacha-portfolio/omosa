@@ -34,10 +34,6 @@
           "type": "price",
           "settings": {}
         },
-        "rating_HAiaqX": {
-          "type": "rating",
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -108,7 +104,6 @@
         "title",
         "caption",
         "price",
-        "rating_HAiaqX",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
