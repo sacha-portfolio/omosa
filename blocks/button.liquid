@@ -15,14 +15,22 @@
     {{ block.settings.font_style }}
     {{ block.settings.text_transform }}
     {{ block.settings.text_decoration }}
-    border-{{  block.settings.border_style }}
-    border-[{{  block.settings.border_width }}px]
+    border-{{ block.settings.border_style }}
+    border-[{{ block.settings.border_width }}px]
     border-[{{ block.settings.border_color }}]
     rounded-[{{ block.settings.border_radius }}px]
     pt-[{{ block.settings.padding_top }}px]
     pb-[{{ block.settings.padding_bottom }}px]
     pl-[{{ block.settings.padding_left }}px]
     pr-[{{ block.settings.padding_right }}px]
+    {%- if block.settings.add_hover_effect %}
+    transition-colors
+    duration-{{ block.settings.transition_duration | times: 1000 | round }}
+    hover:bg-[{{ block.settings.hover_color_background }}]
+    hover:text-[{{ block.settings.hover_color }}]
+    hover:border-{{ block.settings.hover_border_style }}
+    hover:border-[{{ block.settings.hover_border_color }}]
+    {%- endif %}
   "
 >
   {{ block.settings.text }}
@@ -228,6 +236,59 @@
       "unit": "px",
       "label": "Padding Right",
       "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_hover_effect",
+      "label": "Add hover effect",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "transition_duration",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "unit": "s",
+      "label": "Transition duration",
+      "default": 0,
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color_background",
+      "label": "Background Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "select",
+      "id": "hover_border_style",
+      "label": "Border Style",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "double", "label": "Double" }
+      ],
+      "default": "none",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_border_color",
+      "label": "Border Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
     }
   ],
   "presets": [
