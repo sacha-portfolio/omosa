@@ -9,63 +9,21 @@
  */
 {
   "sections": {
-    "rich_text_tAADib": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_a6CXHM": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text_pyqMiT": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_phaXVg": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_a6CXHM",
-        "text_pyqMiT",
-        "button_phaXVg"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
-    "section_VqXBXG": {
+    "section_w8Khkg": {
       "type": "section",
       "blocks": {
-        "product_cards_LakNPb": {
-          "type": "product-cards",
-          "name": "Product cards",
+        "group_M4d3qC": {
+          "type": "group",
+          "name": "Group",
           "settings": {
-            "collection": "{{ closest.collection }}",
-            "layout_type": "grid",
-            "max_products": 8,
-            "columns": 4,
-            "mobile_columns": "2",
-            "columns_gap": 8,
-            "rows_gap": 8,
+            "color_background": "",
+            "is_slider_mode": false,
+            "flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-center",
+            "align_items": "items-center",
             "slides_background_color": "",
             "show_arrow_buttons": true,
             "arrow_buttons_color": "#000",
@@ -73,35 +31,19 @@
             "pagination_dots_color": "#000"
           },
           "blocks": {
-            "image_njrG3T": {
-              "type": "image",
-              "name": "Image",
-              "settings": {
-                "image_url": "{{ closest.product.featured_image }}",
-                "height": "600",
-                "border_style": "none",
-                "border_width": 1,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_on_new_tab": false,
-                "tag": "div"
-              },
-              "blocks": {}
-            },
-            "text_9gJMet": {
+            "text_DWpwMP": {
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "{{ closest.product.title }}",
-                "font_size": "sm",
-                "text_alignment": "left",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "font_size": "5xl",
+                "text_alignment": "center",
                 "font_weight": "normal",
                 "font_family": "font-body",
                 "font_style": "not-italic",
                 "text_transform": "normal-case",
                 "text_decoration": "no-underline",
-                "color": "",
+                "color": "#ffffff",
                 "color_background": "",
                 "link": "",
                 "open_on_new_tab": false,
@@ -109,7 +51,7 @@
               },
               "blocks": {}
             },
-            "button_wFb6Ew": {
+            "button_w7HYMm": {
               "type": "button",
               "name": "Button",
               "settings": {
@@ -121,7 +63,7 @@
                 "text_transform": "normal-case",
                 "text_decoration": "no-underline",
                 "color": "",
-                "color_background": "",
+                "color_background": "#ffffff",
                 "link": "",
                 "open_on_new_tab": false,
                 "border_style": "none",
@@ -130,73 +72,161 @@
                 "border_radius": 0,
                 "padding_top": 10,
                 "padding_bottom": 10,
-                "padding_left": 10,
-                "padding_right": 10
-              },
-              "blocks": {}
-            },
-            "price_QtaMbQ": {
-              "type": "_price",
-              "name": "Price",
-              "settings": {
-                "product": "{{ closest.product }}",
-                "show_sale_price_first": true,
-                "font_size": "sm",
-                "text_alignment": "left",
-                "font_weight": "normal",
-                "font_family": "font-body",
-                "font_style": "not-italic",
-                "text_decoration": "no-underline",
-                "color": "",
-                "color_background": ""
+                "padding_left": 20,
+                "padding_right": 20
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "image_njrG3T",
-            "text_9gJMet",
-            "button_wFb6Ew",
-            "price_QtaMbQ"
+            "text_DWpwMP",
+            "button_w7HYMm"
           ]
-        },
-        "text_MBJfT3": {
-          "type": "text",
-          "name": "Text",
-          "settings": {
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "font_size": "4xl",
-            "text_alignment": "center",
-            "font_weight": "normal",
-            "font_family": "font-body",
-            "font_style": "not-italic",
-            "text_transform": "normal-case",
-            "text_decoration": "no-underline",
-            "color": "",
-            "color_background": "",
-            "link": "",
-            "open_on_new_tab": false,
-            "tag": "div"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "product_cards_LakNPb",
-        "text_MBJfT3"
+        "group_M4d3qC"
       ],
       "name": "Section",
       "settings": {
-        "collection": "frontpage",
+        "collection": "",
         "padding_top": 0,
         "padding_bottom": 0,
         "apply_page_width": true,
         "flex_direction": "flex-col",
-        "flex_wrap": "flex-nowrap",
+        "flex_wrap": "flex-wrap",
         "horizontal_gap": 8,
         "vertical_gap": 8,
-        "justify_content": "justify-start",
-        "align_items": "items-start",
+        "justify_content": "justify-center",
+        "align_items": "items-baseline",
+        "image_url": "shopify://shop_images/a-bridge-sitting-in-thick-pink-and-purple-fog.jpg",
+        "image_opacity": 0,
+        "color_background": "",
+        "height": "600px"
+      }
+    },
+    "section_cdgaeE": {
+      "type": "section",
+      "blocks": {
+        "group_Ki7pxw": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "color_background": "",
+            "is_slider_mode": false,
+            "flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-center",
+            "align_items": "items-center",
+            "slides_background_color": "",
+            "show_arrow_buttons": true,
+            "arrow_buttons_color": "#000",
+            "show_pagination_dots": true,
+            "pagination_dots_color": "#000"
+          },
+          "blocks": {
+            "image_Qn7qjH": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image_url": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+                "height": "600",
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div"
+              },
+              "blocks": {}
+            },
+            "text_KhGV3z": {
+              "type": "text",
+              "name": "Text",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "font_size": "base",
+                "text_alignment": "left",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_Qn7qjH",
+            "text_KhGV3z"
+          ]
+        },
+        "group_DEteG7": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "color_background": "",
+            "is_slider_mode": false,
+            "flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-center",
+            "align_items": "items-center",
+            "slides_background_color": "",
+            "show_arrow_buttons": true,
+            "arrow_buttons_color": "#000",
+            "show_pagination_dots": true,
+            "pagination_dots_color": "#000"
+          },
+          "blocks": {
+            "image_bHhPNg": {
+              "type": "image",
+              "name": "Image",
+              "settings": {
+                "image_url": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+                "height": "600",
+                "aspect_ratio_width": 31,
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_bHhPNg"
+          ]
+        }
+      },
+      "block_order": [
+        "group_Ki7pxw",
+        "group_DEteG7"
+      ],
+      "name": "Section",
+      "settings": {
+        "collection": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "apply_page_width": false,
+        "flex_direction": "flex-row",
+        "flex_wrap": "flex-nowrap",
+        "horizontal_gap": 0,
+        "vertical_gap": 0,
+        "justify_content": "justify-center",
+        "align_items": "items-center",
         "image_opacity": 0,
         "color_background": "",
         "height": "auto"
@@ -204,7 +234,7 @@
     }
   },
   "order": [
-    "rich_text_tAADib",
-    "section_VqXBXG"
+    "section_w8Khkg",
+    "section_cdgaeE"
   ]
 }
