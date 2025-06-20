@@ -162,11 +162,38 @@
                 "tag": "div"
               },
               "blocks": {}
+            },
+            "button_qFNKjr": {
+              "type": "button",
+              "name": "Button",
+              "settings": {
+                "text": "Discover",
+                "font_size": "base",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "#ffffff",
+                "color_background": "#000",
+                "link": "",
+                "open_on_new_tab": false,
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "padding_left": 10,
+                "padding_right": 10
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "image_Qn7qjH",
-            "text_KhGV3z"
+            "text_KhGV3z",
+            "button_qFNKjr"
           ]
         },
         "group_DEteG7": {
