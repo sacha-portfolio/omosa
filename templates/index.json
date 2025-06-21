@@ -9,19 +9,19 @@
  */
 {
   "sections": {
-    "section_NgAwYh": {
+    "section_D6E98p": {
       "type": "section",
       "blocks": {
-        "text_zcKXT7": {
+        "text_NDtF4z": {
           "type": "text",
           "name": "Text",
           "settings": {
             "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "text_alignment": "center",
+            "text_alignment": "left",
             "text_decoration": "no-underline",
-            "text_transform": "uppercase",
+            "text_transform": "none",
             "type_preset": "paragraph",
-            "font_size": "text-2xl",
+            "font_size": "text-base",
             "font_family": "--font-font-1--family",
             "font_weight": "font-normal",
             "font_style": "not-italic",
@@ -39,7 +39,7 @@
         }
       },
       "block_order": [
-        "text_zcKXT7"
+        "text_NDtF4z"
       ],
       "name": "Section",
       "settings": {
@@ -61,6 +61,6 @@
     }
   },
   "order": [
-    "section_NgAwYh"
+    "section_D6E98p"
   ]
 }
