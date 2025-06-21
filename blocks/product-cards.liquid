@@ -89,7 +89,7 @@
 {
   "name": "Product cards",
   "tag": "div",
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }, { "type": "_price" }],
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
     {
       "type": "collection",
@@ -232,7 +232,7 @@
           }
         },
         "price": {
-          "type": "_price",
+          "type": "product-price",
           "name": "Price",
           "settings": {
             "product": "{{ closest.product }}",
