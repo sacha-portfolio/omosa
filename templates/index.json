@@ -12,41 +12,34 @@
     "section_NgAwYh": {
       "type": "section",
       "blocks": {
-        "button_7DtntT": {
-          "type": "button",
-          "name": "Button",
+        "text_zcKXT7": {
+          "type": "text",
+          "name": "Text",
           "settings": {
-            "text": "Discover",
-            "font_size": "base",
-            "font_weight": "normal",
-            "font_family": "font-body",
-            "font_style": "not-italic",
-            "text_transform": "normal-case",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "text_alignment": "left",
             "text_decoration": "no-underline",
+            "text_transform": "none",
+            "type_preset": "paragraph",
+            "font_size": "text-base",
+            "font_family": "--font-font-1--family",
+            "font_weight": "font-normal",
+            "font_style": "not-italic",
             "color": "",
             "color_background": "",
-            "link": "",
-            "open_on_new_tab": false,
-            "border_style": "solid",
-            "border_width": 1,
-            "border_color": "#121212",
-            "border_radius": 0,
-            "padding_top": 10,
-            "padding_bottom": 10,
-            "padding_left": 10,
-            "padding_right": 10,
             "add_hover_effect": false,
             "transition_duration": 0,
             "hover_color": "",
             "hover_color_background": "",
-            "hover_border_style": "none",
-            "hover_border_color": ""
+            "link": "",
+            "open_on_new_tab": false,
+            "tag": "div"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "button_7DtntT"
+        "text_zcKXT7"
       ],
       "name": "Section",
       "settings": {
