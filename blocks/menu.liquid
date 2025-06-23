@@ -16,7 +16,9 @@
     gap-y-[{{ block.settings.vertical_gap }}px]
     {{ block.settings.justify_content }}
     {{ block.settings.align_items }}
-    basis-[{{ block.settings.flex_basis }}%]
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
   "
 >
   {%- for link in block.settings.menu.links -%}
@@ -297,6 +299,12 @@
       "default": "items-start"
     },
     {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
       "type": "range",
       "id": "flex_basis",
       "min": 0,
@@ -304,7 +312,8 @@
       "step": 1,
       "unit": "%",
       "label": "Flex basis",
-      "default": 0
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

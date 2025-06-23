@@ -64,7 +64,9 @@
       {{ block.settings.justify_content }}
       {{ block.settings.align_items }}
       {% if block.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }})),url({{ block.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}
-      basis-[{{ block.settings.flex_basis }}%]
+      {% if block.settings.flex_basis_style %}
+        basis-[{{ block.settings.flex_basis }}%]
+      {% endif %}
     "
   >
     {% content_for 'blocks' %}
@@ -245,6 +247,12 @@
       "visible_if": "{{ block.settings.is_slider_mode == false }}"
     },
     {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
       "type": "range",
       "id": "flex_basis",
       "min": 0,
@@ -253,7 +261,7 @@
       "unit": "%",
       "label": "Flex basis",
       "default": 0,
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+      "visible_if": "{{ block.settings.is_slider_mode == false and block.settings.flex_basis_style }}"
     },
     {
       "type": "header",
