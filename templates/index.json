@@ -36,10 +36,28 @@
             "tag": "h1"
           },
           "blocks": {}
+        },
+        "image_C7Nwfj": {
+          "type": "image",
+          "name": "Image",
+          "settings": {
+            "image_url": "shopify://shop_images/d36b98fee4fb97c7bad0794e159f8de5219c72b5.png",
+            "height": "auto",
+            "width": "auto",
+            "border_style": "none",
+            "border_width": 1,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_on_new_tab": false,
+            "tag": "div"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_cqMfGD"
+        "text_cqMfGD",
+        "image_C7Nwfj"
       ],
       "name": "Section",
       "settings": {
