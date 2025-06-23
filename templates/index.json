@@ -9,43 +9,108 @@
  */
 {
   "sections": {
-    "section_NgAwYh": {
+    "section_XiztiE": {
       "type": "section",
       "blocks": {
-        "text_zcKXT7": {
-          "type": "text",
-          "name": "Text",
+        "group_k9XDgW": {
+          "type": "group",
+          "name": "Group",
           "settings": {
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "text_alignment": "center",
-            "text_decoration": "no-underline",
-            "text_transform": "uppercase",
-            "type_preset": "paragraph",
-            "font_size": "text-2xl",
-            "font_family": "--font-font-1--family",
-            "font_weight": "font-normal",
-            "font_style": "not-italic",
-            "color": "",
             "color_background": "",
-            "add_hover_effect": false,
-            "transition_duration": 0,
-            "hover_color": "",
-            "hover_color_background": "",
-            "link": "",
-            "open_on_new_tab": false,
-            "tag": "div"
+            "is_slider_mode": false,
+            "flex_direction": "flex-row",
+            "mobile_flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-between",
+            "align_items": "items-start",
+            "slides_background_color": "",
+            "show_arrow_buttons": true,
+            "arrow_buttons_color": "#000",
+            "show_pagination_dots": true,
+            "pagination_dots_color": "#000"
           },
-          "blocks": {}
+          "blocks": {
+            "button_wrbizJ": {
+              "type": "button",
+              "name": "Button",
+              "settings": {
+                "text": "Discover",
+                "font_size": "base",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "border_style": "solid",
+                "border_width": 1,
+                "border_color": "#000",
+                "border_radius": 20,
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "padding_left": 35,
+                "padding_right": 35,
+                "add_hover_effect": false,
+                "transition_duration": 0,
+                "hover_color": "",
+                "hover_color_background": "",
+                "hover_border_style": "none",
+                "hover_border_color": ""
+              },
+              "blocks": {}
+            },
+            "button_VXzmnY": {
+              "type": "button",
+              "name": "Button",
+              "settings": {
+                "text": "Discover",
+                "font_size": "base",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "padding_left": 10,
+                "padding_right": 10,
+                "add_hover_effect": false,
+                "transition_duration": 0,
+                "hover_color": "",
+                "hover_color_background": "",
+                "hover_border_style": "none",
+                "hover_border_color": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "button_wrbizJ",
+            "button_VXzmnY"
+          ]
         }
       },
       "block_order": [
-        "text_zcKXT7"
+        "group_k9XDgW"
       ],
       "name": "Section",
       "settings": {
         "collection": "",
-        "padding_top": 0,
-        "padding_bottom": 0,
+        "padding_top": 35,
+        "padding_bottom": 35,
         "apply_page_width": true,
         "flex_direction": "flex-col",
         "mobile_flex_direction": "flex-col",
@@ -61,6 +126,6 @@
     }
   },
   "order": [
-    "section_NgAwYh"
+    "section_XiztiE"
   ]
 }
