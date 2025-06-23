@@ -11,7 +11,7 @@
   "
 >
   {% if block.settings.image_url and block.settings.image_url != '' %}
-    {% capture image_classes %}h-auto max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px]{% endcapture %}
+    {% capture image_classes %}h-auto max-w-[{{ block.settings.width }}px] max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px]{% endcapture %}
     {{ block.settings.image_url | image_url: width: 1500 | image_tag: class: image_classes | strip }}
   {% else %}
     {% capture placeholder_classes %}h-full w-full max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px] placeholder-svg{% endcapture %}
@@ -47,9 +47,30 @@
         { "value": "125", "label": "125" },
         { "value": "100", "label": "100" },
         { "value": "75", "label": "75" },
-        { "value": "50", "label": "50" }
+        { "value": "50", "label": "50" },
+        { "value": "auto", "label": "Auto" }
       ],
-      "default": "600"
+      "default": "auto"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
+        { "value": "1050", "label": "1050" },
+        { "value": "900", "label": "900" },
+        { "value": "750", "label": "750" },
+        { "value": "600", "label": "600" },
+        { "value": "450", "label": "450" },
+        { "value": "300", "label": "300" },
+        { "value": "150", "label": "150" },
+        { "value": "125", "label": "125" },
+        { "value": "100", "label": "100" },
+        { "value": "75", "label": "75" },
+        { "value": "50", "label": "50" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "auto"
     },
     {
       "type": "header",
