@@ -50,5 +50,8 @@
     --font-font-4--family: {{ settings.type_font_4.family }}, {{ settings.type_font_4.fallback_families }};
     --font-font-4--style: {{ settings.type_font_4.style }};
     --font-font-4--weight: {{ settings.type_font_4.weight }};
+
+    --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+    --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
   }
 {% endstyle %}

@@ -11,7 +11,7 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
 
     <title>
       {{ page_title }}
@@ -218,9 +218,6 @@
         margin: 0;
         letter-spacing: 0.0375rem;
         line-height: calc(1 + 0.8 / var(--font-body-scale));
-        font-family: var(--font-body-family);
-        font-style: var(--font-body-style);
-        font-weight: var(--font-body-weight);
       }
     {% endstyle %}
 
