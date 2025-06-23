@@ -42,7 +42,7 @@
           "name": "Image",
           "settings": {
             "image_url": "shopify://shop_images/d36b98fee4fb97c7bad0794e159f8de5219c72b5.png",
-            "height": "auto",
+            "height": "900",
             "width": "auto",
             "border_style": "none",
             "border_width": 1,
@@ -69,7 +69,7 @@
         "mobile_flex_direction": "flex-col",
         "flex_wrap": "flex-nowrap",
         "horizontal_gap": 8,
-        "vertical_gap": 8,
+        "vertical_gap": 50,
         "justify_content": "justify-start",
         "align_items": "items-start",
         "image_opacity": 0,
