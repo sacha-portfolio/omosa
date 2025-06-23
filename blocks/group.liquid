@@ -68,6 +68,7 @@
       gap-y-[{{ block.settings.vertical_gap }}px]
       {{ block.settings.justify_content }}
       {{ block.settings.align_items }}
+      {% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}
     "
   >
     {% content_for 'blocks' %}
@@ -88,6 +89,15 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_url",
+      "label": "Image"
     },
     {
       "type": "header",
