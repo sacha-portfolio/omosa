@@ -33,30 +33,6 @@
     "section_HrDpD3": {
       "type": "section",
       "blocks": {
-        "menu_PrbfFx": {
-          "type": "menu",
-          "name": "Menu",
-          "settings": {
-            "menu": "main-menu",
-            "font_size": "sm",
-            "text_alignment": "left",
-            "font_weight": "normal",
-            "font_family": "font-body",
-            "font_style": "not-italic",
-            "text_transform": "normal-case",
-            "text_decoration": "no-underline",
-            "color": "",
-            "color_background": "",
-            "flex_direction": "flex-row",
-            "mobile_flex_direction": "flex-col",
-            "flex_wrap": "flex-nowrap",
-            "horizontal_gap": 8,
-            "vertical_gap": 8,
-            "justify_content": "justify-start",
-            "align_items": "items-start"
-          },
-          "blocks": {}
-        },
         "image_Thi8kA": {
           "type": "image",
           "name": "Image",
@@ -81,12 +57,36 @@
             "icon_size": 24
           },
           "blocks": {}
+        },
+        "menu_kQGCQg": {
+          "type": "menu",
+          "name": "Menu",
+          "settings": {
+            "menu": "main-menu",
+            "font_size": "sm",
+            "text_alignment": "left",
+            "font_weight": "normal",
+            "font_family": "font-body",
+            "font_style": "not-italic",
+            "text_transform": "normal-case",
+            "text_decoration": "no-underline",
+            "color": "",
+            "color_background": "",
+            "flex_direction": "flex-row",
+            "mobile_flex_direction": "flex-row",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-start",
+            "align_items": "items-start"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "menu_PrbfFx",
         "image_Thi8kA",
-        "icon_bjEBcz"
+        "icon_bjEBcz",
+        "menu_kQGCQg"
       ],
       "name": "Section",
       "settings": {
