@@ -7,6 +7,18 @@
     md:mb-0
     text-{{ block.settings.text_alignment }}
     bg-[{{ block.settings.color_background }}]
+
+    flex
+    {{ block.settings.mobile_flex_direction }}
+    md:{{ block.settings.flex_direction }}
+    {{ block.settings.flex_wrap }}
+    gap-x-[{{ block.settings.horizontal_gap }}px]
+    gap-y-[{{ block.settings.vertical_gap }}px]
+    {{ block.settings.justify_content }}
+    {{ block.settings.align_items }}
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
   "
 >
   {%- for link in block.settings.menu.links -%}
@@ -31,6 +43,14 @@
           hover:opacity-75
           py-[0.3125rem]
           md:py-[0.625rem]
+          flex
+          {{ section.settings.mobile_flex_direction }}
+          md:{{ section.settings.flex_direction }}
+          {{ section.settings.flex_wrap }}
+          gap-x-[{{ section.settings.horizontal_gap }}px]
+          gap-y-[{{ section.settings.vertical_gap }}px]
+          {{ section.settings.justify_content }}
+          {{ section.settings.align_items }}
           {% if link.active %}underline! underline-offset-[0.1875rem]! md:hover:decoration-[0.125rem]! hover:opacity-100{% endif %}
         "
       >
@@ -43,6 +63,7 @@
 {% schema %}
 {
   "name": "Menu",
+  "tag": null,
   "settings": [
     {
       "type": "link_list",
@@ -144,6 +165,155 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "flex_direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-col"
+    },
+    {
+      "type": "select",
+      "id": "mobile_flex_direction",
+      "label": "Mobile direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-col"
+    },
+    {
+      "type": "select",
+      "id": "flex_wrap",
+      "label": "Wrap",
+      "options": [
+        {
+          "value": "flex-wrap",
+          "label": "Yes"
+        },
+        {
+          "value": "flex-nowrap",
+          "label": "No"
+        }
+      ],
+      "default": "flex-nowrap"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal gap",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "vertical_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical gap",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "justify_content",
+      "label": "Justify content",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Start"
+        },
+        {
+          "value": "justify-center",
+          "label": "Center"
+        },
+        {
+          "value": "justify-end",
+          "label": "End"
+        },
+        {
+          "value": "justify-around",
+          "label": "Space around"
+        },
+        {
+          "value": "justify-between",
+          "label": "Space between"
+        },
+        {
+          "value": "justify-evenly",
+          "label": "Space evenly"
+        }
+      ],
+      "default": "justify-start"
+    },
+    {
+      "type": "select",
+      "id": "align_items",
+      "label": "Align items",
+      "options": [
+        {
+          "value": "items-start",
+          "label": "Start"
+        },
+        {
+          "value": "items-center",
+          "label": "Center"
+        },
+        {
+          "value": "items-end",
+          "label": "End"
+        },
+        {
+          "value": "items-baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "items-stretch",
+          "label": "Stretch"
+        }
+      ],
+      "default": "items-start"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [
