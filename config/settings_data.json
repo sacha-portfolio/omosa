@@ -10,6 +10,7 @@
 {
   "current": {
     "logo_width": 90,
+    "type_font_1": "nunito_sans_n4",
     "type_size_paragraph": "text-sm",
     "type_case_paragraph": "uppercase",
     "type_font_h1": "font-2",
