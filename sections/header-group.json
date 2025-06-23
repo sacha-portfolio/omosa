@@ -62,7 +62,8 @@
           "name": "Image",
           "settings": {
             "image_url": "shopify://shop_images/ab5b9573bd6a6d53bab881b9a7039530a8efee2d.png",
-            "height": "100",
+            "height": "auto",
+            "width": "100",
             "border_style": "none",
             "border_width": 1,
             "border_color": "",
@@ -99,7 +100,7 @@
         "flex_wrap": "flex-nowrap",
         "horizontal_gap": 8,
         "vertical_gap": 8,
-        "justify_content": "justify-start",
+        "justify_content": "justify-between",
         "align_items": "items-start",
         "image_opacity": 0,
         "color_background": "#f7f5ee",
