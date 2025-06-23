@@ -8,7 +8,7 @@
     }
   {% endstyle %}
   <div class="swiper swiper-{{ block.id }} wrapper w-full bg-[{{ block.settings.color_background }}]">
-    <div class="swiper-wrapper min-h-[300px] items-stretch">
+    <div class="swiper-wrapper items-stretch">
       {% for nested_block in block.blocks %}
         <div class="swiper-slide h-auto! mx-[34px] w-[calc(100%-68px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
           {% render nested_block %}
