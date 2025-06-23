@@ -7,6 +7,14 @@
     md:mb-0
     text-{{ block.settings.text_alignment }}
     bg-[{{ block.settings.color_background }}]
+    flex
+    {{ block.settings.mobile_flex_direction }}
+    md:{{ block.settings.flex_direction }}
+    {{ block.settings.flex_wrap }}
+    gap-x-[{{ block.settings.horizontal_gap }}px]
+    gap-y-[{{ block.settings.vertical_gap }}px]
+    {{ block.settings.justify_content }}
+    {{ block.settings.align_items }}
   "
 >
   {%- for link in block.settings.menu.links -%}
@@ -31,14 +39,6 @@
           hover:opacity-75
           py-[0.3125rem]
           md:py-[0.625rem]
-          flex
-          {{ section.settings.mobile_flex_direction }}
-          md:{{ section.settings.flex_direction }}
-          {{ section.settings.flex_wrap }}
-          gap-x-[{{ section.settings.horizontal_gap }}px]
-          gap-y-[{{ section.settings.vertical_gap }}px]
-          {{ section.settings.justify_content }}
-          {{ section.settings.align_items }}
           {% if link.active %}underline! underline-offset-[0.1875rem]! md:hover:decoration-[0.125rem]! hover:opacity-100{% endif %}
         "
       >
