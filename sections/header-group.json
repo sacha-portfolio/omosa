@@ -101,7 +101,7 @@
         "horizontal_gap": 8,
         "vertical_gap": 8,
         "justify_content": "justify-start",
-        "align_items": "items-start",
+        "align_items": "items-center",
         "image_opacity": 0,
         "color_background": "#f7f5ee",
         "height": "auto"
