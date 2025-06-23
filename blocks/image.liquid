@@ -7,7 +7,7 @@
   {% endif %}
   class="
     flex
-    {{ block.settings.spacing | class_list }}
+    {{ block.settings.flex_basis }}
   "
 >
   {% if block.settings.image_url and block.settings.image_url != '' %}
@@ -157,6 +157,20 @@
         { "value": "a", "label": "A" }
       ],
       "default": "div"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0
     }
   ],
   "presets": [

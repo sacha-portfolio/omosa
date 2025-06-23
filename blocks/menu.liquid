@@ -16,6 +16,7 @@
     gap-y-[{{ block.settings.vertical_gap }}px]
     {{ block.settings.justify_content }}
     {{ block.settings.align_items }}
+    {{ block.settings.flex_basis }}
   "
 >
   {%- for link in block.settings.menu.links -%}
@@ -294,6 +295,16 @@
         }
       ],
       "default": "items-start"
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0
     }
   ],
   "presets": [

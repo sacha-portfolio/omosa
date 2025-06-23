@@ -9,6 +9,7 @@
       w-[{{ block.settings.icon_size }}px]!
       [&>svg]:h-full
       [&>svg]:w-full
+      {{ block.settings.flex_basis }}
     "
   >
     {{- file | inline_asset_content -}}
@@ -225,6 +226,20 @@
       "step": 1,
       "default": 24,
       "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0
     }
   ],
   "presets": [
