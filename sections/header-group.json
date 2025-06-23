@@ -55,7 +55,7 @@
           "name": "Image",
           "settings": {
             "image_url": "shopify://shop_images/ab5b9573bd6a6d53bab881b9a7039530a8efee2d.png",
-            "height": "125",
+            "height": "100",
             "border_style": "none",
             "border_width": 1,
             "border_color": "",
