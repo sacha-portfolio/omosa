@@ -37,7 +37,7 @@
           "type": "menu",
           "name": "Menu",
           "settings": {
-            "menu": "",
+            "menu": "main-menu",
             "font_size": "sm",
             "text_alignment": "left",
             "font_weight": "normal",
