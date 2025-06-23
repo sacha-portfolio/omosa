@@ -102,9 +102,9 @@
             "align_items": "items-start",
             "slides_background_color": "",
             "show_arrow_buttons": true,
-            "arrow_buttons_color": "#000",
+            "arrow_buttons_color": "#000000",
             "show_pagination_dots": true,
-            "pagination_dots_color": "#000"
+            "pagination_dots_color": "#000000"
           },
           "blocks": {
             "group_JzrnWU": {
@@ -122,16 +122,17 @@
                 "align_items": "items-start",
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
-                "arrow_buttons_color": "#000",
+                "arrow_buttons_color": "#000000",
                 "show_pagination_dots": true,
-                "pagination_dots_color": "#000"
+                "pagination_dots_color": "#000000"
               },
               "blocks": {
                 "group_CzPmkV": {
                   "type": "group",
                   "name": "Group",
                   "settings": {
-                    "color_background": "",
+                    "color_background": "#c44242",
+                    "image_url": "shopify://shop_images/Vector_1.png",
                     "is_slider_mode": false,
                     "flex_direction": "flex-col",
                     "mobile_flex_direction": "flex-col",
@@ -142,9 +143,9 @@
                     "align_items": "items-center",
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
-                    "arrow_buttons_color": "#000",
+                    "arrow_buttons_color": "#000000",
                     "show_pagination_dots": true,
-                    "pagination_dots_color": "#000"
+                    "pagination_dots_color": "#000000"
                   },
                   "blocks": {
                     "icon_TQ6JUE": {
@@ -207,9 +208,9 @@
                 "align_items": "items-start",
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
-                "arrow_buttons_color": "#000",
+                "arrow_buttons_color": "#000000",
                 "show_pagination_dots": true,
-                "pagination_dots_color": "#000"
+                "pagination_dots_color": "#000000"
               },
               "blocks": {
                 "group_f6TQqE": {
@@ -227,9 +228,9 @@
                     "align_items": "items-start",
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
-                    "arrow_buttons_color": "#000",
+                    "arrow_buttons_color": "#000000",
                     "show_pagination_dots": true,
-                    "pagination_dots_color": "#000"
+                    "pagination_dots_color": "#000000"
                   },
                   "blocks": {
                     "icon_Gr743R": {
@@ -292,9 +293,9 @@
                 "align_items": "items-start",
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
-                "arrow_buttons_color": "#000",
+                "arrow_buttons_color": "#000000",
                 "show_pagination_dots": true,
-                "pagination_dots_color": "#000"
+                "pagination_dots_color": "#000000"
               },
               "blocks": {
                 "group_kLYNxC": {
@@ -312,9 +313,9 @@
                     "align_items": "items-start",
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
-                    "arrow_buttons_color": "#000",
+                    "arrow_buttons_color": "#000000",
                     "show_pagination_dots": true,
-                    "pagination_dots_color": "#000"
+                    "pagination_dots_color": "#000000"
                   },
                   "blocks": {
                     "icon_KikBCt": {
@@ -377,9 +378,9 @@
                 "align_items": "items-start",
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
-                "arrow_buttons_color": "#000",
+                "arrow_buttons_color": "#000000",
                 "show_pagination_dots": true,
-                "pagination_dots_color": "#000"
+                "pagination_dots_color": "#000000"
               },
               "blocks": {
                 "group_kRcpX7": {
@@ -397,9 +398,9 @@
                     "align_items": "items-start",
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
-                    "arrow_buttons_color": "#000",
+                    "arrow_buttons_color": "#000000",
                     "show_pagination_dots": true,
-                    "pagination_dots_color": "#000"
+                    "pagination_dots_color": "#000000"
                   },
                   "blocks": {
                     "icon_3n6CJn": {
