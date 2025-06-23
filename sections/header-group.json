@@ -46,7 +46,14 @@
             "text_transform": "normal-case",
             "text_decoration": "no-underline",
             "color": "",
-            "color_background": ""
+            "color_background": "",
+            "flex_direction": "flex-row",
+            "mobile_flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-start",
+            "align_items": "items-start"
           },
           "blocks": {}
         },
