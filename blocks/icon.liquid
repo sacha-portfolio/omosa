@@ -9,7 +9,7 @@
       w-[{{ block.settings.icon_size }}px]!
       [&>svg]:h-full
       [&>svg]:w-full
-      basis-{{ block.settings.flex_basis }}
+      basis-[{{ block.settings.flex_basis }}%]
     "
   >
     {{- file | inline_asset_content -}}
