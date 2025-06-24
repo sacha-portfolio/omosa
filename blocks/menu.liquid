@@ -30,14 +30,41 @@
           border-none
           shadow-none
           bg-transparent
-          text-{{ block.settings.font_size }}!
           text-[{{ block.settings.color }}]!
           text-{{ block.settings.text_alignment }}
-          font-{{ block.settings.font_weight }}!
-          font-(family-name:--{{ block.settings.font_family }}-family)!
-          leading-(--{{ block.settings.font_family }}-line-height)!
-          tracking-(--{{ block.settings.font_family }}-letter-spacing)!
-          {{ block.settings.font_style }}!
+          {% if block.settings.type_preset == 'custom' %}
+            text-{{ block.settings.font_size }}!
+            {{ block.settings.font_style }}!
+            font-{{ block.settings.font_weight }}!
+            font-(family-name:--{{ block.settings.font_family }}-family)!
+            leading-(--{{ block.settings.font_family }}-line-height)!
+            tracking-(--{{ block.settings.font_family }}-letter-spacing)!
+          {% elsif block.settings.type_preset == 'paragraph' %}
+            {{ settings.type_font_paragraph }}
+            {{ settings.type_size_paragraph }}
+            {{ settings.type_font_weight_paragraph }}
+            {{ settings.type_case_paragraph }}
+          {% elsif block.settings.type_preset == 'h1' %}
+            {{ settings.type_font_h1 }}
+            {{ settings.type_size_h1 }}
+            {{ settings.type_font_weight_h1 }}
+            {{ settings.type_case_h1 }}
+          {% elsif block.settings.type_preset == 'h2' %}
+            {{ settings.type_font_h2 }}
+            {{ settings.type_size_h2 }}
+            {{ settings.type_font_weight_h2 }}
+            {{ settings.type_case_h2 }}
+          {% elsif block.settings.type_preset == 'h3' %}
+            {{ settings.type_font_h3 }}
+            {{ settings.type_size_h3 }}
+            {{ settings.type_font_weight_h3 }}
+            {{ settings.type_case_h3 }}
+          {% elsif block.settings.type_preset == 'h4' %}
+            {{ settings.type_font_h4 }}
+            {{ settings.type_size_h4 }}
+            {{ settings.type_font_weight_h4 }}
+            {{ settings.type_case_h4 }}
+          {% endif %}
           {{ block.settings.text_transform }}
           {{ block.settings.text_decoration }}
           hover:opacity-75
@@ -75,6 +102,24 @@
       "content": "Style"
     },
     {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Preset",
+      "options": [
+        { "value": "paragraph", "label": "Paragraph" },
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "paragraph"
+    },
+    {
       "type": "select",
       "id": "font_size",
       "label": "Font Size",
@@ -89,7 +134,8 @@
         { "value": "sm", "label": "sm" },
         { "value": "xs", "label": "xs" }
       ],
-      "default": "base"
+      "default": "base",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
       "type": "text_alignment",
@@ -108,7 +154,8 @@
         { "value": "semi-bold", "label": "Semi-bold" },
         { "value": "bold", "label": "Bold" }
       ],
-      "default": "normal"
+      "default": "normal",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
       "type": "select",
@@ -120,7 +167,8 @@
         { "value": "font-body", "label": "Body Primary" },
         { "value": "font-body-secondary", "label": "Body Secondary" }
       ],
-      "default": "font-body"
+      "default": "font-body",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
       "type": "select",
@@ -130,7 +178,8 @@
         { "value": "not-italic", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
       ],
-      "default": "not-italic"
+      "default": "not-italic",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
       "type": "select",
@@ -142,7 +191,8 @@
         { "value": "lowercase", "label": "Lowercase" },
         { "value": "capitalize", "label": "Capitalize" }
       ],
-      "default": "normal-case"
+      "default": "normal-case",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
       "type": "select",
@@ -319,10 +369,7 @@
   "presets": [
     {
       "name": "Menu",
-      "category": "t:categories.links",
-      "settings": {
-        "font_size": "sm"
-      }
+      "category": "t:categories.links"
     }
   ]
 }
