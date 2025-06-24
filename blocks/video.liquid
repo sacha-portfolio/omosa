@@ -24,7 +24,10 @@
     {%- endif %}
   {%- endcapture -%}
 
-<div class="video-section{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}">
+<div
+  class="video-section{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+  {{ block.shopify_attributes }}
+>
   <deferred-media
     class="video-section__media deferred-media gradient global-media-settings{% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     data-media-id="{{ video_id }}"

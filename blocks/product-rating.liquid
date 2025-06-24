@@ -1,5 +1,8 @@
 {%- if block.settings.product.metafields.reviews.rating.value != blank -%}
-  <div class="rating-wrapper{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}">
+  <div
+    class="rating-wrapper{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+    {{ block.shopify_attributes }}
+  >
     {% liquid
       assign rating_decimal = 0
       assign decimal = block.settings.product.metafields.reviews.rating.value.rating | modulo: 1

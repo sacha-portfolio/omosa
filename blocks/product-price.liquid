@@ -15,6 +15,7 @@
       basis-[{{ block.settings.flex_basis }}%]
     {% endif %}
   "
+  {{ block.shopify_attributes }}
 >
   {% liquid
     assign price = block.settings.product.price

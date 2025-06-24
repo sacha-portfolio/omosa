@@ -26,7 +26,10 @@
 
 {% assign variant_images = block.settings.product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
-<div class="product product--{{ block.settings.media_position }} product--{{ block.settings.gallery_layout }} product--mobile-{{ block.settings.mobile_thumbnails }} grid grid--1-col {% if block.settings.product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}">
+<div
+  class="product product--{{ block.settings.media_position }} product--{{ block.settings.gallery_layout }} product--mobile-{{ block.settings.mobile_thumbnails }} grid grid--1-col {% if block.settings.product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+  {{ block.shopify_attributes }}
+>
   <div class="grid__item product__media-wrapper">
     {%- liquid
       if block.settings.hide_variants and variant_images.size == block.settings.product.media.size
