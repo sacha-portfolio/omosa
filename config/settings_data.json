@@ -12,7 +12,7 @@
     "logo_width": 90,
     "type_size_paragraph": "text-sm",
     "type_case_paragraph": "uppercase",
-    "type_font_h1": "font-2",
+    "type_font_h1": "--font-font-2--family",
     "type_size_h1": "text-3xl",
     "type_font_weight_h1": "font-bold",
     "page_width": 1200,
