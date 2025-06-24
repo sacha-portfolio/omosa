@@ -11,6 +11,7 @@
     bg-[{{ block.settings.color_background }}]
     text-[{{ block.settings.color }}]
     text-{{ block.settings.text_alignment }}
+    max-w-[{{ block.settings.max_width }}%]
 
     {% if block.settings.type_preset == 'custom' %}
       {{ block.settings.font_size }}
@@ -320,6 +321,16 @@
       "label": "Flex basis",
       "default": 0,
       "visible_if": "{{ block.settings.flex_basis_style }}"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Max width",
+      "default": 100
     }
   ],
   "presets": [
