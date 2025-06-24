@@ -1,5 +1,5 @@
 <product-recommendations
-  class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+  class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
   data-url="{{ routes.product_recommendations_url }}?limit={{ block.settings.product_list_limit }}&intent=complementary"
   data-section-id="{{ section.id }}"
   data-product-id="{{ block.settings.product.id }}"
@@ -745,6 +745,7 @@
 {% schema %}
 {
   "name": "Complementary products",
+  "tag": null,
   "settings": [
     {
       "type": "product",
@@ -1015,6 +1016,27 @@
       "id": "enable_quick_add",
       "label": "t:sections.main-product.blocks.complementary_products.settings.enable_quick_add.label",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

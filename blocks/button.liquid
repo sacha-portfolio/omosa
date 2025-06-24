@@ -3,6 +3,7 @@
   {% if block.settings.open_on_new_tab %}
     target="_blank"
   {% endif %}
+  {{ block.shopify_attributes }}
   class="
     inline-block
     bg-[{{ block.settings.color_background }}]
@@ -59,6 +60,9 @@
     hover:border-{{ block.settings.hover_border_style }}
     hover:border-[{{ block.settings.hover_border_color }}]
     {%- endif %}
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
   "
 >
   {{ block.settings.text }}
@@ -67,6 +71,7 @@
 {% schema %}
 {
   "name": "Button",
+  "tag": null,
   "settings": [
     {
       "type": "text",
@@ -388,6 +393,27 @@
       "id": "hover_border_color",
       "label": "Border Color",
       "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

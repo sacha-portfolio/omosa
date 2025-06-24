@@ -3,11 +3,8 @@
     m-0
     p-0
     list-none
-    mb-[2.5rem]
-    md:mb-0
     text-{{ block.settings.text_alignment }}
     bg-[{{ block.settings.color_background }}]
-
     flex
     {{ block.settings.mobile_flex_direction }}
     md:{{ block.settings.flex_direction }}
@@ -20,6 +17,7 @@
       basis-[{{ block.settings.flex_basis }}%]
     {% endif %}
   "
+  {{ block.shopify_attributes }}
 >
   {%- for link in block.settings.menu.links -%}
     <li class="p-0">
@@ -30,47 +28,45 @@
           border-none
           shadow-none
           bg-transparent
-          text-[{{ block.settings.color }}]
+          text-[{{ block.settings.color }}]!
           text-{{ block.settings.text_alignment }}
-
           {% if block.settings.type_preset == 'custom' %}
-            {{ block.settings.font_size }}
-            {{ block.settings.font_style }}
-            {{ block.settings.font_weight }}
-            font-(family-name:{{ block.settings.font_family }})
+            text-{{ block.settings.font_size }}!
+            {{ block.settings.font_style }}!
+            font-{{ block.settings.font_weight }}!
+            font-(family-name:--{{ block.settings.font_family }}-family)!
+            leading-(--{{ block.settings.font_family }}-line-height)!
+            tracking-(--{{ block.settings.font_family }}-letter-spacing)!
           {% elsif block.settings.type_preset == 'paragraph' %}
-            font-(family-name:{{ settings.type_font_paragraph }})
+            {{ settings.type_font_paragraph }}
             {{ settings.type_size_paragraph }}
             {{ settings.type_font_weight_paragraph }}
             {{ settings.type_case_paragraph }}
           {% elsif block.settings.type_preset == 'h1' %}
-            font-(family-name:{{ settings.type_font_h1 }})
+            {{ settings.type_font_h1 }}
             {{ settings.type_size_h1 }}
             {{ settings.type_font_weight_h1 }}
             {{ settings.type_case_h1 }}
           {% elsif block.settings.type_preset == 'h2' %}
-            font-(family-name:{{ settings.type_font_h2 }})
+            {{ settings.type_font_h2 }}
             {{ settings.type_size_h2 }}
             {{ settings.type_font_weight_h2 }}
             {{ settings.type_case_h2 }}
           {% elsif block.settings.type_preset == 'h3' %}
-            font-(family-name:{{ settings.type_font_h3 }})
+            {{ settings.type_font_h3 }}
             {{ settings.type_size_h3 }}
             {{ settings.type_font_weight_h3 }}
             {{ settings.type_case_h3 }}
           {% elsif block.settings.type_preset == 'h4' %}
-            font-(family-name:{{ settings.type_font_h4 }})
+            {{ settings.type_font_h4 }}
             {{ settings.type_size_h4 }}
             {{ settings.type_font_weight_h4 }}
             {{ settings.type_case_h4 }}
           {% endif %}
-
           {{ block.settings.text_transform }}
           {{ block.settings.text_decoration }}
 
           hover:opacity-75
-          py-[0.3125rem]
-          md:py-[0.625rem]
           flex
           {{ section.settings.mobile_flex_direction }}
           md:{{ section.settings.flex_direction }}
@@ -103,10 +99,97 @@
       "content": "Style"
     },
     {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Preset",
+      "options": [
+        { "value": "paragraph", "label": "Paragraph" },
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "paragraph"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font Size",
+      "options": [
+        { "value": "5xl", "label": "5xl" },
+        { "value": "4xl", "label": "4xl" },
+        { "value": "3xl", "label": "3xl" },
+        { "value": "2xl", "label": "2xl" },
+        { "value": "xl", "label": "xl" },
+        { "value": "lg", "label": "lg" },
+        { "value": "base", "label": "base" },
+        { "value": "sm", "label": "sm" },
+        { "value": "xs", "label": "xs" }
+      ],
+      "default": "base",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
       "type": "text_alignment",
       "id": "text_alignment",
       "label": "Text Alignment",
       "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "normal", "label": "Normal" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "semi-bold", "label": "Semi-bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "normal",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font Family",
+      "options": [
+        { "value": "font-heading", "label": "Headings Primary" },
+        { "value": "font-heading-secondary", "label": "Headings Secondary" },
+        { "value": "font-body", "label": "Body Primary" },
+        { "value": "font-body-secondary", "label": "Body Secondary" }
+      ],
+      "default": "font-body",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "options": [
+        { "value": "not-italic", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "not-italic",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "normal-case", "label": "Normal case" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "normal-case",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
       "type": "select",
@@ -412,11 +495,7 @@
   "presets": [
     {
       "name": "Menu",
-      "category": "t:categories.links",
-      "settings": {
-        "type_preset": "custom",
-        "font_size": "text-sm"
-      }
+      "category": "t:categories.links"
     }
   ]
 }

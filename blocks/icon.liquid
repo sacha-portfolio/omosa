@@ -13,6 +13,7 @@
         basis-[{{ block.settings.flex_basis }}%]
       {% endif %}
     "
+    {{ block.shopify_attributes }}
   >
     {{- file | inline_asset_content -}}
   </span>

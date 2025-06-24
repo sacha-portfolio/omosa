@@ -1,6 +1,9 @@
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
-<div class="contact">
+<div
+  class="contact{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+  {{ block.shopify_attributes }}
+>
   {%- liquid
     assign contact_form_class = 'isolate'
     if settings.animations_reveal_on_scroll
@@ -115,8 +118,31 @@
 {% schema %}
 {
   "name": "t:sections.contact-form.name",
-  "tag": "div",
+  "tag": null,
   "class": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
+    }
+  ],
   "presets": [
     {
       "name": "t:sections.contact-form.presets.name",

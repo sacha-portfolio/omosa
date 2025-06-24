@@ -47,7 +47,11 @@
     hover:border-{{ block.settings.hover_border_style }}
     hover:border-[{{ block.settings.hover_border_color }}]
     {%- endif %}
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
   "
+  {{ block.shopify_attributes }}
 >
   {% liquid
     assign price = block.settings.product.price
@@ -86,6 +90,7 @@
 {% schema %}
 {
   "name": "Price",
+  "tag": null,
   "settings": [
     {
       "type": "product",
@@ -273,6 +278,16 @@
       "type": "checkbox",
       "id": "add_hover_effect",
       "label": "Add hover effect",
+      "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
       "default": false
     },
     {
@@ -317,6 +332,14 @@
       "id": "hover_border_color",
       "label": "Border Color",
       "visible_if": "{{ block.settings.add_hover_effect }}"
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

@@ -1,5 +1,5 @@
 {%- assign product_form_id = 'product-form-' | append: section.id -%}
-<div {{ block.shopify_attributes }}>
+<div class="{% if block.settings.flex_basis_style %}basis-[{{ block.settings.flex_basis }}%]{% endif %}" {{ block.shopify_attributes }}>
   {%- if block.settings.product != blank -%}
     {%- liquid
       assign gift_card_recipient_feature_active = false
@@ -356,6 +356,7 @@
 {% schema %}
 {
   "name": "Buy buttons",
+  "tag": null,
   "settings": [
     {
       "type": "product",
@@ -375,6 +376,27 @@
       "default": true,
       "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
       "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

@@ -7,7 +7,10 @@
       --swiper-pagination-color: {{ block.settings.pagination_dots_color }};
     }
   {% endstyle %}
-  <div class="swiper swiper-{{ block.id }} wrapper w-full bg-[{{ block.settings.color_background }}]">
+  <div
+    class="swiper swiper-{{ block.id }} wrapper w-full bg-[{{ block.settings.color_background }}]"
+    {{ block.shopify_attributes }}
+  >
     <div class="swiper-wrapper items-stretch">
       {% for nested_block in block.blocks %}
         <div class="swiper-slide h-auto! mx-[34px] w-[calc(100%-68px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
@@ -59,6 +62,10 @@
       block-{{ block.id }}
       wrapper
       w-full
+      pt-[{{ block.settings.padding_top }}px]!
+      pb-[{{ block.settings.padding_bottom }}px]!
+      pr-[{{ block.settings.padding_right }}px]!
+      pl-[{{ block.settings.padding_left }}px]!
       bg-[{{ block.settings.color_background }}]
       flex
       {{ block.settings.mobile_flex_direction }}
@@ -68,11 +75,19 @@
       gap-y-[{{ block.settings.vertical_gap }}px]
       {{ block.settings.justify_content }}
       {{ block.settings.align_items }}
-      {% if block.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }})),url({{ block.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}
       {% if block.settings.flex_basis_style %}
         basis-[{{ block.settings.flex_basis }}%]
       {% endif %}
+
+      {% if block.settings.background_media == 'image' %}
+        {% if block.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }})),url({{ block.settings.image_url | image_url: width: 1500 }})] {{ block.settings.background_size }} bg-center bg-no-repeat{% endif %}
+      {% endif %}
+
+      {% if block.settings.background_media == 'video' %}
+        {% if block.settings.background_media == 'video' %} bg-cover bg-center{% endif %}
+      {% endif %}
     "
+    {{ block.shopify_attributes }}
   >
     {% content_for 'blocks' %}
   </div>
@@ -95,12 +110,78 @@
     },
     {
       "type": "header",
-      "content": "Image"
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "background_media",
+      "label": "Background media",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "image_picker",
       "id": "image_url",
-      "label": "Image"
+      "label": "Image",
+      "visible_if": "{{ block.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "label": "Image Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "%",
+      "visible_if": "{{ block.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "select",
+      "id": "background_size",
+      "label": "Background size",
+      "options": [
+        { "value": "bg-cover", "label": "Cover" },
+        { "value": "bg-contain", "label": "Contain" }
+      ],
+      "default": "bg-cover",
+      "visible_if": "{{ block.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "visible_if": "{{ block.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "select",
+      "id": "video_position",
+      "label": "Video position",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover",
+      "visible_if": "{{ block.settings.background_media == 'video' }}"
     },
     {
       "type": "header",
@@ -306,6 +387,50 @@
       "label": "Pagination dots color",
       "default": "#000",
       "visible_if": "{{ block.settings.is_slider_mode and block.settings.show_pagination_dots }}"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Left",
+      "default": 0
     }
   ],
   "presets": [

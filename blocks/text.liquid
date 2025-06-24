@@ -5,6 +5,7 @@
       target="_blank"
     {% endif %}
   {% endif %}
+  {{ block.shopify_attributes }}
   class="
     block
     bg-[{{ block.settings.color_background }}]
@@ -51,6 +52,9 @@
     hover:bg-[{{ block.settings.hover_color_background }}]
     hover:text-[{{ block.settings.hover_color }}]!
     {%- endif %}
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
   "
 >
   {{ block.settings.text }}
@@ -59,6 +63,7 @@
 {% schema %}
 {
   "name": "Text",
+  "tag": null,
   "settings": [
     {
       "type": "text",
@@ -294,6 +299,27 @@
         { "value": "a", "label": "A" }
       ],
       "default": "div"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

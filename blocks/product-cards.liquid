@@ -26,8 +26,9 @@
 {% case block.settings.layout_type %}
   {% when 'grid' %}
     <div
-      class="w-full grid-cols-{{ block.settings.mobile_columns }} md:grid-cols-{{ block.settings.columns }} gap-x-[{{ block.settings.columns_gap }}px] gap-y-[{{ block.settings.rows_gap }}px]"
+      class="w-full grid-cols-{{ block.settings.mobile_columns }} md:grid-cols-{{ block.settings.columns }} gap-x-[{{ block.settings.columns_gap }}px] gap-y-[{{ block.settings.rows_gap }}px]{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
       style="display: grid"
+      {{ block.shopify_attributes }}
     >
       {{ product_cards }}
     </div>
@@ -40,7 +41,10 @@
         --swiper-pagination-color: {{ block.settings.pagination_dots_color }};
       }
     {% endstyle %}
-    <div class="swiper swiper-{{ block.id }} w-full bg-[{{ block.settings.color_background }}]">
+    <div
+      class="swiper swiper-{{ block.id }} w-full bg-[{{ block.settings.color_background }}]{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+      {{ block.shopify_attributes }}
+    >
       <div class="swiper-wrapper">
         {{ product_cards }}
       </div>
@@ -88,7 +92,7 @@
 {% schema %}
 {
   "name": "Product cards",
-  "tag": "div",
+  "tag": null,
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
     {
@@ -206,6 +210,27 @@
       "label": "Pagination dots color",
       "default": "#000",
       "visible_if": "{{ block.settings.layout_type == 'slider' and block.settings.show_pagination_dots }}"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

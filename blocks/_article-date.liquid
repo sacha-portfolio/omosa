@@ -47,7 +47,11 @@
     hover:border-{{ block.settings.hover_border_style }}
     hover:border-[{{ block.settings.hover_border_color }}]
     {%- endif %}
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
   "
+  {{ block.shopify_attributes }}
 >
   {% liquid
     assign published_at = block.settings.article.published_at
@@ -62,6 +66,7 @@
 {% schema %}
 {
   "name": "Date",
+  "tag": null,
   "settings": [
     {
       "type": "article",
@@ -240,6 +245,16 @@
       "default": false
     },
     {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
       "type": "range",
       "id": "transition_duration",
       "min": 0,
@@ -281,6 +296,17 @@
       "id": "hover_border_color",
       "label": "Border Color",
       "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [
