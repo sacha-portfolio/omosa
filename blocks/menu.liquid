@@ -117,79 +117,10 @@
       "default": "paragraph"
     },
     {
-      "type": "select",
-      "id": "font_size",
-      "label": "Font Size",
-      "options": [
-        { "value": "5xl", "label": "5xl" },
-        { "value": "4xl", "label": "4xl" },
-        { "value": "3xl", "label": "3xl" },
-        { "value": "2xl", "label": "2xl" },
-        { "value": "xl", "label": "xl" },
-        { "value": "lg", "label": "lg" },
-        { "value": "base", "label": "base" },
-        { "value": "sm", "label": "sm" },
-        { "value": "xs", "label": "xs" }
-      ],
-      "default": "base",
-      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
-    },
-    {
       "type": "text_alignment",
       "id": "text_alignment",
       "label": "Text Alignment",
       "default": "left"
-    },
-    {
-      "type": "select",
-      "id": "font_weight",
-      "label": "Font Weight",
-      "options": [
-        { "value": "light", "label": "Light" },
-        { "value": "normal", "label": "Normal" },
-        { "value": "medium", "label": "Medium" },
-        { "value": "semi-bold", "label": "Semi-bold" },
-        { "value": "bold", "label": "Bold" }
-      ],
-      "default": "normal",
-      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
-    },
-    {
-      "type": "select",
-      "id": "font_family",
-      "label": "Font Family",
-      "options": [
-        { "value": "font-heading", "label": "Headings Primary" },
-        { "value": "font-heading-secondary", "label": "Headings Secondary" },
-        { "value": "font-body", "label": "Body Primary" },
-        { "value": "font-body-secondary", "label": "Body Secondary" }
-      ],
-      "default": "font-body",
-      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
-    },
-    {
-      "type": "select",
-      "id": "font_style",
-      "label": "Font Style",
-      "options": [
-        { "value": "not-italic", "label": "Normal" },
-        { "value": "italic", "label": "Italic" }
-      ],
-      "default": "not-italic",
-      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
-    },
-    {
-      "type": "select",
-      "id": "text_transform",
-      "label": "Text Transform",
-      "options": [
-        { "value": "normal-case", "label": "Normal case" },
-        { "value": "uppercase", "label": "Uppercase" },
-        { "value": "lowercase", "label": "Lowercase" },
-        { "value": "capitalize", "label": "Capitalize" }
-      ],
-      "default": "normal-case",
-      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
       "type": "select",
@@ -223,38 +154,6 @@
     {
       "type": "header",
       "content": "Typography"
-    },
-    {
-      "type": "select",
-      "id": "type_preset",
-      "label": "Preset",
-      "options": [
-        {
-          "value": "paragraph",
-          "label": "Paragraph"
-        },
-        {
-          "value": "h1",
-          "label": "H1"
-        },
-        {
-          "value": "h2",
-          "label": "H2"
-        },
-        {
-          "value": "h3",
-          "label": "H3"
-        },
-        {
-          "value": "h4",
-          "label": "H4"
-        },
-        {
-          "value": "custom",
-          "label": "Custom"
-        }
-      ],
-      "default": "paragraph"
     },
     {
       "type": "select",
