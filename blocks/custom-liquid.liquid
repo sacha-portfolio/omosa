@@ -1,4 +1,12 @@
-{{ block.settings.custom_liquid }}
+<div
+  class="
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
+  "
+>
+  {{ block.settings.custom_liquid }}
+</div>
 
 {% schema %}
 {
@@ -10,6 +18,27 @@
       "id": "custom_liquid",
       "label": "t:sections.custom-liquid.settings.custom_liquid.label",
       "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

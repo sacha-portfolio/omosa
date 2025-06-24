@@ -5,7 +5,7 @@
 
 <div
   id="Banner-{{ section.id }}"
-  class="email-signup-banner banner"
+  class="email-signup-banner banner{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
 >
   <div class="banner__content">
     <div class="email-signup-banner__box banner__box newsletter newsletter__wrapper content-container content-container--full-width-mobile">
@@ -83,6 +83,29 @@
   "name": "t:sections.email-signup-banner.name",
   "tag": null,
   "class": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
+    }
+  ],
   "presets": [
     {
       "name": "t:sections.email-signup-banner.presets.name",

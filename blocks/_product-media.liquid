@@ -26,7 +26,7 @@
 
 {% assign variant_images = block.settings.product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
-<div class="product product--{{ block.settings.media_position }} product--{{ block.settings.gallery_layout }} product--mobile-{{ block.settings.mobile_thumbnails }} grid grid--1-col {% if block.settings.product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+<div class="product product--{{ block.settings.media_position }} product--{{ block.settings.gallery_layout }} product--mobile-{{ block.settings.mobile_thumbnails }} grid grid--1-col {% if block.settings.product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}">
   <div class="grid__item product__media-wrapper">
     {%- liquid
       if block.settings.hide_variants and variant_images.size == block.settings.product.media.size
@@ -492,6 +492,27 @@
       "id": "enable_video_looping",
       "default": false,
       "label": "t:sections.main-product.settings.enable_video_looping.label"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [

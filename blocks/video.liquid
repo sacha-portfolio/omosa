@@ -24,7 +24,7 @@
     {%- endif %}
   {%- endcapture -%}
 
-<div class="video-section">
+<div class="video-section{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}">
   <deferred-media
     class="video-section__media deferred-media gradient global-media-settings{% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     data-media-id="{{ video_id }}"
@@ -140,6 +140,27 @@
       "id": "description",
       "label": "t:sections.video.settings.description.label",
       "info": "t:sections.video.settings.description.info"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
   "presets": [
