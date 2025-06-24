@@ -68,11 +68,31 @@
             "hover_border_color": ""
           },
           "blocks": {}
+        },
+        "image_qehEN3": {
+          "type": "image",
+          "name": "Image",
+          "settings": {
+            "height": "auto",
+            "width": "auto",
+            "aspect_ratio_width": 0,
+            "border_style": "none",
+            "border_width": 1,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_on_new_tab": false,
+            "tag": "div",
+            "flex_basis_style": false,
+            "flex_basis": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "text_AHApEq",
-        "button_xia8Bx"
+        "button_xia8Bx",
+        "image_qehEN3"
       ],
       "name": "Section",
       "settings": {
@@ -90,7 +110,7 @@
         "image_url": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
         "image_opacity": 0,
         "color_background": "",
-        "height": "450px"
+        "height": "600px"
       }
     },
     "section_XiztiE": {
