@@ -9,6 +9,204 @@
  */
 {
   "sections": {
+    "section_znL7nd": {
+      "type": "section",
+      "blocks": {
+        "group_UdDWAj": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "color_background": "",
+            "image_url": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+            "is_slider_mode": false,
+            "flex_direction": "flex-col",
+            "mobile_flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-start",
+            "align_items": "items-start",
+            "flex_basis_style": false,
+            "flex_basis": 0,
+            "slides_background_color": "",
+            "show_arrow_buttons": true,
+            "arrow_buttons_color": "#000",
+            "show_pagination_dots": true,
+            "pagination_dots_color": "#000"
+          },
+          "blocks": {
+            "text_BPgChB": {
+              "type": "text",
+              "name": "Text",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "text_alignment": "left",
+                "text_decoration": "no-underline",
+                "text_transform": "none",
+                "type_preset": "paragraph",
+                "font_size": "text-base",
+                "font_family": "--font-font-1--family",
+                "font_weight": "font-normal",
+                "font_style": "not-italic",
+                "color": "",
+                "color_background": "",
+                "add_hover_effect": false,
+                "transition_duration": 0,
+                "hover_color": "",
+                "hover_color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div"
+              },
+              "blocks": {}
+            },
+            "button_UTj33Q": {
+              "type": "button",
+              "name": "Button",
+              "settings": {
+                "text": "Discover",
+                "font_size": "base",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "padding_left": 10,
+                "padding_right": 10,
+                "add_hover_effect": false,
+                "transition_duration": 0,
+                "hover_color": "",
+                "hover_color_background": "",
+                "hover_border_style": "none",
+                "hover_border_color": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_BPgChB",
+            "button_UTj33Q"
+          ]
+        },
+        "group_ReBLf4": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "color_background": "",
+            "image_url": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+            "is_slider_mode": false,
+            "flex_direction": "flex-col",
+            "mobile_flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-start",
+            "align_items": "items-start",
+            "flex_basis_style": false,
+            "flex_basis": 0,
+            "slides_background_color": "",
+            "show_arrow_buttons": true,
+            "arrow_buttons_color": "#000",
+            "show_pagination_dots": true,
+            "pagination_dots_color": "#000"
+          },
+          "blocks": {
+            "text_fPtd9Y": {
+              "type": "text",
+              "name": "Text",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "text_alignment": "left",
+                "text_decoration": "no-underline",
+                "text_transform": "none",
+                "type_preset": "paragraph",
+                "font_size": "text-base",
+                "font_family": "--font-font-1--family",
+                "font_weight": "font-normal",
+                "font_style": "not-italic",
+                "color": "",
+                "color_background": "",
+                "add_hover_effect": false,
+                "transition_duration": 0,
+                "hover_color": "",
+                "hover_color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div"
+              },
+              "blocks": {}
+            },
+            "button_db488b": {
+              "type": "button",
+              "name": "Button",
+              "settings": {
+                "text": "Discover",
+                "font_size": "base",
+                "font_weight": "normal",
+                "font_family": "font-body",
+                "font_style": "not-italic",
+                "text_transform": "normal-case",
+                "text_decoration": "no-underline",
+                "color": "",
+                "color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "border_style": "none",
+                "border_width": 1,
+                "border_color": "",
+                "border_radius": 0,
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "padding_left": 10,
+                "padding_right": 10,
+                "add_hover_effect": false,
+                "transition_duration": 0,
+                "hover_color": "",
+                "hover_color_background": "",
+                "hover_border_style": "none",
+                "hover_border_color": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_fPtd9Y",
+            "button_db488b"
+          ]
+        }
+      },
+      "block_order": [
+        "group_UdDWAj",
+        "group_ReBLf4"
+      ],
+      "name": "Section",
+      "settings": {
+        "collection": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "apply_page_width": true,
+        "flex_direction": "flex-row",
+        "mobile_flex_direction": "flex-col",
+        "flex_wrap": "flex-nowrap",
+        "horizontal_gap": 8,
+        "vertical_gap": 8,
+        "justify_content": "justify-start",
+        "align_items": "items-start",
+        "image_opacity": 0,
+        "color_background": "",
+        "height": "auto"
+      }
+    },
     "section_XiztiE": {
       "type": "section",
       "blocks": {
@@ -41,7 +239,6 @@
           "type": "image",
           "name": "Image",
           "settings": {
-            "image_url": "shopify://shop_images/d36b98fee4fb97c7bad0794e159f8de5219c72b5.png",
             "height": "900",
             "width": "auto",
             "border_style": "none",
@@ -50,14 +247,27 @@
             "border_radius": 0,
             "link": "",
             "open_on_new_tab": false,
-            "tag": "div"
+            "tag": "div",
+            "flex_basis_style": false,
+            "flex_basis": 0
+          },
+          "blocks": {}
+        },
+        "video_fqUxVd": {
+          "type": "video",
+          "name": "t:sections.video.presets.name",
+          "settings": {
+            "enable_video_looping": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description": ""
           },
           "blocks": {}
         }
       },
       "block_order": [
         "text_cqMfGD",
-        "image_C7Nwfj"
+        "image_C7Nwfj",
+        "video_fqUxVd"
       ],
       "name": "Section",
       "settings": {
@@ -118,6 +328,8 @@
             "vertical_gap": 8,
             "justify_content": "justify-start",
             "align_items": "items-start",
+            "flex_basis_style": false,
+            "flex_basis": 0,
             "slides_background_color": "",
             "show_arrow_buttons": true,
             "arrow_buttons_color": "#000000",
@@ -138,6 +350,8 @@
                 "vertical_gap": 8,
                 "justify_content": "justify-start",
                 "align_items": "items-start",
+                "flex_basis_style": false,
+                "flex_basis": 0,
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
                 "arrow_buttons_color": "#000000",
@@ -150,7 +364,6 @@
                   "name": "Group",
                   "settings": {
                     "color_background": "#c44242",
-                    "image_url": "shopify://shop_images/Vector_1.png",
                     "is_slider_mode": false,
                     "flex_direction": "flex-col",
                     "mobile_flex_direction": "flex-col",
@@ -159,6 +372,8 @@
                     "vertical_gap": 8,
                     "justify_content": "justify-center",
                     "align_items": "items-center",
+                    "flex_basis_style": false,
+                    "flex_basis": 0,
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
                     "arrow_buttons_color": "#000000",
@@ -171,7 +386,9 @@
                       "name": "Icon",
                       "settings": {
                         "icon": "heart",
-                        "icon_size": 24
+                        "icon_size": 24,
+                        "flex_basis_style": false,
+                        "flex_basis": 0
                       },
                       "blocks": {}
                     }
@@ -224,6 +441,8 @@
                 "vertical_gap": 8,
                 "justify_content": "justify-start",
                 "align_items": "items-start",
+                "flex_basis_style": false,
+                "flex_basis": 0,
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
                 "arrow_buttons_color": "#000000",
@@ -244,6 +463,8 @@
                     "vertical_gap": 8,
                     "justify_content": "justify-start",
                     "align_items": "items-start",
+                    "flex_basis_style": false,
+                    "flex_basis": 0,
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
                     "arrow_buttons_color": "#000000",
@@ -256,7 +477,9 @@
                       "name": "Icon",
                       "settings": {
                         "icon": "heart",
-                        "icon_size": 24
+                        "icon_size": 24,
+                        "flex_basis_style": false,
+                        "flex_basis": 0
                       },
                       "blocks": {}
                     }
@@ -309,6 +532,8 @@
                 "vertical_gap": 8,
                 "justify_content": "justify-start",
                 "align_items": "items-start",
+                "flex_basis_style": false,
+                "flex_basis": 0,
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
                 "arrow_buttons_color": "#000000",
@@ -329,6 +554,8 @@
                     "vertical_gap": 8,
                     "justify_content": "justify-start",
                     "align_items": "items-start",
+                    "flex_basis_style": false,
+                    "flex_basis": 0,
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
                     "arrow_buttons_color": "#000000",
@@ -341,7 +568,9 @@
                       "name": "Icon",
                       "settings": {
                         "icon": "heart",
-                        "icon_size": 24
+                        "icon_size": 24,
+                        "flex_basis_style": false,
+                        "flex_basis": 0
                       },
                       "blocks": {}
                     }
@@ -394,6 +623,8 @@
                 "vertical_gap": 8,
                 "justify_content": "justify-start",
                 "align_items": "items-start",
+                "flex_basis_style": false,
+                "flex_basis": 0,
                 "slides_background_color": "",
                 "show_arrow_buttons": true,
                 "arrow_buttons_color": "#000000",
@@ -414,6 +645,8 @@
                     "vertical_gap": 8,
                     "justify_content": "justify-start",
                     "align_items": "items-start",
+                    "flex_basis_style": false,
+                    "flex_basis": 0,
                     "slides_background_color": "",
                     "show_arrow_buttons": true,
                     "arrow_buttons_color": "#000000",
@@ -426,7 +659,9 @@
                       "name": "Icon",
                       "settings": {
                         "icon": "heart",
-                        "icon_size": 24
+                        "icon_size": 24,
+                        "flex_basis_style": false,
+                        "flex_basis": 0
                       },
                       "blocks": {}
                     }
@@ -499,6 +734,7 @@
     }
   },
   "order": [
+    "section_znL7nd",
     "section_XiztiE",
     "section_6FFMBg"
   ]
