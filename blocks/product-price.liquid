@@ -278,7 +278,7 @@
       "type": "checkbox",
       "id": "add_hover_effect",
       "label": "Add hover effect",
-      "label": "Background Color"
+      "default": false
     },
     {
       "type": "header",
@@ -332,6 +332,9 @@
       "id": "hover_border_color",
       "label": "Border Color",
       "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "range",
       "id": "flex_basis",
       "min": 0,
       "max": 100,
