@@ -142,23 +142,23 @@
         "label": "t:settings_schema.typography.font",
         "options": [
           {
-            "value": "font-1",
+            "value": "--font-font-1--family",
             "label": "t:settings_schema.typography.font-1"
           },
           {
-            "value": "font-2",
+            "value": "--font-font-2--family",
             "label": "t:settings_schema.typography.font-2"
           },
           {
-            "value": "font-3",
+            "value": "--font-font-3--family",
             "label": "t:settings_schema.typography.font-3"
           },
           {
-            "value": "font-4",
+            "value": "--font-font-4--family",
             "label": "t:settings_schema.typography.font-4"
           }
         ],
-        "default": "font-1"
+        "default": "--font-font-1--family"
       },
       {
         "type": "select",
@@ -220,23 +220,23 @@
         "label": "t:settings_schema.typography.font",
         "options": [
           {
-            "value": "font-1",
+            "value": "--font-font-1--family",
             "label": "t:settings_schema.typography.font-1"
           },
           {
-            "value": "font-2",
+            "value": "--font-font-2--family",
             "label": "t:settings_schema.typography.font-2"
           },
           {
-            "value": "font-3",
+            "value": "--font-font-3--family",
             "label": "t:settings_schema.typography.font-3"
           },
           {
-            "value": "font-4",
+            "value": "--font-font-4--family",
             "label": "t:settings_schema.typography.font-4"
           }
         ],
-        "default": "font-1"
+        "default": "--font-font-1--family"
       },
       {
         "type": "select",
@@ -298,23 +298,23 @@
         "label": "t:settings_schema.typography.font",
         "options": [
           {
-            "value": "font-1",
+            "value": "--font-font-1--family",
             "label": "t:settings_schema.typography.font-1"
           },
           {
-            "value": "font-2",
+            "value": "--font-font-2--family",
             "label": "t:settings_schema.typography.font-2"
           },
           {
-            "value": "font-3",
+            "value": "--font-font-3--family",
             "label": "t:settings_schema.typography.font-3"
           },
           {
-            "value": "font-4",
+            "value": "--font-font-4--family",
             "label": "t:settings_schema.typography.font-4"
           }
         ],
-        "default": "font-1"
+        "default": "--font-font-1--family"
       },
       {
         "type": "select",
@@ -376,23 +376,23 @@
         "label": "t:settings_schema.typography.font",
         "options": [
           {
-            "value": "font-1",
+            "value": "--font-font-1--family",
             "label": "t:settings_schema.typography.font-1"
           },
           {
-            "value": "font-2",
+            "value": "--font-font-2--family",
             "label": "t:settings_schema.typography.font-2"
           },
           {
-            "value": "font-3",
+            "value": "--font-font-3--family",
             "label": "t:settings_schema.typography.font-3"
           },
           {
-            "value": "font-4",
+            "value": "--font-font-4--family",
             "label": "t:settings_schema.typography.font-4"
           }
         ],
-        "default": "font-1"
+        "default": "--font-font-1--family"
       },
       {
         "type": "select",
@@ -454,23 +454,23 @@
         "label": "t:settings_schema.typography.font",
         "options": [
           {
-            "value": "font-1",
+            "value": "--font-font-1--family",
             "label": "t:settings_schema.typography.font-1"
           },
           {
-            "value": "font-2",
+            "value": "--font-font-2--family",
             "label": "t:settings_schema.typography.font-2"
           },
           {
-            "value": "font-3",
+            "value": "--font-font-3--family",
             "label": "t:settings_schema.typography.font-3"
           },
           {
-            "value": "font-4",
+            "value": "--font-font-4--family",
             "label": "t:settings_schema.typography.font-4"
           }
         ],
-        "default": "font-1"
+        "default": "--font-font-1--family"
       },
       {
         "type": "select",
