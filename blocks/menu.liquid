@@ -17,6 +17,7 @@
       basis-[{{ block.settings.flex_basis }}%]
     {% endif %}
   "
+  {{ block.shopify_attributes }}
 >
   {%- for link in block.settings.menu.links -%}
     <li class="p-0">

@@ -17,6 +17,7 @@
       basis-[{{ block.settings.flex_basis }}%]
     {% endif %}
   "
+  {{ block.shopify_attributes }}
 >
   {%- for policy in shop.policies -%}
     {%- if policy != blank -%}

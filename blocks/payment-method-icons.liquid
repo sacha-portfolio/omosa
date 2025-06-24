@@ -17,6 +17,7 @@
       basis-[{{ block.settings.flex_basis }}%]
     {% endif %}
   "
+  {{ block.shopify_attributes }}
 >
   {%- for type in shop.enabled_payment_types -%}
     <li class="list-payment__item">
@@ -140,8 +141,6 @@
       "visible_if": "{{ block.settings.flex_basis_style }}"
     }
   ],
-  "presets": [
-    { "name": "Payment method icons", "category": "t:categories.links" }
-  ]
+  "presets": [{ "name": "Payment method icons", "category": "t:categories.links" }]
 }
 {% endschema %}
