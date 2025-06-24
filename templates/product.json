@@ -39,6 +39,8 @@
             "vertical_gap": 8,
             "justify_content": "justify-start",
             "align_items": "items-start",
+            "flex_basis_style": false,
+            "flex_basis": 0,
             "slides_background_color": "",
             "show_arrow_buttons": true,
             "arrow_buttons_color": "#000000",
@@ -107,6 +109,22 @@
               },
               "blocks": {}
             },
+            "product_complementary_products_TweKcn": {
+              "type": "product-complementary-products",
+              "name": "Complementary products",
+              "settings": {
+                "product": "{{ closest.product }}",
+                "block_heading": "Pairs well with",
+                "make_collapsible_row": false,
+                "icon": "price_tag",
+                "product_list_limit": 10,
+                "products_per_page": 3,
+                "pagination_style": "counter",
+                "image_ratio": "square",
+                "enable_quick_add": false
+              },
+              "blocks": {}
+            },
             "buy-buttons": {
               "type": "product-buy-buttons",
               "name": "Buy buttons",
@@ -123,6 +141,7 @@
             "price",
             "variant-picker",
             "quantity-selector",
+            "product_complementary_products_TweKcn",
             "buy-buttons"
           ]
         }
