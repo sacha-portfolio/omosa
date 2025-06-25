@@ -49,8 +49,6 @@
     duration-{{ block.settings.transition_duration | times: 1000 | round }}
     hover:bg-[{{ block.settings.hover_color_background }}]
     hover:text-[{{ block.settings.hover_color }}]
-    hover:border-{{ block.settings.hover_border_style }}
-    hover:border-[{{ block.settings.hover_border_color }}]
     {%- endif %}
     {% if block.settings.flex_basis_style %}
       basis-[{{ block.settings.flex_basis }}%]
@@ -290,16 +288,6 @@
       "default": false
     },
     {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "checkbox",
-      "id": "flex_basis_style",
-      "label": "Flex basis",
-      "default": false
-    },
-    {
       "type": "range",
       "id": "transition_duration",
       "min": 0,
@@ -323,24 +311,14 @@
       "visible_if": "{{ block.settings.add_hover_effect }}"
     },
     {
-      "type": "select",
-      "id": "hover_border_style",
-      "label": "Border Style",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "solid", "label": "Solid" },
-        { "value": "dashed", "label": "Dashed" },
-        { "value": "dotted", "label": "Dotted" },
-        { "value": "double", "label": "Double" }
-      ],
-      "default": "none",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "type": "header",
+      "content": "Layout"
     },
     {
-      "type": "color",
-      "id": "hover_border_color",
-      "label": "Border Color",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
     },
     {
       "type": "range",

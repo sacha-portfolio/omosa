@@ -63,7 +63,9 @@
     hover:bg-[{{ block.settings.hover_color_background }}]
     hover:text-[{{ block.settings.hover_color }}]
     hover:border-{{ block.settings.hover_border_style }}
+    hover:border-[{{ block.settings.hover_border_width }}px]
     hover:border-[{{ block.settings.hover_border_color }}]
+    hover:rounded-[{{ block.settings.hover_border_radius }}px]
     {%- endif %}
     {% if block.settings.flex_basis_style %}
       basis-[{{ block.settings.flex_basis }}%]
@@ -83,6 +85,21 @@
       "id": "text",
       "label": "Content",
       "default": "Discover"
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_on_new_tab",
+      "label": "Open on new tab",
+      "default": false
     },
     {
       "type": "header",
@@ -251,27 +268,12 @@
     },
     {
       "type": "header",
-      "content": "Link"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
-    },
-    {
-      "type": "checkbox",
-      "id": "open_on_new_tab",
-      "label": "Open on new tab",
-      "default": false
-    },
-    {
-      "type": "header",
       "content": "Border"
     },
     {
       "type": "select",
       "id": "border_style",
-      "label": "Border Style",
+      "label": "Style",
       "options": [
         { "value": "none", "label": "None" },
         { "value": "solid", "label": "Solid" },
@@ -288,13 +290,13 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Border Width",
+      "label": "Width",
       "default": 1
     },
     {
       "type": "color",
       "id": "border_color",
-      "label": "Border Color"
+      "label": "Color"
     },
     {
       "type": "range",
@@ -303,7 +305,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "label": "Border Radius",
+      "label": "Radius",
       "default": 0
     },
     {
@@ -317,7 +319,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "Top",
       "default": 10
     },
     {
@@ -327,7 +329,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "Bottom",
       "default": 10
     },
     {
@@ -337,7 +339,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "label": "Padding Left",
+      "label": "Left",
       "default": 10
     },
     {
@@ -347,7 +349,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "label": "Padding Right",
+      "label": "Right",
       "default": 10
     },
     {
@@ -398,9 +400,31 @@
       "visible_if": "{{ block.settings.add_hover_effect }}"
     },
     {
+      "type": "range",
+      "id": "hover_border_width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 1,
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
       "type": "color",
       "id": "hover_border_color",
       "label": "Border Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "range",
+      "id": "hover_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 0,
       "visible_if": "{{ block.settings.add_hover_effect }}"
     },
     {
