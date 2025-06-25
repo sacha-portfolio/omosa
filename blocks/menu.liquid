@@ -3,6 +3,7 @@
     m-0
     p-0
     list-none
+    w-full
     text-{{ block.settings.text_alignment }}
     bg-[{{ block.settings.color_background }}]
     flex
@@ -31,41 +32,43 @@
           text-[{{ block.settings.color }}]!
           text-{{ block.settings.text_alignment }}
           {% if block.settings.type_preset == 'custom' %}
-            text-{{ block.settings.font_size }}!
-            {{ block.settings.font_style }}!
-            font-{{ block.settings.font_weight }}!
-            font-(family-name:--{{ block.settings.font_family }}-family)!
-            leading-(--{{ block.settings.font_family }}-line-height)!
-            tracking-(--{{ block.settings.font_family }}-letter-spacing)!
+            {{ block.settings.font_size }}
+            {{ block.settings.font_style }}
+            {{ block.settings.font_weight }}
+            font-(family-name:{{ block.settings.font_family }})
           {% elsif block.settings.type_preset == 'paragraph' %}
-            {{ settings.type_font_paragraph }}
+            font-(family-name:{{ settings.type_font_paragraph }})
             {{ settings.type_size_paragraph }}
             {{ settings.type_font_weight_paragraph }}
             {{ settings.type_case_paragraph }}
+          {% elsif block.settings.type_preset == 'button' %}
+            font-(family-name:{{ settings.type_font_button }})
+            {{ settings.type_size_button }}
+            {{ settings.type_font_weight_button }}
+            {{ settings.type_case_button }}
           {% elsif block.settings.type_preset == 'h1' %}
-            {{ settings.type_font_h1 }}
+            font-(family-name:{{ settings.type_font_h1 }})
             {{ settings.type_size_h1 }}
             {{ settings.type_font_weight_h1 }}
             {{ settings.type_case_h1 }}
           {% elsif block.settings.type_preset == 'h2' %}
-            {{ settings.type_font_h2 }}
+            font-(family-name:{{ settings.type_font_h2 }})
             {{ settings.type_size_h2 }}
             {{ settings.type_font_weight_h2 }}
             {{ settings.type_case_h2 }}
           {% elsif block.settings.type_preset == 'h3' %}
-            {{ settings.type_font_h3 }}
+            font-(family-name:{{ settings.type_font_h3 }})
             {{ settings.type_size_h3 }}
             {{ settings.type_font_weight_h3 }}
             {{ settings.type_case_h3 }}
           {% elsif block.settings.type_preset == 'h4' %}
-            {{ settings.type_font_h4 }}
+            font-(family-name:{{ settings.type_font_h4 }})
             {{ settings.type_size_h4 }}
             {{ settings.type_font_weight_h4 }}
             {{ settings.type_case_h4 }}
           {% endif %}
           {{ block.settings.text_transform }}
           {{ block.settings.text_decoration }}
-
           hover:opacity-75
           flex
           {{ section.settings.mobile_flex_direction }}
@@ -97,24 +100,6 @@
     {
       "type": "header",
       "content": "Style"
-    },
-    {
-      "type": "header",
-      "content": "Typography"
-    },
-    {
-      "type": "select",
-      "id": "type_preset",
-      "label": "Preset",
-      "options": [
-        { "value": "paragraph", "label": "Paragraph" },
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "h4", "label": "H4" },
-        { "value": "custom", "label": "Custom" }
-      ],
-      "default": "paragraph"
     },
     {
       "type": "text_alignment",
@@ -154,6 +139,21 @@
     {
       "type": "header",
       "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Preset",
+      "options": [
+        { "value": "paragraph", "label": "Paragraph" },
+        { "value": "button", "label": "Button" },
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "paragraph"
     },
     {
       "type": "select",
@@ -239,7 +239,7 @@
     {
       "type": "color",
       "id": "color_background",
-      "label": "Background Color"
+      "label": "Background"
     },
     {
       "type": "header",

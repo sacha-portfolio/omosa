@@ -20,6 +20,11 @@
       {{ settings.type_size_paragraph }}
       {{ settings.type_font_weight_paragraph }}
       {{ settings.type_case_paragraph }}
+    {% elsif block.settings.type_preset == 'button' %}
+      font-(family-name:{{ settings.type_font_button }})
+      {{ settings.type_size_button }}
+      {{ settings.type_font_weight_button }}
+      {{ settings.type_case_button }}
     {% elsif block.settings.type_preset == 'h1' %}
       font-(family-name:{{ settings.type_font_h1 }})
       {{ settings.type_size_h1 }}
@@ -132,6 +137,10 @@
           "label": "Paragraph"
         },
         {
+          "value": "button",
+          "label": "Button"
+        },
+        {
           "value": "h1",
           "label": "H1"
         },
@@ -152,7 +161,7 @@
           "label": "Custom"
         }
       ],
-      "default": "paragraph"
+      "default": "button"
     },
     {
       "type": "select",
