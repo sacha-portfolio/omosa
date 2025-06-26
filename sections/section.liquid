@@ -7,11 +7,21 @@
       {% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}
     {% endif %}
 
-    {% if section.settings.background_media == 'video' %}
-      {% if section.settings.background_media == 'video' %} bg-cover bg-center{% endif %}
-    {% endif %}
+    {% if section.settings.background_media == 'video' %}relative{% endif %}
   "
 >
+  {% if section.settings.background_media == 'video' %}
+    {% assign video_classes = 'absolute h-full w-full z-[-1] ' %}
+    {% assign brightness_value = 100 | minus: section.settings.video_opacity %}
+    {% assign brightness_class = 'brightness-' | append: brightness_value %}
+    {% assign video_classes = video_classes | append: brightness_class %}
+    {% if section.settings.video_position == 'cover' %}
+      {% assign video_classes = video_classes | append: ' object-cover' %}
+    {% elsif section.settings.video_position == 'contain' %}
+      {% assign video_classes = video_classes | append: ' object-contain' %}
+    {% endif %}
+    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, class: video_classes }}
+  {% endif %}
   <div
     class="
       h-full
@@ -245,7 +255,7 @@
     {
       "type": "range",
       "id": "image_opacity",
-      "label": "Image Opacity",
+      "label": "Opacity",
       "min": 0,
       "max": 100,
       "step": 1,
@@ -274,6 +284,17 @@
         }
       ],
       "default": "cover",
+      "visible_if": "{{ section.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "range",
+      "id": "video_opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 25,
+      "unit": "%",
       "visible_if": "{{ section.settings.background_media == 'video' }}"
     },
     {
