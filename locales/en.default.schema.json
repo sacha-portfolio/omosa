@@ -228,7 +228,27 @@
       "xs": "xs"
     },
     "buttons": {
-      "name": "Buttons"
+      "name": "Buttons",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "color": "Color",
+      "color_background": "Background color",
+      "border_style": "Border style",
+      "border_width": "Border width",
+      "border_color": "Border color",
+      "border_radius": "Border radius",
+      "padding_top": "Padding top",
+      "padding_bottom": "Padding bottom",
+      "padding_left": "Padding left",
+      "padding_right": "Padding right",
+      "add_hover_effect": "Add hover effect",
+      "transition_duration": "Transition duration",
+      "hover_color": "Hover color",
+      "hover_color_background": "Hover background color",
+      "hover_border_style": "Hover border style",
+      "hover_border_width": "Hover border width",
+      "hover_border_color": "Hover border color",
+      "hover_border_radius": "Hover border radius"
     },
     "variant_pills": {
       "name": "Variant pills",

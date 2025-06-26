@@ -6,8 +6,6 @@
   {{ block.shopify_attributes }}
   class="
     inline-block
-    bg-[{{ block.settings.color_background }}]
-    text-[{{ block.settings.color }}]
     text-{{ block.settings.text_alignment }}
 
     {% if block.settings.type_preset == 'custom' %}
@@ -47,26 +45,73 @@
       {{ settings.type_case_h4 }}
     {% endif %}
 
+    {% if block.settings.button_preset == 'custom' %}
+      text-[{{ block.settings.color }}]
+      bg-[{{ block.settings.color_background }}]
+      border-{{ block.settings.border_style }}
+      border-[{{ block.settings.border_width }}px]
+      border-[{{ block.settings.border_color }}]
+      rounded-[{{ block.settings.border_radius }}px]
+      pt-[{{ block.settings.padding_top }}px]
+      pb-[{{ block.settings.padding_bottom }}px]
+      pl-[{{ block.settings.padding_left }}px]
+      pr-[{{ block.settings.padding_right }}px]
+      {%- if block.settings.add_hover_effect %}
+        transition-colors
+        duration-{{ block.settings.transition_duration | times: 1000 | round }}
+        hover:text-[{{ block.settings.hover_color }}]
+        hover:bg-[{{ block.settings.hover_color_background }}]
+        hover:border-{{ block.settings.hover_border_style }}
+        hover:border-[{{ block.settings.hover_border_width }}px]
+        hover:border-[{{ block.settings.hover_border_color }}]
+        hover:rounded-[{{ block.settings.hover_border_radius }}px]
+      {%- endif %}
+    {% elsif block.settings.button_preset == 'primary' %}
+      text-[{{ settings.button_color_primary }}]
+      bg-[{{ settings.button_color_background_primary }}]
+      border-{{ settings.button_border_style_primary }}
+      border-[{{ settings.button_border_width_primary }}px]
+      border-[{{ settings.button_border_color_primary }}]
+      rounded-[{{ settings.button_border_radius_primary }}px]
+      pt-[{{ settings.button_padding_top_primary }}px]
+      pb-[{{ settings.button_padding_bottom_primary }}px]
+      pl-[{{ settings.button_padding_left_primary }}px]
+      pr-[{{ settings.button_padding_right_primary }}px]
+      {%- if settings.button_add_hover_effect_primary %}
+        transition-colors
+        duration-{{ settings.button_transition_duration_primary | times: 1000 | round }}
+        hover:text-[{{ settings.button_hover_color_primary }}]
+        hover:bg-[{{ settings.button_hover_color_background_primary }}]
+        hover:border-{{ settings.button_hover_border_style_primary }}
+        hover:border-[{{ settings.button_hover_border_width_primary }}px]
+        hover:border-[{{ settings.button_hover_border_color_primary }}]
+        hover:rounded-[{{ settings.button_hover_border_radius_primary }}px]
+      {%- endif %}
+    {% elsif block.settings.button_preset == 'secondary' %}
+      text-[{{ settings.button_color_secondary }}]
+      bg-[{{ settings.button_color_background_secondary }}]
+      border-{{ settings.button_border_style_secondary }}
+      border-[{{ settings.button_border_width_secondary }}px]
+      border-[{{ settings.button_border_color_secondary }}]
+      rounded-[{{ settings.button_border_radius_secondary }}px]
+      pt-[{{ settings.button_padding_top_secondary }}px]
+      pb-[{{ settings.button_padding_bottom_secondary }}px]
+      pl-[{{ settings.button_padding_left_secondary }}px]
+      pr-[{{ settings.button_padding_right_secondary }}px]
+      {%- if settings.button_add_hover_effect_secondary %}
+        transition-colors
+        duration-{{ settings.button_transition_duration_secondary | times: 1000 | round }}
+        hover:text-[{{ settings.button_hover_color_secondary }}]
+        hover:bg-[{{ settings.button_hover_color_background_secondary }}]
+        hover:border-{{ settings.button_hover_border_style_secondary }}
+        hover:border-[{{ settings.button_hover_border_width_secondary }}px]
+        hover:border-[{{ settings.button_hover_border_color_secondary }}]
+        hover:rounded-[{{ settings.button_hover_border_radius_secondary }}px]
+      {%- endif %}
+    {% endif %}
+
     {{ block.settings.text_transform }}
     {{ block.settings.text_decoration }}
-    border-{{ block.settings.border_style }}
-    border-[{{ block.settings.border_width }}px]
-    border-[{{ block.settings.border_color }}]
-    rounded-[{{ block.settings.border_radius }}px]
-    pt-[{{ block.settings.padding_top }}px]
-    pb-[{{ block.settings.padding_bottom }}px]
-    pl-[{{ block.settings.padding_left }}px]
-    pr-[{{ block.settings.padding_right }}px]
-    {%- if block.settings.add_hover_effect %}
-    transition-colors
-    duration-{{ block.settings.transition_duration | times: 1000 | round }}
-    hover:bg-[{{ block.settings.hover_color_background }}]
-    hover:text-[{{ block.settings.hover_color }}]
-    hover:border-{{ block.settings.hover_border_style }}
-    hover:border-[{{ block.settings.hover_border_width }}px]
-    hover:border-[{{ block.settings.hover_border_color }}]
-    hover:rounded-[{{ block.settings.hover_border_radius }}px]
-    {%- endif %}
     {% if block.settings.flex_basis_style %}
       basis-[{{ block.settings.flex_basis }}%]
     {% endif %}
@@ -108,13 +153,13 @@
     {
       "type": "text_alignment",
       "id": "text_alignment",
-      "label": "Text Alignment",
+      "label": "Text alignment",
       "default": "left"
     },
     {
       "type": "select",
       "id": "text_decoration",
-      "label": "Text Decoration",
+      "label": "Text decoration",
       "options": [
         { "value": "no-underline", "label": "No underline" },
         { "value": "underline", "label": "Underline" },
@@ -181,9 +226,33 @@
       "default": "button"
     },
     {
+      "type": "header",
+      "content": "Variant"
+    },
+    {
+      "type": "select",
+      "id": "button_preset",
+      "label": "Preset",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "primary"
+    },
+    {
       "type": "select",
       "id": "font_size",
-      "label": "Font Size",
+      "label": "Font size",
       "options": [
         { "value": "text-5xl", "label": "5xl (48px)" },
         { "value": "text-4xl", "label": "4xl (36px)" },
@@ -226,7 +295,7 @@
     {
       "type": "select",
       "id": "font_weight",
-      "label": "Font Weight",
+      "label": "Font weight",
       "options": [
         { "value": "font-thin", "label": "Thin" },
         { "value": "font-extralight", "label": "Extra Light" },
@@ -244,7 +313,7 @@
     {
       "type": "select",
       "id": "font_style",
-      "label": "Font Style",
+      "label": "Font style",
       "options": [
         { "value": "not-italic", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
@@ -254,21 +323,25 @@
     },
     {
       "type": "header",
-      "content": "Colors"
+      "content": "Colors",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "color",
       "id": "color",
-      "label": "Text"
+      "label": "Text",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "color",
       "id": "color_background",
-      "label": "Background"
+      "label": "Background",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "header",
-      "content": "Border"
+      "content": "Border",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "select",
@@ -281,7 +354,8 @@
         { "value": "dotted", "label": "Dotted" },
         { "value": "double", "label": "Double" }
       ],
-      "default": "none"
+      "default": "none",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "range",
@@ -291,12 +365,14 @@
       "step": 1,
       "unit": "px",
       "label": "Width",
-      "default": 1
+      "default": 1,
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "color",
       "id": "border_color",
-      "label": "Color"
+      "label": "Color",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "range",
@@ -306,11 +382,13 @@
       "step": 1,
       "unit": "px",
       "label": "Radius",
-      "default": 0
+      "default": 0,
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "header",
-      "content": "Padding"
+      "content": "Padding",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "range",
@@ -320,7 +398,8 @@
       "step": 1,
       "unit": "px",
       "label": "Top",
-      "default": 10
+      "default": 10,
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "range",
@@ -330,7 +409,8 @@
       "step": 1,
       "unit": "px",
       "label": "Bottom",
-      "default": 10
+      "default": 10,
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "range",
@@ -340,7 +420,8 @@
       "step": 1,
       "unit": "px",
       "label": "Left",
-      "default": 10
+      "default": 10,
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "range",
@@ -350,17 +431,20 @@
       "step": 1,
       "unit": "px",
       "label": "Right",
-      "default": 10
+      "default": 10,
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "header",
-      "content": "Hover"
+      "content": "Hover",
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "checkbox",
       "id": "add_hover_effect",
       "label": "Add hover effect",
-      "default": false
+      "default": false,
+      "visible_if": "{{ block.settings.button_preset == 'custom' }}"
     },
     {
       "type": "range",
@@ -371,24 +455,24 @@
       "unit": "s",
       "label": "Transition duration",
       "default": 0,
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "visible_if": "{{ block.settings.button_preset == 'custom' and block.settings.add_hover_effect }}"
     },
     {
       "type": "color",
       "id": "hover_color",
       "label": "Color",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "visible_if": "{{ block.settings.button_preset == 'custom' and block.settings.add_hover_effect }}"
     },
     {
       "type": "color",
       "id": "hover_color_background",
-      "label": "Background Color",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "label": "Background color",
+      "visible_if": "{{ block.settings.button_preset == 'custom' and block.settings.add_hover_effect }}"
     },
     {
       "type": "select",
       "id": "hover_border_style",
-      "label": "Border Style",
+      "label": "Border style",
       "options": [
         { "value": "none", "label": "None" },
         { "value": "solid", "label": "Solid" },
@@ -397,7 +481,7 @@
         { "value": "double", "label": "Double" }
       ],
       "default": "none",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "visible_if": "{{ block.settings.button_preset == 'custom' and block.settings.add_hover_effect }}"
     },
     {
       "type": "range",
@@ -406,15 +490,15 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "label": "Border Width",
+      "label": "Border width",
       "default": 1,
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "visible_if": "{{ block.settings.button_preset == 'custom' and block.settings.add_hover_effect }}"
     },
     {
       "type": "color",
       "id": "hover_border_color",
-      "label": "Border Color",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "label": "Border color",
+      "visible_if": "{{ block.settings.button_preset == 'custom' and block.settings.add_hover_effect }}"
     },
     {
       "type": "range",
@@ -423,9 +507,9 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "label": "Border Radius",
+      "label": "Border radius",
       "default": 0,
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "visible_if": "{{ block.settings.button_preset == 'custom' and block.settings.add_hover_effect }}"
     },
     {
       "type": "header",
