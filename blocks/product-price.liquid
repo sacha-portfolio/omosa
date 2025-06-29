@@ -15,6 +15,11 @@
       {{ settings.type_size_paragraph }}
       {{ settings.type_font_weight_paragraph }}
       {{ settings.type_case_paragraph }}
+    {% elsif block.settings.type_preset == 'button' %}
+      font-(family-name:{{ settings.type_font_button }})
+      {{ settings.type_size_button }}
+      {{ settings.type_font_weight_button }}
+      {{ settings.type_case_button }}
     {% elsif block.settings.type_preset == 'h1' %}
       font-(family-name:{{ settings.type_font_h1 }})
       {{ settings.type_size_h1 }}
@@ -44,8 +49,6 @@
     duration-{{ block.settings.transition_duration | times: 1000 | round }}
     hover:bg-[{{ block.settings.hover_color_background }}]
     hover:text-[{{ block.settings.hover_color }}]
-    hover:border-{{ block.settings.hover_border_style }}
-    hover:border-[{{ block.settings.hover_border_color }}]
     {%- endif %}
     {% if block.settings.flex_basis_style %}
       basis-[{{ block.settings.flex_basis }}%]
@@ -116,13 +119,13 @@
     {
       "type": "text_alignment",
       "id": "text_alignment",
-      "label": "Text Alignment",
+      "label": "Text alignment",
       "default": "left"
     },
     {
       "type": "select",
       "id": "text_decoration",
-      "label": "Text Decoration",
+      "label": "Text decoration",
       "options": [
         { "value": "no-underline", "label": "No underline" },
         { "value": "underline", "label": "Underline" },
@@ -162,6 +165,10 @@
           "label": "Paragraph"
         },
         {
+          "value": "button",
+          "label": "Button"
+        },
+        {
           "value": "h1",
           "label": "H1"
         },
@@ -187,7 +194,7 @@
     {
       "type": "select",
       "id": "font_size",
-      "label": "Font Size",
+      "label": "Font size",
       "options": [
         { "value": "text-5xl", "label": "5xl (48px)" },
         { "value": "text-4xl", "label": "4xl (36px)" },
@@ -230,7 +237,7 @@
     {
       "type": "select",
       "id": "font_weight",
-      "label": "Font Weight",
+      "label": "Font weight",
       "options": [
         { "value": "font-thin", "label": "Thin" },
         { "value": "font-extralight", "label": "Extra Light" },
@@ -248,7 +255,7 @@
     {
       "type": "select",
       "id": "font_style",
-      "label": "Font Style",
+      "label": "Font style",
       "options": [
         { "value": "not-italic", "label": "Normal" },
         { "value": "italic", "label": "Italic" }
@@ -281,16 +288,6 @@
       "default": false
     },
     {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "checkbox",
-      "id": "flex_basis_style",
-      "label": "Flex basis",
-      "default": false
-    },
-    {
       "type": "range",
       "id": "transition_duration",
       "min": 0,
@@ -310,28 +307,18 @@
     {
       "type": "color",
       "id": "hover_color_background",
-      "label": "Background Color",
+      "label": "Background color",
       "visible_if": "{{ block.settings.add_hover_effect }}"
     },
     {
-      "type": "select",
-      "id": "hover_border_style",
-      "label": "Border Style",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "solid", "label": "Solid" },
-        { "value": "dashed", "label": "Dashed" },
-        { "value": "dotted", "label": "Dotted" },
-        { "value": "double", "label": "Double" }
-      ],
-      "default": "none",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "type": "header",
+      "content": "Layout"
     },
     {
-      "type": "color",
-      "id": "hover_border_color",
-      "label": "Border Color",
-      "visible_if": "{{ block.settings.add_hover_effect }}"
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
     },
     {
       "type": "range",
