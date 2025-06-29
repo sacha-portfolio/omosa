@@ -1,0 +1,342 @@
+<{{ block.settings.tag }}
+  {{ block.shopify_attributes }}
+  class="
+    block
+    bg-[{{ block.settings.color_background }}]
+    text-[{{ block.settings.color }}]
+    text-{{ block.settings.text_alignment }}
+    max-w-[{{ block.settings.max_width }}%]
+
+    {% if block.settings.type_preset == 'custom' %}
+      {{ block.settings.font_size }}
+      {{ block.settings.font_style }}
+      {{ block.settings.font_weight }}
+      font-(family-name:{{ block.settings.font_family }})
+    {% elsif block.settings.type_preset == 'paragraph' %}
+      font-(family-name:{{ settings.type_font_paragraph }})
+      {{ settings.type_size_paragraph }}
+      {{ settings.type_font_weight_paragraph }}
+      {{ settings.type_case_paragraph }}
+    {% elsif block.settings.type_preset == 'h1' %}
+      font-(family-name:{{ settings.type_font_h1 }})
+      {{ settings.type_size_h1 }}
+      {{ settings.type_font_weight_h1 }}
+      {{ settings.type_case_h1 }}
+    {% elsif block.settings.type_preset == 'h2' %}
+      font-(family-name:{{ settings.type_font_h2 }})
+      {{ settings.type_size_h2 }}
+      {{ settings.type_font_weight_h2 }}
+      {{ settings.type_case_h2 }}
+    {% elsif block.settings.type_preset == 'h3' %}
+      font-(family-name:{{ settings.type_font_h3 }})
+      {{ settings.type_size_h3 }}
+      {{ settings.type_font_weight_h3 }}
+      {{ settings.type_case_h3 }}
+    {% elsif block.settings.type_preset == 'h4' %}
+      font-(family-name:{{ settings.type_font_h4 }})
+      {{ settings.type_size_h4 }}
+      {{ settings.type_font_weight_h4 }}
+      {{ settings.type_case_h4 }}
+    {% endif %}
+
+    {{ block.settings.text_transform }}
+    {{ block.settings.text_decoration }}
+    {%- if block.settings.add_hover_effect %}
+    transition-colors
+    duration-{{ block.settings.transition_duration | times: 1000 | round }}
+    hover:bg-[{{ block.settings.hover_color_background }}]
+    hover:text-[{{ block.settings.hover_color }}]!
+    {%- endif %}
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
+  "
+>
+  {%- assign separator = block.settings.separator -%}
+  <a href="{{ routes.root_url }}">Home</a>
+  {%- if template contains 'product' -%}
+    <span class="mx-1" aria-hidden="true">{{ separator }}</span>
+    {%- if collection -%}
+      <a href="{{ collection.url }}">{{ collection.title }}</a>
+    {%- else -%}
+      <a href="{{ routes.all_products_url }}">Catalog</a>
+    {%- endif -%}
+    <span class="mx-1" aria-hidden="true">{{ separator }}</span>
+    <span>{{ product.title }}</span>
+  {%- elsif template contains 'collection' and collection.handle -%}
+    <span class="mx-1" aria-hidden="true">{{ separator }}</span>
+    <span>{{ collection.title }}</span>
+  {%- elsif template contains 'article' -%}
+    <span class="mx-1" aria-hidden="true">{{ separator }}</span>
+    <a href="{{ blog.url }}">{{ blog.title }}</a>
+    <span class="mx-1" aria-hidden="true">{{ separator }}</span>
+    <span>{{ article.title }}</span>
+  {%- elsif template contains 'blog' -%}
+    <span class="mx-1" aria-hidden="true">{{ separator }}</span>
+    <span>{{ blog.title }}</span>
+  {%- elsif template contains 'page' -%}
+    <span class="mx-1" aria-hidden="true">{{ separator }}</span>
+    <span>{{ page.title }}</span>
+  {%- endif -%}
+</{{ block.settings.tag }}>
+
+{% schema %}
+{
+  "name": "Breadcrumbs",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": ">"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        { "value": "no-underline", "label": "No underline" },
+        { "value": "underline", "label": "Underline" },
+        { "value": "overline", "label": "Overline" },
+        { "value": "line-through", "label": "Line-through" }
+      ],
+      "default": "no-underline"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "t:settings_schema.typography.text_case",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:settings_schema.typography.default"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:settings_schema.typography.uppercase"
+        }
+      ],
+      "default": "none",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Preset",
+      "options": [
+        {
+          "value": "paragraph",
+          "label": "Paragraph"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "paragraph"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font Size",
+      "options": [
+        { "value": "text-5xl", "label": "5xl (48px)" },
+        { "value": "text-4xl", "label": "4xl (36px)" },
+        { "value": "text-3xl", "label": "3xl (30px)" },
+        { "value": "text-2xl", "label": "2xl (24px)" },
+        { "value": "text-xl", "label": "xl (20px)" },
+        { "value": "text-lg", "label": "lg (18px)" },
+        { "value": "text-base", "label": "base (16px)" },
+        { "value": "text-sm", "label": "sm (14px)" },
+        { "value": "text-xs", "label": "xs (12px)" }
+      ],
+      "default": "text-base",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "t:settings_schema.typography.font",
+      "options": [
+        {
+          "value": "--font-font-1--family",
+          "label": "t:settings_schema.typography.font-1"
+        },
+        {
+          "value": "--font-font-2--family",
+          "label": "t:settings_schema.typography.font-2"
+        },
+        {
+          "value": "--font-font-3--family",
+          "label": "t:settings_schema.typography.font-3"
+        },
+        {
+          "value": "--font-font-4--family",
+          "label": "t:settings_schema.typography.font-4"
+        }
+      ],
+      "default": "--font-font-1--family",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "font-thin", "label": "Thin" },
+        { "value": "font-extralight", "label": "Extra Light" },
+        { "value": "font-light", "label": "Light" },
+        { "value": "font-normal", "label": "Normal" },
+        { "value": "font-medium", "label": "Medium" },
+        { "value": "font-semibold", "label": "Semi Bold" },
+        { "value": "font-bold", "label": "Bold" },
+        { "value": "font-extrabold", "label": "Extra Bold" },
+        { "value": "font-black", "label": "Black" }
+      ],
+      "default": "font-normal",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "options": [
+        { "value": "not-italic", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "not-italic",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background"
+    },
+    {
+      "type": "header",
+      "content": "Hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_hover_effect",
+      "label": "Add hover effect",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "transition_duration",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "unit": "s",
+      "label": "Transition duration",
+      "default": 0,
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "color",
+      "id": "hover_color_background",
+      "label": "Background Color",
+      "visible_if": "{{ block.settings.add_hover_effect }}"
+    },
+    {
+      "type": "header",
+      "content": "SEO"
+    },
+    {
+      "type": "select",
+      "id": "tag",
+      "label": "Tag Selector",
+      "options": [
+        { "value": "nav", "label": "NAV" },
+        { "value": "div", "label": "DIV" },
+        { "value": "p", "label": "P" }
+      ],
+      "default": "nav"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Max width",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumbs",
+      "category": "t:categories.links"
+    }
+  ]
+}
+{% endschema %}
