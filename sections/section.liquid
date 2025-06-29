@@ -4,7 +4,7 @@
     bg-[{{ section.settings.color_background }}] section-{{ section.id }}
 
     {% if section.settings.background_media == 'image' %}
-      {% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] bg-cover bg-center{% endif %}
+      {% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] {{ section.settings.background_size }} bg-center bg-no-repeat{% endif %}
     {% endif %}
 
     {% if section.settings.background_media == 'video' %}relative{% endif %}
@@ -264,9 +264,31 @@
       "visible_if": "{{ section.settings.background_media == 'image' }}"
     },
     {
+      "type": "select",
+      "id": "background_size",
+      "label": "Background size",
+      "options": [
+        { "value": "bg-cover", "label": "Cover" },
+        { "value": "bg-contain", "label": "Contain" }
+      ],
+      "default": "bg-cover",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
       "type": "video",
       "id": "video",
       "label": "Video",
+      "visible_if": "{{ section.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "range",
+      "id": "video_opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 25,
+      "unit": "%",
       "visible_if": "{{ section.settings.background_media == 'video' }}"
     },
     {
@@ -284,17 +306,6 @@
         }
       ],
       "default": "cover",
-      "visible_if": "{{ section.settings.background_media == 'video' }}"
-    },
-    {
-      "type": "range",
-      "id": "video_opacity",
-      "label": "Opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "default": 25,
-      "unit": "%",
       "visible_if": "{{ section.settings.background_media == 'video' }}"
     },
     {

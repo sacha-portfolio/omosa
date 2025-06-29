@@ -1,3 +1,25 @@
+{%- capture media_classes -%}
+  {% if block.settings.background_media == 'image' %}
+    {% if block.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }})),url({{ block.settings.image_url | image_url: width: 1500 }})] {{ block.settings.background_size }} bg-center bg-no-repeat{% endif %}
+  {% endif %}
+  {% if block.settings.background_media == 'video' %}relative{% endif %}
+{%- endcapture -%}
+
+{%- capture video_markup -%}
+  {% if block.settings.background_media == 'video' %}
+    {% assign video_classes = 'absolute h-full w-full z-[-1] ' %}
+    {% assign brightness_value = 100 | minus: block.settings.video_opacity %}
+    {% assign brightness_class = 'brightness-' | append: brightness_value %}
+    {% assign video_classes = video_classes | append: brightness_class %}
+    {% if block.settings.video_position == 'cover' %}
+      {% assign video_classes = video_classes | append: ' object-cover' %}
+    {% elsif block.settings.video_position == 'contain' %}
+      {% assign video_classes = video_classes | append: ' object-contain' %}
+    {% endif %}
+    {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, class: video_classes }}
+  {% endif %}
+{%- endcapture -%}
+
 {% if block.settings.is_slider_mode %}
   {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
   {% style %}
@@ -8,9 +30,17 @@
     }
   {% endstyle %}
   <div
-    class="swiper swiper-{{ block.id }} wrapper w-full bg-[{{ block.settings.color_background }}]"
+    class="
+      swiper
+      swiper-{{ block.id }}
+      wrapper
+      w-full
+      bg-[{{ block.settings.color_background }}]
+      {{ media_classes }}
+    "
     {{ block.shopify_attributes }}
   >
+    {{ video_markup }}
     <div class="swiper-wrapper items-stretch">
       {% for nested_block in block.blocks %}
         <div class="swiper-slide h-auto! mx-[34px] w-[calc(100%-68px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
@@ -73,17 +103,11 @@
       {% if block.settings.flex_basis_style %}
         basis-[{{ block.settings.flex_basis }}%]
       {% endif %}
-
-      {% if block.settings.background_media == 'image' %}
-        {% if block.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }})),url({{ block.settings.image_url | image_url: width: 1500 }})] {{ block.settings.background_size }} bg-center bg-no-repeat{% endif %}
-      {% endif %}
-
-      {% if block.settings.background_media == 'video' %}
-        {% if block.settings.background_media == 'video' %} bg-cover bg-center{% endif %}
-      {% endif %}
+      {{ media_classes }}
     "
     {{ block.shopify_attributes }}
   >
+    {{ video_markup }}
     {% content_for 'blocks' %}
   </div>
 {% endif %}
@@ -136,7 +160,7 @@
     {
       "type": "range",
       "id": "image_opacity",
-      "label": "Image Opacity",
+      "label": "Opacity",
       "min": 0,
       "max": 100,
       "step": 1,
@@ -159,6 +183,17 @@
       "type": "video",
       "id": "video",
       "label": "Video",
+      "visible_if": "{{ block.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "range",
+      "id": "video_opacity",
+      "label": "Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 25,
+      "unit": "%",
       "visible_if": "{{ block.settings.background_media == 'video' }}"
     },
     {
