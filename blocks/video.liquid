@@ -3,13 +3,6 @@
   assign video_alt = block.settings.description | default: block.settings.video.alt
   assign alt = 'sections.video.load_video' | t: description: video_alt | escape
   assign poster = block.settings.cover_image | default: block.settings.video.preview_image
-
-  if block.settings.video != null
-    assign ratio_diff = block.settings.video.aspect_ratio | minus: poster.aspect_ratio | abs
-    if ratio_diff < 0.01 and ratio_diff > 0
-      assign fix_ratio = true
-    endif
-  endif
 -%}
 
 {%- capture sizes -%}
@@ -22,34 +15,48 @@
   {%- endcapture -%}
 
 <div
-  class="w-full video-section{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+  class="
+    w-full
+    video-section
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
+  "
   {{ block.shopify_attributes }}
 >
   {% if block.settings.video != null %}
     <deferred-media
       class="
         relative
-        pb-[calc(var(--ratio-percent)-var(--media-border-width))]
+        {% if block.settings.height == 'auto' %}
+          pb-[calc(var(--ratio-percent)-{{ block.settings.border_width }}px)]
+        {% else %}
+          pb-[{{ block.settings.height }}px]
+        {% endif %}
+        max-w-[{{ block.settings.width }}px]
+        aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}]
         [box-shadow:var(--media-shadow-horizontal-offset)_var(--media-shadow-vertical-offset)_var(--media-shadow-blur-radius)_rgba(var(--color-shadow),_var(--media-shadow-opacity))]
         after:content-none
         overflow-hidden
         [&:not([loaded])_template]:z-[-1]
         [&[loaded]>button]:hidden
-        [border:var(--media-border-width)_solid_rgba(var(--color-foreground),_var(--media-border-opacity))]
-        rounded-[var(--media-radius)]
+        border-{{ block.settings.border_style }}
+        border-[{{ block.settings.border_width }}px]
+        border-[{{ block.settings.border_color }}]
+        rounded-[{{ block.settings.border_radius }}px]
         overflow-visible
         bg-[rgb(var(--color-background))]
         after:content-['']
         after:absolute
-        after:top-[calc(var(--media-border-width)*-1)]
-        after:right-[calc(var(--media-border-width)*-1)]
-        after:bottom-[calc(var(--media-border-width)*-1)]
-        after:left-[calc(var(--media-border-width)*-1)]
+        after:top-[calc({{ block.settings.border_width }}px*-1)]
+        after:right-[calc({{ block.settings.border_width }}px*-1)]
+        after:bottom-[calc({{ block.settings.border_width }}px*-1)]
+        after:left-[calc({{ block.settings.border_width }}px*-1)]
         after:rounded-[var(--media-radius)]
         after:[box-shadow:var(--media-shadow-horizontal-offset)_var(--media-shadow-vertical-offset)_var(--media-shadow-blur-radius)_rgba(var(--color-shadow),_var(--media-shadow-opacity))]
         after:z-[-1]
         after:pointer-events-none
-        [&_img]:rounded-[calc(var(--media-radius)-var(--media-border-width))]
+        [&_img]:rounded-[calc(var(--media-radius)-{{ block.settings.border_width }}px)]
         bg-fixed
         [background:rgb(var(--color-background))]
         [background:var(--gradient-background)]
@@ -78,10 +85,10 @@
           focus:outline-offset-[0.1875rem]
           focus:outline-none
           focus-visible:outline-none
-          focus:[box-shadow:0_0_0_var(--media-border-width)_rgba(var(--color-foreground),_var(--media-border-opacity)),_0_0_0_calc(var(--media-border-width)+0.1875rem)_rgb(var(--color-background)),_0_0_0_calc(var(--media-border-width)+0.3125rem)_rgba(var(--color-foreground),_0.5)]
-          focus-visible:[box-shadow:0_0_0_var(--media-border-width)_rgba(var(--color-foreground),_var(--media-border-opacity)),_0_0_0_calc(var(--media-border-width)+0.1875rem)_rgb(var(--color-background)),_0_0_0_calc(var(--media-border-width)+0.3125rem)_rgba(var(--color-foreground),_0.5)]
-          focus:rounded-[calc(var(--media-radius)-var(--media-border-width))]
-          focus-visible:rounded-[calc(var(--media-radius)-var(--media-border-width))]
+          focus:[box-shadow:0_0_0_{{ block.settings.border_width }}px_rgba(var(--color-foreground),_var(--media-border-opacity)),_0_0_0_calc({{ block.settings.border_width }}px+0.1875rem)_rgb(var(--color-background)),_0_0_0_calc({{ block.settings.border_width }}px+0.3125rem)_rgba(var(--color-foreground),_0.5)]
+          focus-visible:[box-shadow:0_0_0_{{ block.settings.border_width }}px_rgba(var(--color-foreground),_var(--media-border-opacity)),_0_0_0_calc({{ block.settings.border_width }}px+0.1875rem)_rgb(var(--color-background)),_0_0_0_calc({{ block.settings.border_width }}px+0.3125rem)_rgba(var(--color-foreground),_0.5)]
+          focus:rounded-[calc(var(--media-radius)-{{ block.settings.border_width }}px)]
+          focus-visible:rounded-[calc(var(--media-radius)-{{ block.settings.border_width }}px)]
           [@media(forced-colors:_active)]:focus:[outline:transparent_solid_1px]
           [&:focus:not(:focus-visible)]:outline-0
           [&:focus:not(:focus-visible)]:[box-shadow:none]
@@ -90,14 +97,13 @@
           cursor-pointer
           m-0
           p-0
-          h-full w-full
           overflow-hidden
-          rounded-[calc(var(--media-radius)-var(--media-border-width))]
+          rounded-[calc(var(--media-radius)-{{ block.settings.border_width }}px)]
           [&>img]:block
           [&>img]:max-w-full
           [&>img]:absolute
           [&>img]:inset-0
-          [&>img]:w-auto
+          [&>img]:w-full
           [&>img]:h-full
           [&>img]:object-cover
           [&>img]:object-center
@@ -151,7 +157,7 @@
               items-center
               h-[20px]
               w-[20px]
-              rounded-[calc(var(--media-radius)-var(--media-border-width))]
+              rounded-[calc(var(--media-radius)-{{ block.settings.border_width }}px)]
               [&>svg]:h-full
               [&>svg]:w-full
               [&_.icon-play]:ml-[0.125rem]
@@ -162,10 +168,7 @@
         </span>
       </button>
       <template>
-        {% assign video_classes = 'absolute inset-0 w-full h-full bg-black rounded-[calc(var(--media-radius)-var(--media-border-width))]' %}
-        {% if fix_ratio %}
-          {% assign video_classes = video_classes | append: ' object-cover' %}
-        {% endif %}
+        {% assign video_classes = 'absolute inset-0 w-full h-full bg-black rounded-[calc(var(--media-radius)-{{ block.settings.border_width }}px)] object-cover' %}
         {{
           block.settings.video
           | video_tag:
@@ -209,6 +212,106 @@
       "id": "description",
       "label": "t:sections.video.settings.description.label",
       "info": "t:sections.video.settings.description.info"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "options": [
+        { "value": "1050", "label": "1050" },
+        { "value": "900", "label": "900" },
+        { "value": "750", "label": "750" },
+        { "value": "600", "label": "600" },
+        { "value": "450", "label": "450" },
+        { "value": "300", "label": "300" },
+        { "value": "150", "label": "150" },
+        { "value": "125", "label": "125" },
+        { "value": "100", "label": "100" },
+        { "value": "75", "label": "75" },
+        { "value": "50", "label": "50" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
+        { "value": "1050", "label": "1050" },
+        { "value": "900", "label": "900" },
+        { "value": "750", "label": "750" },
+        { "value": "600", "label": "600" },
+        { "value": "450", "label": "450" },
+        { "value": "300", "label": "300" },
+        { "value": "150", "label": "150" },
+        { "value": "125", "label": "125" },
+        { "value": "100", "label": "100" },
+        { "value": "75", "label": "75" },
+        { "value": "50", "label": "50" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Aspect Ratio"
+    },
+    {
+      "type": "number",
+      "id": "aspect_ratio_width",
+      "label": "Width"
+    },
+    {
+      "type": "number",
+      "id": "aspect_ratio_height",
+      "label": "Height"
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Style",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "double", "label": "Double" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Color"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Radius",
+      "default": 0
     },
     {
       "type": "header",
