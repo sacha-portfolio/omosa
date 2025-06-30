@@ -1,6 +1,3 @@
-{{ 'video-section.css' | asset_url | stylesheet_tag }}
-{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
-
 {%- liquid
   assign video_id = block.settings.video.id
   assign video_alt = block.settings.description | default: block.settings.video.alt
@@ -30,15 +27,84 @@
 >
   {% if block.settings.video != null %}
     <deferred-media
-      class="video-section__media deferred-media gradient global-media-settings{% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      class="
+        relative
+        pb-[calc(var(--ratio-percent)-var(--media-border-width))]
+        [box-shadow:var(--media-shadow-horizontal-offset)_var(--media-shadow-vertical-offset)_var(--media-shadow-blur-radius)_rgba(var(--color-shadow),_var(--media-shadow-opacity))]
+        after:content-none
+        overflow-hidden
+        [&:not([loaded])_template]:z-[-1]
+        [&[loaded]>button]:hidden
+        [border:var(--media-border-width)_solid_rgba(var(--color-foreground),_var(--media-border-opacity))]
+        rounded-[var(--media-radius)]
+        overflow-visible
+        bg-[rgb(var(--color-background))]
+        after:content-['']
+        after:absolute
+        after:top-[calc(var(--media-border-width)*-1)]
+        after:right-[calc(var(--media-border-width)*-1)]
+        after:bottom-[calc(var(--media-border-width)*-1)]
+        after:left-[calc(var(--media-border-width)*-1)]
+        after:rounded-[var(--media-radius)]
+        after:[box-shadow:var(--media-shadow-horizontal-offset)_var(--media-shadow-vertical-offset)_var(--media-shadow-blur-radius)_rgba(var(--color-shadow),_var(--media-shadow-opacity))]
+        after:z-[-1]
+        after:pointer-events-none
+        [&_img]:rounded-[calc(var(--media-radius)-var(--media-border-width))]
+        bg-fixed
+        [background:rgb(var(--color-background))]
+        [background:var(--gradient-background)]
+        {% if settings.animations_reveal_on_scroll %}
+          motion-safe:opacity-[0.01]
+          motion-safe:animate-[var(--animation-slide-in)]
+          motion-safe:[animation-delay:calc(var(--animation-order)_*_75ms)]
+          motion-safe:bg-transparent
+        {% endif %}
+      "
       data-media-id="{{ video_id }}"
       {% if poster != null %}
         style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+      {% else %}
+        style="--ratio-percent: 56.25%;"
       {% endif %}
     >
       <button
         id="Deferred-Poster-Modal-{{ video_id }}"
-        class="video-section__poster media deferred-media__poster media--landscape"
+        class="
+          block
+          absolute
+          inset-0
+          w-full
+          h-full
+          focus:outline-offset-[0.1875rem]
+          focus:outline-none
+          focus-visible:outline-none
+          focus:[box-shadow:0_0_0_var(--media-border-width)_rgba(var(--color-foreground),_var(--media-border-opacity)),_0_0_0_calc(var(--media-border-width)+0.1875rem)_rgb(var(--color-background)),_0_0_0_calc(var(--media-border-width)+0.3125rem)_rgba(var(--color-foreground),_0.5)]
+          focus-visible:[box-shadow:0_0_0_var(--media-border-width)_rgba(var(--color-foreground),_var(--media-border-opacity)),_0_0_0_calc(var(--media-border-width)+0.1875rem)_rgb(var(--color-background)),_0_0_0_calc(var(--media-border-width)+0.3125rem)_rgba(var(--color-foreground),_0.5)]
+          focus:rounded-[calc(var(--media-radius)-var(--media-border-width))]
+          focus-visible:rounded-[calc(var(--media-radius)-var(--media-border-width))]
+          [@media(forced-colors:_active)]:focus:[outline:transparent_solid_1px]
+          [&:focus:not(:focus-visible)]:outline-0
+          [&:focus:not(:focus-visible)]:[box-shadow:none]
+          bg-transparent
+          border-none
+          cursor-pointer
+          m-0
+          p-0
+          h-full w-full
+          overflow-hidden
+          rounded-[calc(var(--media-radius)-var(--media-border-width))]
+          [&>img]:block
+          [&>img]:max-w-full
+          [&>img]:absolute
+          [&>img]:inset-0
+          [&>img]:w-auto
+          [&>img]:h-full
+          [&>img]:object-cover
+          [&>img]:object-center
+          [&>img]:transition-opacity
+          [&>img]:duration-[400ms]
+          [&>img]:ease-[cubic-bezier(.25,.46,.45,.94)]
+        "
         type="button"
         aria-label="{{ alt }}"
       >
@@ -51,13 +117,55 @@
         {%- else -%}
           {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
         {%- endif -%}
-        <span class="deferred-media__poster-button motion-reduce">
-          <span class="svg-wrapper">
+        <span
+          class="
+            bg-[rgb(var(--color-background))]
+            border
+            border-[rgba(var(--color-foreground),0.1)]
+            rounded-full
+            text-[rgb(var(--color-foreground))]
+            flex
+            items-center
+            justify-center
+            h-[3.875rem]
+            w-[3.875rem]
+            absolute
+            left-1/2
+            top-1/2
+            -translate-x-1/2
+            -translate-y-1/2
+            transition-transform
+            transition-colors
+            ease-in-out
+            duration-[var(--duration-short)]
+            z-[1]
+            hover:scale-110
+            motion-reduce:transition-none
+            motion-reduce:animate-none
+          "
+        >
+          <span
+            class="
+              inline-flex
+              justify-center
+              items-center
+              h-[20px]
+              w-[20px]
+              rounded-[calc(var(--media-radius)-var(--media-border-width))]
+              [&>svg]:h-full
+              [&>svg]:w-full
+              [&_.icon-play]:ml-[0.125rem]
+            "
+          >
             {{- 'icon-play.svg' | inline_asset_content -}}
           </span>
         </span>
       </button>
       <template>
+        {% assign video_classes = 'absolute inset-0 w-full h-full bg-black rounded-[calc(var(--media-radius)-var(--media-border-width))]' %}
+        {% if fix_ratio %}
+          {% assign video_classes = video_classes | append: ' object-cover' %}
+        {% endif %}
         {{
           block.settings.video
           | video_tag:
@@ -66,7 +174,8 @@
             loop: block.settings.enable_video_looping,
             controls: true,
             muted: false,
-            title: video_alt
+            title: video_alt,
+            class: video_classes
         }}
       </template>
     </deferred-media>
