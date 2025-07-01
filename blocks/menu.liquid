@@ -1,0 +1,401 @@
+<ul
+  class="
+    m-0
+    p-0
+    list-none
+    w-full
+    text-{{ block.settings.text_alignment }}
+    bg-[{{ block.settings.color_background }}]
+    flex
+    {{ block.settings.mobile_flex_direction }}
+    md:{{ block.settings.flex_direction }}
+    {{ block.settings.flex_wrap }}
+    gap-x-[{{ block.settings.horizontal_gap }}px]
+    gap-y-[{{ block.settings.vertical_gap }}px]
+    {{ block.settings.justify_content }}
+    {{ block.settings.align_items }}
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- for link in block.settings.menu.links -%}
+    <li class="p-0">
+      <a
+        href="{{ link.url }}"
+        class="
+          cursor-pointer
+          border-none
+          shadow-none
+          bg-transparent
+          text-[{{ block.settings.color }}]!
+          text-{{ block.settings.text_alignment }}
+          {% if block.settings.type_preset == 'custom' %}
+            {{ block.settings.font_size }}
+            {{ block.settings.font_style }}
+            {{ block.settings.font_weight }}
+            font-(family-name:{{ block.settings.font_family }})
+          {% elsif block.settings.type_preset == 'paragraph' %}
+            font-(family-name:{{ settings.type_font_paragraph }})
+            {{ settings.type_size_paragraph }}
+            {{ settings.type_font_weight_paragraph }}
+            {{ settings.type_case_paragraph }}
+          {% elsif block.settings.type_preset == 'button' %}
+            font-(family-name:{{ settings.type_font_button }})
+            {{ settings.type_size_button }}
+            {{ settings.type_font_weight_button }}
+            {{ settings.type_case_button }}
+          {% elsif block.settings.type_preset == 'h1' %}
+            font-(family-name:{{ settings.type_font_h1 }})
+            {{ settings.type_size_h1 }}
+            {{ settings.type_font_weight_h1 }}
+            {{ settings.type_case_h1 }}
+          {% elsif block.settings.type_preset == 'h2' %}
+            font-(family-name:{{ settings.type_font_h2 }})
+            {{ settings.type_size_h2 }}
+            {{ settings.type_font_weight_h2 }}
+            {{ settings.type_case_h2 }}
+          {% elsif block.settings.type_preset == 'h3' %}
+            font-(family-name:{{ settings.type_font_h3 }})
+            {{ settings.type_size_h3 }}
+            {{ settings.type_font_weight_h3 }}
+            {{ settings.type_case_h3 }}
+          {% elsif block.settings.type_preset == 'h4' %}
+            font-(family-name:{{ settings.type_font_h4 }})
+            {{ settings.type_size_h4 }}
+            {{ settings.type_font_weight_h4 }}
+            {{ settings.type_case_h4 }}
+          {% endif %}
+          {{ block.settings.text_transform }}
+          {{ block.settings.text_decoration }}
+          hover:opacity-75
+          flex
+          {{ section.settings.mobile_flex_direction }}
+          md:{{ section.settings.flex_direction }}
+          {{ section.settings.flex_wrap }}
+          gap-x-[{{ section.settings.horizontal_gap }}px]
+          gap-y-[{{ section.settings.vertical_gap }}px]
+          {{ section.settings.justify_content }}
+          {{ section.settings.align_items }}
+          {% if link.active %}underline! underline-offset-[0.1875rem]! md:hover:decoration-[0.125rem]! hover:opacity-100{% endif %}
+        "
+      >
+        {{ link.title | escape }}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "Menu",
+  "tag": null,
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text decoration",
+      "options": [
+        { "value": "no-underline", "label": "No underline" },
+        { "value": "underline", "label": "Underline" },
+        { "value": "overline", "label": "Overline" },
+        { "value": "line-through", "label": "Line-through" }
+      ],
+      "default": "no-underline"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "t:settings_schema.typography.text_case",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:settings_schema.typography.default"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:settings_schema.typography.uppercase"
+        }
+      ],
+      "default": "none",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "Preset",
+      "options": [
+        { "value": "paragraph", "label": "Paragraph" },
+        { "value": "button", "label": "Button" },
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "paragraph"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font size",
+      "options": [
+        { "value": "text-5xl", "label": "5xl (48px)" },
+        { "value": "text-4xl", "label": "4xl (36px)" },
+        { "value": "text-3xl", "label": "3xl (30px)" },
+        { "value": "text-2xl", "label": "2xl (24px)" },
+        { "value": "text-xl", "label": "xl (20px)" },
+        { "value": "text-lg", "label": "lg (18px)" },
+        { "value": "text-base", "label": "base (16px)" },
+        { "value": "text-sm", "label": "sm (14px)" },
+        { "value": "text-xs", "label": "xs (12px)" }
+      ],
+      "default": "text-base",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "t:settings_schema.typography.font",
+      "options": [
+        {
+          "value": "--font-font-1--family",
+          "label": "t:settings_schema.typography.font-1"
+        },
+        {
+          "value": "--font-font-2--family",
+          "label": "t:settings_schema.typography.font-2"
+        },
+        {
+          "value": "--font-font-3--family",
+          "label": "t:settings_schema.typography.font-3"
+        },
+        {
+          "value": "--font-font-4--family",
+          "label": "t:settings_schema.typography.font-4"
+        }
+      ],
+      "default": "--font-font-1--family",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "font-thin", "label": "Thin" },
+        { "value": "font-extralight", "label": "Extra Light" },
+        { "value": "font-light", "label": "Light" },
+        { "value": "font-normal", "label": "Normal" },
+        { "value": "font-medium", "label": "Medium" },
+        { "value": "font-semibold", "label": "Semi Bold" },
+        { "value": "font-bold", "label": "Bold" },
+        { "value": "font-extrabold", "label": "Extra Bold" },
+        { "value": "font-black", "label": "Black" }
+      ],
+      "default": "font-normal",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "not-italic", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "not-italic",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "flex_direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-col"
+    },
+    {
+      "type": "select",
+      "id": "mobile_flex_direction",
+      "label": "Mobile direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-col"
+    },
+    {
+      "type": "select",
+      "id": "flex_wrap",
+      "label": "Wrap",
+      "options": [
+        {
+          "value": "flex-wrap",
+          "label": "Yes"
+        },
+        {
+          "value": "flex-nowrap",
+          "label": "No"
+        }
+      ],
+      "default": "flex-nowrap"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal gap",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "vertical_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical gap",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "justify_content",
+      "label": "Justify content",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Start"
+        },
+        {
+          "value": "justify-center",
+          "label": "Center"
+        },
+        {
+          "value": "justify-end",
+          "label": "End"
+        },
+        {
+          "value": "justify-around",
+          "label": "Space around"
+        },
+        {
+          "value": "justify-between",
+          "label": "Space between"
+        },
+        {
+          "value": "justify-evenly",
+          "label": "Space evenly"
+        }
+      ],
+      "default": "justify-start"
+    },
+    {
+      "type": "select",
+      "id": "align_items",
+      "label": "Align items",
+      "options": [
+        {
+          "value": "items-start",
+          "label": "Start"
+        },
+        {
+          "value": "items-center",
+          "label": "Center"
+        },
+        {
+          "value": "items-end",
+          "label": "End"
+        },
+        {
+          "value": "items-baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "items-stretch",
+          "label": "Stretch"
+        }
+      ],
+      "default": "items-start"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menu",
+      "category": "t:categories.links"
+    }
+  ]
+}
+{% endschema %}

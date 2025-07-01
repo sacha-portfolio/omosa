@@ -1,0 +1,255 @@
+{% liquid
+  assign max_items = block.settings.max_collections
+
+  if block.settings.collection_list != blank
+    assign collection_list = block.settings.collection_list
+    assign max_items = collection_list.count | at_most: block.settings.max_collections
+  endif
+%}
+
+{% capture collection_cards %}
+  {% for collection in collection_list limit: max_items %}
+    <div class="transition-transform! duration-400 hover:-translate-y-[3px]{% if block.settings.layout_type == 'slider' %} swiper-slide bg-[{{ block.settings.slides_background_color }}]{% endif %}">
+      <a href="{{ collection.url }}">
+        {% content_for 'blocks', closest.collection: collection %}
+      </a>
+    </div>
+  {% endfor %}
+{% endcapture %}
+
+{% case block.settings.layout_type %}
+  {% when 'grid' %}
+    <div
+      class="w-full grid-cols-{{ block.settings.mobile_columns }} md:grid-cols-{{ block.settings.columns }} gap-x-[{{ block.settings.columns_gap }}px] gap-y-[{{ block.settings.rows_gap }}px]{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+      style="display: grid"
+      {{ block.shopify_attributes }}
+    >
+      {{ collection_cards }}
+    </div>
+  {% when 'slider' %}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      .swiper-{{ block.id }} {
+        --swiper-navigation-size: 20px;
+        --swiper-navigation-color: {{ block.settings.arrow_buttons_color }};
+        --swiper-pagination-color: {{ block.settings.pagination_dots_color }};
+      }
+    {% endstyle %}
+    <div
+      class="swiper swiper-{{ block.id }} w-full bg-[{{ block.settings.color_background }}]{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+      {{ block.shopify_attributes }}
+    >
+      <div class="swiper-wrapper">
+        {{ collection_cards }}
+      </div>
+      {% if block.settings.show_arrow_buttons %}
+        <div class="swiper-button-next flex!"></div>
+        <div class="swiper-button-prev flex!"></div>
+      {% endif %}
+      {% if block.settings.show_pagination_dots %}
+        <div class="swiper-pagination relative! mt-4"></div>
+      {% endif %}
+    </div>
+    <script id="swiper-js" src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    <script>
+      (() => {
+        const initSwiper{{ block.id }} = () => {
+          if (document.querySelector('.swiper-{{ block.id }}.swiper-initialized')) return;
+          const swiper = new Swiper('.swiper-{{ block.id }}', {
+            slidesPerView: 1,
+            spaceBetween: {{ block.settings.columns_gap }},
+            loop: true,
+            pagination: {
+              el: '.swiper-{{ block.id }} .swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-{{ block.id }} .swiper-button-next',
+              prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: {{ block.settings.columns }},
+              },
+            }
+          });
+        };
+        const libTag = document.getElementById("swiper-js");
+        libTag.addEventListener("load", () => {
+          initSwiper{{ block.id }}();
+          document.addEventListener('shopify:block:change', initSwiper{{ block.id }});
+        });
+      })();
+    </script>
+{% endcase %}
+
+{% schema %}
+{
+  "name": "Collection cards",
+  "tag": null,
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Collections"
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "max_collections",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "label": "Collection count",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "label": "Columns",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2",
+      "visible_if": "{{ block.settings.layout_type == 'grid' }}"
+    },
+    {
+      "type": "range",
+      "id": "columns_gap",
+      "label": "Horizontal gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "rows_gap",
+      "label": "Vertical gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ block.settings.layout_type == 'grid' }}"
+    },
+    {
+      "type": "header",
+      "content": "Slider options",
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "slides_background_color",
+      "label": "Slides background color",
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow_buttons",
+      "label": "Show arrow buttons",
+      "default": true,
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "arrow_buttons_color",
+      "label": "Arrow buttons color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.layout_type == 'slider' and block.settings.show_arrow_buttons }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination_dots",
+      "label": "Show pagination dots",
+      "default": true,
+      "visible_if": "{{ block.settings.layout_type == 'slider' }}"
+    },
+    {
+      "type": "color",
+      "id": "pagination_dots_color",
+      "label": "Pagination dots color",
+      "default": "#000",
+      "visible_if": "{{ block.settings.layout_type == 'slider' and block.settings.show_pagination_dots }}"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection cards",
+      "category": "t:categories.collection",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "name": "Image",
+          "settings": {
+            "image_url": "{{ closest.collection.image }}"
+          }
+        },
+        "text": {
+          "type": "text",
+          "name": "Text",
+          "settings": {
+            "text": "{{ closest.collection.title }}",
+            "font_size": "sm"
+          }
+        }
+      },
+      "block_order": ["image", "text"]
+    }
+  ]
+}
+{% endschema %}

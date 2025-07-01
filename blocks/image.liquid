@@ -1,0 +1,193 @@
+<{{ block.settings.tag }}
+  {% if block.settings.tag == 'a' %}
+    href="{{ block.settings.link }}"
+    {% if block.settings.open_on_new_tab %}
+      target="_blank"
+    {% endif %}
+  {% endif %}
+  {{ block.shopify_attributes }}
+  class="
+    flex
+    {% if block.settings.flex_basis_style %}
+      basis-[{{ block.settings.flex_basis }}%]
+    {% endif %}
+  "
+>
+  {% if block.settings.image_url and block.settings.image_url != '' %}
+    {% capture image_classes %}h-auto max-w-[{{ block.settings.width }}px] max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px]{% endcapture %}
+    {{ block.settings.image_url | image_url: width: 1500 | image_tag: class: image_classes | strip }}
+  {% else %}
+    {% capture placeholder_classes %}h-full w-full max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px] placeholder-svg{% endcapture %}
+    {{ 'hero-apparel-1' | placeholder_svg_tag: placeholder_classes | strip }}
+  {% endif %}
+</{{ block.settings.tag }}>
+
+{% schema %}
+{
+  "name": "Image",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_url",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "options": [
+        { "value": "1050", "label": "1050" },
+        { "value": "900", "label": "900" },
+        { "value": "750", "label": "750" },
+        { "value": "600", "label": "600" },
+        { "value": "450", "label": "450" },
+        { "value": "300", "label": "300" },
+        { "value": "150", "label": "150" },
+        { "value": "125", "label": "125" },
+        { "value": "100", "label": "100" },
+        { "value": "75", "label": "75" },
+        { "value": "50", "label": "50" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
+        { "value": "1050", "label": "1050" },
+        { "value": "900", "label": "900" },
+        { "value": "750", "label": "750" },
+        { "value": "600", "label": "600" },
+        { "value": "450", "label": "450" },
+        { "value": "300", "label": "300" },
+        { "value": "150", "label": "150" },
+        { "value": "125", "label": "125" },
+        { "value": "100", "label": "100" },
+        { "value": "75", "label": "75" },
+        { "value": "50", "label": "50" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Aspect Ratio"
+    },
+    {
+      "type": "number",
+      "id": "aspect_ratio_width",
+      "label": "Width"
+    },
+    {
+      "type": "number",
+      "id": "aspect_ratio_height",
+      "label": "Height"
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Style",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "double", "label": "Double" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Color"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_on_new_tab",
+      "label": "Open on new tab",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Container SEO"
+    },
+    {
+      "type": "select",
+      "id": "tag",
+      "label": "Tag Selector",
+      "options": [
+        { "value": "div", "label": "DIV" },
+        { "value": "a", "label": "A" }
+      ],
+      "default": "div"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}
