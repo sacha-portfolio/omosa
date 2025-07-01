@@ -50,7 +50,7 @@
             "background_size": "bg-cover",
             "video_opacity": 25,
             "video_position": "cover",
-            "is_slider_mode": false,
+            "is_slider_mode": true,
             "flex_direction": "flex-row",
             "mobile_flex_direction": "flex-col",
             "flex_wrap": "flex-nowrap",
