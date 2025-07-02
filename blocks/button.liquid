@@ -108,6 +108,27 @@
         hover:border-[{{ settings.button_hover_border_color_secondary }}]
         hover:rounded-[{{ settings.button_hover_border_radius_secondary }}px]
       {%- endif %}
+    {% elsif block.settings.button_preset == 'link' %}
+      text-[{{ settings.button_color_link }}]
+      bg-[{{ settings.button_color_background_link }}]
+      border-{{ settings.button_border_style_link }}
+      border-[{{ settings.button_border_width_link }}px]
+      border-[{{ settings.button_border_color_link }}]
+      rounded-[{{ settings.button_border_radius_link }}px]
+      pt-[{{ settings.button_padding_top_link }}px]
+      pb-[{{ settings.button_padding_bottom_link }}px]
+      pl-[{{ settings.button_padding_left_link }}px]
+      pr-[{{ settings.button_padding_right_link }}px]
+      {%- if settings.button_add_hover_effect_link %}
+        transition-colors
+        duration-{{ settings.button_transition_duration_link | times: 1000 | round }}
+        hover:text-[{{ settings.button_hover_color_link }}]
+        hover:bg-[{{ settings.button_hover_color_background_link }}]
+        hover:border-{{ settings.button_hover_border_style_link }}
+        hover:border-[{{ settings.button_hover_border_width_link }}px]
+        hover:border-[{{ settings.button_hover_border_color_link }}]
+        hover:rounded-[{{ settings.button_hover_border_radius_link }}px]
+      {%- endif %}
     {% endif %}
 
     {{ block.settings.text_transform }}
@@ -226,30 +247,6 @@
       "default": "button"
     },
     {
-      "type": "header",
-      "content": "Variant"
-    },
-    {
-      "type": "select",
-      "id": "button_preset",
-      "label": "Preset",
-      "options": [
-        {
-          "value": "primary",
-          "label": "Primary"
-        },
-        {
-          "value": "secondary",
-          "label": "Secondary"
-        },
-        {
-          "value": "custom",
-          "label": "Custom"
-        }
-      ],
-      "default": "primary"
-    },
-    {
       "type": "select",
       "id": "font_size",
       "label": "Font size",
@@ -320,6 +317,34 @@
       ],
       "default": "not-italic",
       "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Variant"
+    },
+    {
+      "type": "select",
+      "id": "button_preset",
+      "label": "Preset",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        },
+        {
+          "value": "link",
+          "label": "Link"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "primary"
     },
     {
       "type": "header",

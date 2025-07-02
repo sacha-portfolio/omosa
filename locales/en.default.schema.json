@@ -231,6 +231,7 @@
       "name": "Buttons",
       "primary": "Primary",
       "secondary": "Secondary",
+      "link": "Link",
       "color": "Color",
       "color_background": "Background color",
       "border_style": "Border style",

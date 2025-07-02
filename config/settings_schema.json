@@ -1005,6 +1005,162 @@
         "unit": "px",
         "label": "t:settings_schema.buttons.hover_border_radius",
         "default": 0,
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.buttons.link"
+      },
+      {
+        "type": "color",
+        "id": "button_color_link",
+        "label": "t:settings_schema.buttons.color"
+      },
+      {
+        "type": "color",
+        "id": "button_color_background_link",
+        "label": "t:settings_schema.buttons.color_background"
+      },
+      {
+        "type": "select",
+        "id": "button_border_style_link",
+        "label": "t:settings_schema.buttons.border_style",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "solid", "label": "Solid" },
+          { "value": "dashed", "label": "Dashed" },
+          { "value": "dotted", "label": "Dotted" },
+          { "value": "double", "label": "Double" }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "range",
+        "id": "button_border_width_link",
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.border_width",
+        "default": 1
+      },
+      {
+        "type": "color",
+        "id": "button_border_color_link",
+        "label": "t:settings_schema.buttons.border_color"
+      },
+      {
+        "type": "range",
+        "id": "button_border_radius_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.border_radius",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "button_padding_top_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_top",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "button_padding_bottom_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_bottom",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "button_padding_left_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_left",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "button_padding_right_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_right",
+        "default": 10
+      },
+      {
+        "type": "checkbox",
+        "id": "button_add_hover_effect_link",
+        "label": "t:settings_schema.buttons.add_hover_effect",
+        "default": false,
+      },
+      {
+        "type": "range",
+        "id": "button_transition_duration_link",
+        "min": 0,
+        "max": 1,
+        "step": 0.1,
+        "unit": "s",
+        "label": "t:settings_schema.buttons.transition_duration",
+        "default": 0,
+      },
+      {
+        "type": "color",
+        "id": "button_hover_color_link",
+        "label": "t:settings_schema.buttons.hover_color",
+      },
+      {
+        "type": "color",
+        "id": "button_hover_color_background_link",
+        "label": "t:settings_schema.buttons.hover_color_background",
+      },
+      {
+        "type": "select",
+        "id": "button_hover_border_style_link",
+        "label": "t:settings_schema.buttons.hover_border_style",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "solid", "label": "Solid" },
+          { "value": "dashed", "label": "Dashed" },
+          { "value": "dotted", "label": "Dotted" },
+          { "value": "double", "label": "Double" }
+        ],
+        "default": "none",
+      },
+      {
+        "type": "range",
+        "id": "button_hover_border_width_link",
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.hover_border_width",
+        "default": 1,
+      },
+      {
+        "type": "color",
+        "id": "button_hover_border_color_link",
+        "label": "t:settings_schema.buttons.hover_border_color",
+      },
+      {
+        "type": "range",
+        "id": "button_hover_border_radius_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.hover_border_radius",
+        "default": 0,
       }
     ]
   },
