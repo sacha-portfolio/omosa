@@ -1,7 +1,72 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "section_rWA9yn": {
+      "type": "section",
+      "blocks": {
+        "menu_QcjfFD": {
+          "type": "menu",
+          "name": "Menu",
+          "settings": {
+            "menu": "footer",
+            "text_alignment": "left",
+            "text_decoration": "no-underline",
+            "text_transform": "none",
+            "type_preset": "paragraph",
+            "font_size": "text-base",
+            "font_family": "--font-font-1--family",
+            "font_weight": "font-normal",
+            "font_style": "not-italic",
+            "color": "",
+            "color_background": "",
+            "flex_direction": "flex-col",
+            "mobile_flex_direction": "flex-col",
+            "flex_wrap": "flex-nowrap",
+            "horizontal_gap": 8,
+            "vertical_gap": 8,
+            "justify_content": "justify-start",
+            "align_items": "items-start",
+            "flex_basis_style": false,
+            "flex_basis": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "menu_QcjfFD"
+      ],
+      "name": "Section",
+      "settings": {
+        "collection": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "apply_page_width": true,
+        "flex_direction": "flex-col",
+        "mobile_flex_direction": "flex-col",
+        "flex_wrap": "flex-nowrap",
+        "horizontal_gap": 8,
+        "vertical_gap": 8,
+        "justify_content": "justify-start",
+        "align_items": "items-start",
+        "background_media": "none",
+        "image_opacity": 0,
+        "background_size": "bg-cover",
+        "video_opacity": 25,
+        "video_position": "cover",
+        "color_background": "",
+        "height": "auto"
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -23,7 +88,7 @@
           "type": "text",
           "settings": {
             "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
           }
         }
       },
@@ -36,6 +101,7 @@
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
@@ -48,6 +114,7 @@
     }
   },
   "order": [
+    "section_rWA9yn",
     "footer"
   ]
 }
