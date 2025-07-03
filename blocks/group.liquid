@@ -37,6 +37,7 @@
       swiper
       swiper-{{ block.id }}
       wrapper
+      h-[{{ block.settings.height }}]
       w-full
       bg-[{{ block.settings.color_background }}]
       {{ media_classes }}
@@ -89,6 +90,7 @@
     class="
       block-{{ block.id }}
       wrapper
+      h-[{{ block.settings.height }}]
       w-full
       pt-[{{ block.settings.padding_top }}px]!
       pb-[{{ block.settings.padding_bottom }}px]!
@@ -129,6 +131,20 @@
       "type": "color",
       "id": "color_background",
       "label": "Background Color"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "options": [
+        { "value": "100vh", "label": "Full screen" },
+        { "value": "auto", "label": "Auto" },
+        { "value": "600px", "label": "Extra Large" },
+        { "value": "450px", "label": "Large" },
+        { "value": "300px", "label": "Medium" },
+        { "value": "150px", "label": "Small" }
+      ],
+      "default": "auto"
     },
     {
       "type": "header",
