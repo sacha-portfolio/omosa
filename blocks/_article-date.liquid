@@ -7,6 +7,7 @@
 
     {% if block.settings.type_preset == 'custom' %}
       {{ block.settings.font_size }}
+      {{ block.settings.mobile_font_size }}
       {{ block.settings.font_style }}
       {{ block.settings.font_weight }}
       font-(family-name:{{ block.settings.font_family }})
@@ -166,6 +167,24 @@
       "id": "font_size",
       "label": "Font size",
       "options": [
+        { "value": "md:text-5xl", "label": "5xl (48px)" },
+        { "value": "md:text-4xl", "label": "4xl (36px)" },
+        { "value": "md:text-3xl", "label": "3xl (30px)" },
+        { "value": "md:text-2xl", "label": "2xl (24px)" },
+        { "value": "md:text-xl", "label": "xl (20px)" },
+        { "value": "md:text-lg", "label": "lg (18px)" },
+        { "value": "md:text-base", "label": "base (16px)" },
+        { "value": "md:text-sm", "label": "sm (14px)" },
+        { "value": "md:text-xs", "label": "xs (12px)" }
+      ],
+      "default": "md:text-base",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "mobile_font_size",
+      "label": "Mobile font size",
+      "options": [
         { "value": "text-5xl", "label": "5xl (48px)" },
         { "value": "text-4xl", "label": "4xl (36px)" },
         { "value": "text-3xl", "label": "3xl (30px)" },
@@ -176,7 +195,7 @@
         { "value": "text-sm", "label": "sm (14px)" },
         { "value": "text-xs", "label": "xs (12px)" }
       ],
-      "default": "text-base",
+      "default": "text-sm",
       "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {
