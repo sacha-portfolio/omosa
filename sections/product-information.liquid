@@ -8,7 +8,12 @@
     section-{{ section.id }}
 
     {% if section.settings.background_media == 'image' %}
-      {% if section.settings.image_url %} bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})] {{ section.settings.background_size }} bg-center bg-no-repeat{% endif %}
+      {% if section.settings.image_url %}
+        bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})]
+        {{ section.settings.background_size }}
+        bg-position-[{{ section.settings.image_url.presentation.focal_point.x }}%_{{ section.settings.image_url.presentation.focal_point.y }}%]
+        bg-no-repeat
+      {% endif %}
     {% endif %}
 
     {% if section.settings.background_media == 'video' %}relative{% endif %}
