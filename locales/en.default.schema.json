@@ -194,6 +194,7 @@
       "subheading": "Subheading",
       "body": "Body",
       "size": "Size",
+      "mobile_size": "Mobile size",
       "line_height": "Line height",
       "tight": "Tight",
       "normal": "Normal",

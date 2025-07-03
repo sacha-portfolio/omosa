@@ -40,31 +40,37 @@
             {% elsif block.settings.type_preset == 'paragraph' %}
               font-(family-name:{{ settings.type_font_paragraph }})
               {{ settings.type_size_paragraph }}
+              {{ settings.type_mobile_size_paragraph }}
               {{ settings.type_font_weight_paragraph }}
               {{ settings.type_case_paragraph }}
             {% elsif block.settings.type_preset == 'button' %}
               font-(family-name:{{ settings.type_font_button }})
               {{ settings.type_size_button }}
+              {{ settings.type_mobile_size_button }}
               {{ settings.type_font_weight_button }}
               {{ settings.type_case_button }}
             {% elsif block.settings.type_preset == 'h1' %}
               font-(family-name:{{ settings.type_font_h1 }})
               {{ settings.type_size_h1 }}
+              {{ settings.type_mobile_size_h1 }}
               {{ settings.type_font_weight_h1 }}
               {{ settings.type_case_h1 }}
             {% elsif block.settings.type_preset == 'h2' %}
               font-(family-name:{{ settings.type_font_h2 }})
               {{ settings.type_size_h2 }}
+              {{ settings.type_mobile_size_h2 }}
               {{ settings.type_font_weight_h2 }}
               {{ settings.type_case_h2 }}
             {% elsif block.settings.type_preset == 'h3' %}
               font-(family-name:{{ settings.type_font_h3 }})
               {{ settings.type_size_h3 }}
+              {{ settings.type_mobile_size_h3 }}
               {{ settings.type_font_weight_h3 }}
               {{ settings.type_case_h3 }}
             {% elsif block.settings.type_preset == 'h4' %}
               font-(family-name:{{ settings.type_font_h4 }})
               {{ settings.type_size_h4 }}
+              {{ settings.type_mobile_size_h4 }}
               {{ settings.type_font_weight_h4 }}
               {{ settings.type_case_h4 }}
             {% endif %}

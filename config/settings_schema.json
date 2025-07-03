@@ -165,6 +165,23 @@
         "id": "type_size_paragraph",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_paragraph",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -175,7 +192,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -243,6 +260,23 @@
         "id": "type_size_button",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_button",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -253,7 +287,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -321,6 +355,23 @@
         "id": "type_size_h1",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h1",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -331,7 +382,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -399,6 +450,23 @@
         "id": "type_size_h2",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h2",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -409,7 +477,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -477,6 +545,23 @@
         "id": "type_size_h3",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h3",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -487,7 +572,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -555,6 +640,23 @@
         "id": "type_size_h4",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h4",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -565,7 +667,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
