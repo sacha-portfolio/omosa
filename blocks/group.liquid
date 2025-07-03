@@ -1,11 +1,9 @@
 {%- capture media_classes -%}
-  {% if block.settings.background_media == 'image' %}
-    {% if block.settings.image_url %}
-      bg-[linear-gradient(rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }})),url({{ block.settings.image_url | image_url: width: 1500 }})]
-      {{ block.settings.background_size }}
-      bg-position-[{{ block.settings.image_url.presentation.focal_point.x }}%_{{ block.settings.image_url.presentation.focal_point.y }}%]
-      bg-no-repeat
-    {% endif %}
+  {% if block.settings.background_media == 'image' and block.settings.image_url %}
+    bg-[linear-gradient(rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ block.settings.image_opacity | divided_by: 100.0 }})),url({{ block.settings.image_url | image_url: width: 1500 }})]
+    {{ block.settings.background_size }}
+    bg-position-[{{ block.settings.image_url.presentation.focal_point.x }}%_{{ block.settings.image_url.presentation.focal_point.y }}%]
+    bg-no-repeat
   {% endif %}
   {% if block.settings.background_media == 'video' %}relative{% endif %}
 {%- endcapture -%}
