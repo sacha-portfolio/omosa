@@ -23,71 +23,18 @@
   {% endif %}
 {%- endcapture -%}
 
-{% if block.settings.is_slider_mode %}
-  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-  {% style %}
-    .swiper-{{ block.id }} {
-      --swiper-navigation-size: 20px;
-      --swiper-navigation-color: {{ block.settings.arrow_buttons_color }};
-      --swiper-pagination-color: {{ block.settings.pagination_dots_color }};
-    }
-  {% endstyle %}
+{% assign disable_desktop = block.settings.disable_slider_on_desktop %}
+{% assign disable_mobile = block.settings.disable_slider_on_mobile %}
+
+{%- capture basic_group_markup -%}
   <div
     class="
-      swiper
-      swiper-{{ block.id }}
-      wrapper
-      h-[{{ block.settings.height }}]
-      w-full
-      bg-[{{ block.settings.color_background }}]
-      {{ media_classes }}
-    "
-    {{ block.shopify_attributes }}
-  >
-    {{ video_markup }}
-    <div class="swiper-wrapper items-stretch">
-      {% for nested_block in block.blocks %}
-        <div class="swiper-slide h-auto! mx-[34px] w-[calc(100%-68px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
-          {% render nested_block %}
-        </div>
-      {% endfor %}
-    </div>
-    {% if block.settings.show_arrow_buttons %}
-      <div class="swiper-button-next flex!"></div>
-      <div class="swiper-button-prev flex!"></div>
-    {% endif %}
-    {% if block.settings.show_pagination_dots %}
-      <div class="swiper-pagination"></div>
-    {% endif %}
-  </div>
-  <script id="swiper-js" src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
-  <script>
-    (() => {
-      const initSwiper{{ block.id }} = () => {
-        if (document.querySelector('.swiper-{{ block.id }}.swiper-initialized')) return;
-        const swiper = new Swiper('.swiper-{{ block.id }}', {
-          slidesPerView: 'auto',
-          loop: true,
-          pagination: {
-            el: '.swiper-{{ block.id }} .swiper-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.swiper-{{ block.id }} .swiper-button-next',
-            prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
-          },
-        });
-      };
-      const libTag = document.getElementById("swiper-js");
-      libTag.addEventListener("load", () => {
-        initSwiper{{ block.id }}();
-        document.addEventListener('shopify:block:change', initSwiper{{ block.id }});
-      });
-    })();
-  </script>
-{% else %}
-  <div
-    class="
+      {% if block.settings.is_slider_mode %}
+        {% if disable_desktop %}md:flex!{% else %}md:hidden!{% endif %}
+        {% if disable_mobile %}flex{% else %}hidden{% endif %}
+      {% else %}
+        flex
+      {% endif %}
       block-{{ block.id }}
       wrapper
       h-[{{ block.settings.height }}]
@@ -97,7 +44,6 @@
       pr-[{{ block.settings.padding_right }}px]!
       pl-[{{ block.settings.padding_left }}px]!
       bg-[{{ block.settings.color_background }}]
-      flex
       {{ block.settings.mobile_flex_direction }}
       md:{{ block.settings.flex_direction }}
       {{ block.settings.flex_wrap }}
@@ -115,6 +61,79 @@
     {{ video_markup }}
     {% content_for 'blocks' %}
   </div>
+{%- endcapture -%}
+
+{% if block.settings.is_slider_mode %}
+  {% unless disable_desktop and disable_mobile %}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {% style %}
+      .swiper-{{ block.id }} {
+        --swiper-navigation-size: 20px;
+        --swiper-navigation-color: {{ block.settings.arrow_buttons_color }};
+        --swiper-pagination-color: {{ block.settings.pagination_dots_color }};
+      }
+    {% endstyle %}
+    <div
+      class="
+        {% if disable_desktop %}md:hidden!{% else %}md:block!{% endif %}
+        {% if disable_mobile %}hidden{% else %}block{% endif %}
+        swiper
+        swiper-{{ block.id }}
+        wrapper
+        h-[{{ block.settings.height }}]
+        w-full
+        bg-[{{ block.settings.color_background }}]
+        {{ media_classes }}
+      "
+      {{ block.shopify_attributes }}
+    >
+      {{ video_markup }}
+      <div class="swiper-wrapper items-stretch">
+        {% for nested_block in block.blocks %}
+          <div class="swiper-slide h-auto! mx-[34px] w-[calc(100%-68px)]! flex! justify-center items-center bg-[{{ block.settings.slides_background_color }}]">
+            {% render nested_block %}
+          </div>
+        {% endfor %}
+      </div>
+      {% if block.settings.show_arrow_buttons %}
+        <div class="swiper-button-next flex!"></div>
+        <div class="swiper-button-prev flex!"></div>
+      {% endif %}
+      {% if block.settings.show_pagination_dots %}
+        <div class="swiper-pagination"></div>
+      {% endif %}
+    </div>
+    <script id="swiper-js" src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    <script>
+      (() => {
+        const initSwiper{{ block.id }} = () => {
+          if (document.querySelector('.swiper-{{ block.id }}.swiper-initialized')) return;
+          const swiper = new Swiper('.swiper-{{ block.id }}', {
+            slidesPerView: 'auto',
+            loop: true,
+            pagination: {
+              el: '.swiper-{{ block.id }} .swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-{{ block.id }} .swiper-button-next',
+              prevEl: '.swiper-{{ block.id }} .swiper-button-prev',
+            },
+          });
+        };
+        const libTag = document.getElementById("swiper-js");
+        libTag.addEventListener("load", () => {
+          initSwiper{{ block.id }}();
+          document.addEventListener('shopify:block:change', initSwiper{{ block.id }});
+        });
+      })();
+    </script>
+  {% endunless %}
+  {% unless disable_desktop == false and disable_mobile == false %}
+    {{ basic_group_markup }}
+  {% endunless %}
+{% else %}
+  {{ basic_group_markup }}
 {% endif %}
 
 {% schema %}
@@ -244,164 +263,6 @@
     },
     {
       "type": "header",
-      "content": "Layout",
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "select",
-      "id": "flex_direction",
-      "label": "Direction",
-      "options": [
-        {
-          "value": "flex-row",
-          "label": "Row"
-        },
-        {
-          "value": "flex-col",
-          "label": "Column"
-        }
-      ],
-      "default": "flex-col",
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "select",
-      "id": "mobile_flex_direction",
-      "label": "Mobile direction",
-      "options": [
-        {
-          "value": "flex-row",
-          "label": "Row"
-        },
-        {
-          "value": "flex-col",
-          "label": "Column"
-        }
-      ],
-      "default": "flex-col",
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "select",
-      "id": "flex_wrap",
-      "label": "Wrap",
-      "options": [
-        {
-          "value": "flex-wrap",
-          "label": "Yes"
-        },
-        {
-          "value": "flex-nowrap",
-          "label": "No"
-        }
-      ],
-      "default": "flex-nowrap",
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "range",
-      "id": "horizontal_gap",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Horizontal gap",
-      "default": 8,
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "range",
-      "id": "vertical_gap",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Vertical gap",
-      "default": 8,
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "select",
-      "id": "justify_content",
-      "label": "Justify content",
-      "options": [
-        {
-          "value": "justify-start",
-          "label": "Start"
-        },
-        {
-          "value": "justify-center",
-          "label": "Center"
-        },
-        {
-          "value": "justify-end",
-          "label": "End"
-        },
-        {
-          "value": "justify-around",
-          "label": "Space around"
-        },
-        {
-          "value": "justify-between",
-          "label": "Space between"
-        },
-        {
-          "value": "justify-evenly",
-          "label": "Space evenly"
-        }
-      ],
-      "default": "justify-start",
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "select",
-      "id": "align_items",
-      "label": "Align items",
-      "options": [
-        {
-          "value": "items-start",
-          "label": "Start"
-        },
-        {
-          "value": "items-center",
-          "label": "Center"
-        },
-        {
-          "value": "items-end",
-          "label": "End"
-        },
-        {
-          "value": "items-baseline",
-          "label": "Baseline"
-        },
-        {
-          "value": "items-stretch",
-          "label": "Stretch"
-        }
-      ],
-      "default": "items-start",
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "checkbox",
-      "id": "flex_basis_style",
-      "label": "Flex basis",
-      "default": false,
-      "visible_if": "{{ block.settings.is_slider_mode == false }}"
-    },
-    {
-      "type": "range",
-      "id": "flex_basis",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "Flex basis",
-      "default": 0,
-      "visible_if": "{{ block.settings.is_slider_mode == false and block.settings.flex_basis_style }}"
-    },
-    {
-      "type": "header",
       "content": "Slider options",
       "visible_if": "{{ block.settings.is_slider_mode }}"
     },
@@ -452,6 +313,161 @@
       "label": "Disable slider on mobile",
       "default": false,
       "visible_if": "{{ block.settings.is_slider_mode }}"
+    },
+    {
+      "type": "header",
+      "content": "Layout",
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
+    },
+    {
+      "type": "header",
+      "content": "Disabled slider layout",
+      "visible_if": "{{ block.settings.is_slider_mode }}"
+    },
+    {
+      "type": "select",
+      "id": "flex_direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-col"
+    },
+    {
+      "type": "select",
+      "id": "mobile_flex_direction",
+      "label": "Mobile direction",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Row"
+        },
+        {
+          "value": "flex-col",
+          "label": "Column"
+        }
+      ],
+      "default": "flex-col"
+    },
+    {
+      "type": "select",
+      "id": "flex_wrap",
+      "label": "Wrap",
+      "options": [
+        {
+          "value": "flex-wrap",
+          "label": "Yes"
+        },
+        {
+          "value": "flex-nowrap",
+          "label": "No"
+        }
+      ],
+      "default": "flex-nowrap"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal gap",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "vertical_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical gap",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "justify_content",
+      "label": "Justify content",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Start"
+        },
+        {
+          "value": "justify-center",
+          "label": "Center"
+        },
+        {
+          "value": "justify-end",
+          "label": "End"
+        },
+        {
+          "value": "justify-around",
+          "label": "Space around"
+        },
+        {
+          "value": "justify-between",
+          "label": "Space between"
+        },
+        {
+          "value": "justify-evenly",
+          "label": "Space evenly"
+        }
+      ],
+      "default": "justify-start"
+    },
+    {
+      "type": "select",
+      "id": "align_items",
+      "label": "Align items",
+      "options": [
+        {
+          "value": "items-start",
+          "label": "Start"
+        },
+        {
+          "value": "items-center",
+          "label": "Center"
+        },
+        {
+          "value": "items-end",
+          "label": "End"
+        },
+        {
+          "value": "items-baseline",
+          "label": "Baseline"
+        },
+        {
+          "value": "items-stretch",
+          "label": "Stretch"
+        }
+      ],
+      "default": "items-start"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
     },
     {
       "type": "header",
