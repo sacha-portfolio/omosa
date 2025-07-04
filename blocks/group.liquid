@@ -278,7 +278,8 @@
           "label": "Column"
         }
       ],
-      "default": "flex-col"
+      "default": "flex-col",
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
     },
     {
       "type": "select",
@@ -385,7 +386,8 @@
       "type": "checkbox",
       "id": "flex_basis_style",
       "label": "Flex basis",
-      "default": false
+      "default": false,
+      "visible_if": "{{ block.settings.is_slider_mode == false }}"
     },
     {
       "type": "range",
@@ -436,6 +438,20 @@
       "label": "Pagination dots color",
       "default": "#000",
       "visible_if": "{{ block.settings.is_slider_mode and block.settings.show_pagination_dots }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_slider_on_desktop",
+      "label": "Disable slider on desktop",
+      "default": false,
+      "visible_if": "{{ block.settings.is_slider_mode }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_slider_on_mobile",
+      "label": "Disable slider on mobile",
+      "default": false,
+      "visible_if": "{{ block.settings.is_slider_mode }}"
     },
     {
       "type": "header",
