@@ -1,7 +1,7 @@
 <div
   class="
     section-{{ section.id }} wrapper h-[{{ section.settings.height }}]
-    bg-[{{ section.settings.color_background }}] section-{{ section.id }}
+    bg-[{{ section.settings.color_background }}]
 
     {% if section.settings.background_media == 'image' and section.settings.image_url %}
       bg-[linear-gradient(rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }}),rgba(0,0,0,{{ section.settings.image_opacity | divided_by: 100.0 }})),url({{ section.settings.image_url | image_url: width: 1500 }})]
@@ -11,6 +11,10 @@
     {% endif %}
 
     {% if section.settings.background_media == 'video' %}relative{% endif %}
+
+    {% if section.settings.is_header and section.settings.is_sticky_header %}
+      fixed top-0 left-0 right-0 z-50
+    {% endif %}
   "
 >
   {% if section.settings.background_media == 'video' %}
@@ -62,6 +66,25 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Header",
+      "visible_if": "{{ section.settings.is_header }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_header",
+      "label": "Header",
+      "default": false,
+      "visible_if": "{{ false }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_sticky_header",
+      "label": "Sticky header",
+      "default": true,
+      "visible_if": "{{ section.settings.is_header }}"
     },
     {
       "type": "header",

@@ -11,27 +11,86 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "header": {
-      "type": "header",
+    // "header": {
+    //   "type": "header",
+    //   "settings": {
+    //     "logo_position": "middle-center",
+    //     "mobile_logo_position": "center",
+    //     "menu": "main-menu",
+    //     "menu_type_desktop": "dropdown",
+    //     "sticky_header_type": "on-scroll-up",
+    //     "show_line_separator": true,
+    //     "color_scheme": "scheme-1",
+    //     "menu_color_scheme": "",
+    //     "enable_country_selector": true,
+    //     "enable_language_selector": true,
+    //     "enable_customer_avatar": true,
+    //     "margin_bottom": 0,
+    //     "padding_top": 20,
+    //     "padding_bottom": 20
+    //   }
+    // },
+    "section-header": {
+      "type": "section",
       "settings": {
-        "logo_position": "middle-center",
-        "mobile_logo_position": "center",
-        "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "enable_customer_avatar": true,
-        "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
+        "is_header": true,
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "flex_direction": "flex-row",
+        "mobile_flex_direction": "flex-row",
+        "align_items": "items-center",
+        "color_background": "#fff"
+      },
+      "blocks": {
+        "group-menu": {
+          "type": "group",
+          "name": "Group",
+          "blocks": {
+            "menu": {
+              "type": "menu",
+              "name": "Menu",
+              "settings": {
+                "menu": "main-menu",
+                "type_preset": "button",
+                "color": "#121212",
+                "flex_direction": "flex-row",
+                "horizontal_gap": 24
+              }
+            }
+          },
+          "block_order": ["menu"]
+        },
+        "group-logo": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "align_items": "items-center",
+            "flex_basis_style": true,
+            "flex_basis": 40
+          },
+          "blocks": {
+            "button": {
+              "type": "button",
+              "name": "Button",
+              "settings": {
+                "text": "Omosa 3.0",
+                "link": "/",
+                "button_preset": "link"
+              }
+            }
+          },
+          "block_order": ["button"]
+        },
+        "group-buttons": {
+          "type": "group",
+          "name": "Group"
+        }
+      },
+      "block_order": ["group-menu", "group-logo", "group-buttons"]
     }
   },
   "order": [
-    "header"
+    // "header",
+    "section-header"
   ]
 }
