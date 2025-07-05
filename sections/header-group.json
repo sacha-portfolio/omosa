@@ -34,8 +34,8 @@
       "type": "section",
       "settings": {
         "is_header": true,
-        "padding_top": 24,
-        "padding_bottom": 24,
+        "padding_top": 20,
+        "padding_bottom": 20,
         "flex_direction": "flex-row",
         "mobile_flex_direction": "flex-row",
         "align_items": "items-center",
@@ -75,7 +75,8 @@
               "settings": {
                 "text": "Omosa 3.0",
                 "link": "/",
-                "button_preset": "link"
+                "button_preset": "link",
+                "text_alignment": "center"
               }
             }
           },
@@ -83,7 +84,17 @@
         },
         "group-buttons": {
           "type": "group",
-          "name": "Group"
+          "name": "Group",
+          "settings": {
+            "align_items": "items-end"
+          },
+          "blocks": {
+            "search": {
+              "type": "search",
+              "name": "Search"
+            }
+          },
+          "block_order": ["search"]
         }
       },
       "block_order": ["group-menu", "group-logo", "group-buttons"]
