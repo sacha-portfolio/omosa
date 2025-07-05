@@ -86,15 +86,23 @@
           "type": "group",
           "name": "Group",
           "settings": {
-            "align_items": "items-end"
+            "flex_direction": "flex-row",
+            "mobile_flex_direction": "flex-row",
+            "justify_content": "justify-end",
+            "align_items": "items-center",
+            "horizontal_gap": 0
           },
           "blocks": {
             "search": {
               "type": "search",
               "name": "Search"
+            },
+            "account": {
+              "type": "account",
+              "name": "Account"
             }
           },
-          "block_order": ["search"]
+          "block_order": ["search", "account"]
         }
       },
       "block_order": ["group-menu", "group-logo", "group-buttons"]
