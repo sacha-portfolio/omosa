@@ -100,9 +100,13 @@
             "account": {
               "type": "account",
               "name": "Account"
+            },
+            "cart": {
+              "type": "cart",
+              "name": "Cart"
             }
           },
-          "block_order": ["search", "account"]
+          "block_order": ["search", "account", "cart"]
         }
       },
       "block_order": ["group-menu", "group-logo", "group-buttons"]

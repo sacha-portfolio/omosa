@@ -1,0 +1,164 @@
+<link
+  rel="stylesheet"
+  href="{{ 'component-cart-notification.css' | asset_url }}"
+  media="print"
+  onload="this.media='all'"
+>
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+
+<a
+  href="{{ routes.cart_url }}"
+  class="
+    header__icon
+    header__icon--cart
+    link
+    focus-inset
+    {% if block.settings.hide_on_desktop %}md:hidden!{% else %}md:flex!{% endif %}
+    {% if block.settings.hide_on_mobile %}hidden{% else %}flex{% endif %}
+  "
+  id="cart-icon-bubble"
+>
+  {% if cart == empty %}
+    <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+  {% else %}
+    <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+  {% endif %}
+  <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+  {%- if cart != empty -%}
+    <div class="cart-count-bubble">
+      {%- if cart.item_count < 100 -%}
+        <span aria-hidden="true">{{ cart.item_count }}</span>
+      {%- endif -%}
+      <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+    </div>
+  {%- endif -%}
+</a>
+
+{%- if settings.cart_type == 'notification' -%}
+  <cart-notification>
+    <div
+      class="
+        cart-notification-wrapper
+        page-width
+        absolute!
+        top-[{{ block.settings.top_offset }}px]
+        left-0
+        right-0
+      "
+    >
+      <div
+        id="cart-notification"
+        class="cart-notification focus-inset bg-white border-t!"
+        aria-modal="true"
+        aria-label="{{ 'general.cart.item_added' | t }}"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div class="cart-notification__header">
+          <h2 class="cart-notification__heading caption-large text-body">
+            {{- 'icon-checkmark.svg' | inline_asset_content -}}
+            {{ 'general.cart.item_added' | t }}
+          </h2>
+          <button
+            type="button"
+            class="cart-notification__close modal__close-button link link--text focus-inset"
+            aria-label="{{ 'accessibility.close' | t }}"
+          >
+            <span class="svg-wrapper">
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </span>
+          </button>
+        </div>
+        <div id="cart-notification-product" class="cart-notification-product"></div>
+        <div class="cart-notification__links">
+          <a
+            href="{{ routes.cart_url }}"
+            id="cart-notification-button"
+            class="button button--secondary button--full-width"
+          >
+            {{- 'general.cart.view_empty_cart' | t -}}
+          </a>
+          <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
+            <button class="button button--primary button--full-width" name="checkout">
+              {{ 'sections.cart.checkout' | t }}
+            </button>
+          </form>
+          <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
+        </div>
+      </div>
+    </div>
+  </cart-notification>
+  {% style %}
+    .cart-notification {
+      display: none;
+    }
+  {% endstyle %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Display"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_desktop",
+      "label": "Hide on desktop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_mobile",
+      "label": "Hide on mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Notification",
+      "visible_if": "{{ settings.cart_type == 'notification' }}"
+    },
+    {
+      "type": "range",
+      "id": "top_offset",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top offset",
+      "default": 84,
+      "visible_if": "{{ settings.cart_type == 'notification' }}"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "flex_basis_style",
+      "label": "Flex basis",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "flex_basis",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Flex basis",
+      "default": 0,
+      "visible_if": "{{ block.settings.flex_basis_style }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart",
+      "category": "t:categories.header"
+    }
+  ]
+}
+{% endschema %}
