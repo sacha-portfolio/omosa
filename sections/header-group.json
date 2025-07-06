@@ -51,6 +51,7 @@
               "name": "Menu",
               "settings": {
                 "menu": "main-menu",
+                "drawer_on_mobile": true,
                 "type_preset": "button",
                 "color": "#121212",
                 "flex_direction": "flex-row",

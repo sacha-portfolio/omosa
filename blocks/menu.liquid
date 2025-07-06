@@ -105,46 +105,86 @@
       block
       md:hidden
       menu-{{ block.id }}
-      [&>svg]:h-[18px]
-      [&>svg]:hover:scale-[1.07]
-      [&>svg]:cursor-pointer
     "
   >
-    {{- 'icon-hamburger.svg' | inline_asset_content -}}
+    <span
+      class="
+        flex
+        justify-center
+        items-center
+        h-[44px]
+        w-[44px]
+        hover:scale-[1.07]
+        cursor-pointer
+        [&>svg]:w-[20px]
+      "
+    >
+      {{- 'icon-hamburger.svg' | inline_asset_content -}}
+    </span>
   </div>
 
   <div
-    class="overlay-{{ block.id }} fixed md:hidden inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity"
+    class="overlay-{{ block.id }} fixed md:hidden! inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity"
   ></div>
   <aside class="drawer-{{ block.id }} fixed md:hidden inset-y-0 left-0 z-50 w-[95vw] max-w-[95vw] translate-x-[-100%] bg-white shadow-xl transition-transform">
     <nav
       class="
-        p-6
+        py-[20px]
+        px-[15px]
         space-y-6
-        [&>svg]:h-[18px]
-        [&>svg]:hover:scale-[1.07]
-        [&>svg]:cursor-pointer
       "
     >
-      {{- 'icon-close.svg' | inline_asset_content -}}
+      <span
+        class="
+          flex
+          justify-center
+          items-center
+          h-[44px]
+          w-[44px]
+          hover:scale-[1.07]
+          cursor-pointer
+          [&>svg]:w-[20px]
+        "
+      >
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </span>
 
       <ul class="space-y-4">
-        <li><a href="#" class="block text-lg font-medium">Home</a></li>
-        <li><a href="#" class="block text-lg font-medium">About</a></li>
-        <li><a href="#" class="block text-lg font-medium">Contact</a></li>
+        {%- for link in block.settings.menu.links -%}
+          <li
+            class="
+              mx-[12px]
+              pb-[4px]
+              {% if block.settings.show_dividers %}
+                border-b
+                border-b-[#F0F0F0]
+              {% endif %}
+            "
+          >
+            <a
+              href="{{ link.url }}"
+              class="
+                block
+                text-xl
+                text-[#121212]
+              "
+            >
+              {{ link.title | escape }}
+            </a>
+          </li>
+        {% endfor %}
       </ul>
     </nav>
   </aside>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const hamburger = document.querySelector('.menu-{{ block.id }} .icon-hamburger');
+      const hamburger = document.querySelector('.menu-{{ block.id }} > span');
       const overlay = document.querySelector('.overlay-{{ block.id }}');
       const drawer = document.querySelector('.drawer-{{ block.id }}');
-      const closeIcon = document.querySelector('.drawer-{{ block.id }} .icon-close');
+      const closeIcon = document.querySelector('.drawer-{{ block.id }} span');
 
       function openDrawer() {
-        console.log('oook', drawer, overlay);
         hamburger.classList.add('hidden');
         drawer.classList.remove('translate-x-[-100%]');
         drawer.classList.add('translate-x-[0]');
@@ -186,6 +226,18 @@
       "id": "drawer_on_mobile",
       "label": "Drawer on mobile",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Drawer options",
+      "visible_if": "{{ block.settings.drawer_on_mobile }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dividers",
+      "label": "Dividers",
+      "default": false,
+      "visible_if": "{{ block.settings.drawer_on_mobile }}"
     },
     {
       "type": "header",
