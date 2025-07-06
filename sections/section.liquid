@@ -12,13 +12,15 @@
 
     {% if section.settings.background_media == 'video' %}relative{% endif %}
 
-    {% if section.settings.is_header and section.settings.is_sticky_header %}
-      fixed top-0 left-0 right-0 z-50
-    {% endif %}
+    {% if section.settings.is_header %}
+      {% if section.settings.is_sticky_header %}
+        fixed top-0 left-0 right-0 z-50
+      {% endif %}
 
-    {% if section.settings.has_separator_line %}
-      border-b-[{{ section.settings.separator_width }}px]
-      border-b-[{{ section.settings.separator_color }}]
+      {% if section.settings.has_separator_line %}
+        border-b-[{{ section.settings.separator_width }}px]
+        border-b-[{{ section.settings.separator_color }}]
+      {% endif %}
     {% endif %}
   "
 >
@@ -152,14 +154,14 @@
       "unit": "px",
       "label": "Separator line width",
       "default": 1,
-      "visible_if": "{{ section.settings.has_separator_line }}"
+      "visible_if": "{{ section.settings.is_header and section.settings.has_separator_line }}"
     },
     {
       "type": "color",
       "id": "separator_color",
       "label": "Separator line color",
       "default": "#ECECEC",
-      "visible_if": "{{ section.settings.has_separator_line }}"
+      "visible_if": "{{ section.settings.is_header and section.settings.has_separator_line }}"
     },
     {
       "type": "header",
