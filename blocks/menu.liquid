@@ -1,12 +1,17 @@
 <ul
   class="
+    {% if block.settings.drawer_on_mobile %}
+      hidden
+      md:flex!
+    {% else %}
+      flex
+    {% endif %}
     m-0
     p-0
     list-none
     w-full
     text-{{ block.settings.text_alignment }}
     bg-[{{ block.settings.color_background }}]
-    flex
     {{ block.settings.mobile_flex_direction }}
     md:{{ block.settings.flex_direction }}
     {{ block.settings.flex_wrap }}
@@ -85,7 +90,7 @@
           gap-y-[{{ section.settings.vertical_gap }}px]
           {{ section.settings.justify_content }}
           {{ section.settings.align_items }}
-          {% if link.active %}underline! underline-offset-[0.1875rem]! md:hover:decoration-[0.125rem]! hover:opacity-100{% endif %}
+          {% if link.active %}underline! underline-offset-[0.1875rem]! md:hover:decoration-[0.125rem]! hover:opacity-10000{% endif %}
         "
       >
         {{ link.title | escape }}
@@ -93,6 +98,78 @@
     </li>
   {%- endfor -%}
 </ul>
+
+{% if block.settings.drawer_on_mobile %}
+  <div
+    class="
+      block
+      md:hidden
+      menu-{{ block.id }}
+      [&>svg]:h-[18px]
+      [&>svg]:hover:scale-[1.07]
+      [&>svg]:cursor-pointer
+    "
+  >
+    {{- 'icon-hamburger.svg' | inline_asset_content -}}
+  </div>
+
+  <div
+    class="overlay-{{ block.id }} fixed md:hidden inset-0 z-40 bg-black/50 opacity-0 pointer-events-none transition-opacity"
+  ></div>
+  <aside class="drawer-{{ block.id }} fixed md:hidden inset-y-0 left-0 z-50 w-[95vw] max-w-[95vw] translate-x-[-100%] bg-white shadow-xl transition-transform">
+    <nav
+      class="
+        p-6
+        space-y-6
+        [&>svg]:h-[18px]
+        [&>svg]:hover:scale-[1.07]
+        [&>svg]:cursor-pointer
+      "
+    >
+      {{- 'icon-close.svg' | inline_asset_content -}}
+
+      <ul class="space-y-4">
+        <li><a href="#" class="block text-lg font-medium">Home</a></li>
+        <li><a href="#" class="block text-lg font-medium">About</a></li>
+        <li><a href="#" class="block text-lg font-medium">Contact</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.menu-{{ block.id }} .icon-hamburger');
+      const overlay = document.querySelector('.overlay-{{ block.id }}');
+      const drawer = document.querySelector('.drawer-{{ block.id }}');
+      const closeIcon = document.querySelector('.drawer-{{ block.id }} .icon-close');
+
+      function openDrawer() {
+        console.log('oook', drawer, overlay);
+        hamburger.classList.add('hidden');
+        drawer.classList.remove('translate-x-[-100%]');
+        drawer.classList.add('translate-x-[0]');
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100', 'pointer-events-auto', 'block!');
+        hamburger.dataset.open = true;
+        document.documentElement.classList.add('overflow-hidden');
+      }
+
+      function closeDrawer() {
+        hamburger.classList.remove('hidden');
+        drawer.classList.remove('translate-x-[0]');
+        drawer.classList.add('translate-x-[-100%]');
+        overlay.classList.remove('opacity-100', 'pointer-events-auto', 'block!');
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+        delete hamburger.dataset.open;
+        document.documentElement.classList.remove('overflow-hidden');
+      }
+
+      hamburger.addEventListener('click', openDrawer);
+      closeIcon.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+    });
+  </script>
+{% endif %}
 
 {% schema %}
 {
@@ -103,6 +180,12 @@
       "type": "link_list",
       "id": "menu",
       "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_on_mobile",
+      "label": "Drawer on mobile",
+      "default": false
     },
     {
       "type": "header",
