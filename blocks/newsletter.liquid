@@ -5,6 +5,10 @@
     flex
     flex-col
     isolate
+    pt-[{{ block.settings.padding_top }}px]!
+    pb-[{{ block.settings.padding_bottom }}px]!
+    pr-[{{ block.settings.padding_right }}px]!
+    pl-[{{ block.settings.padding_left }}px]!
     after:content-['']
     after:absolute after:inset-0
     after:w-full
@@ -23,38 +27,23 @@
     class="
       relative
       flex
-      w-full
       items-center
       justify-center
       z-[2]
-      p-0
-      min-[750px]:p-[3.125rem]
     "
   >
     <div
       class="
-        min-[750px]:w-full
         relative
         z-[1]
-        w-full
         text-center
         flex
         items-center
         h-fit
-        p-[2.5rem_0.9375rem]
         break-words
         max-[749px]:border-none
         max-[749px]:rounded-none
         max-[749px]:shadow-none
-        min-[750px]:w-auto
-        min-[750px]:max-w-[44.375rem]
-        min-[750px]:min-w-[28.125rem]
-        min-[750px]:p-[2.5rem_2.1875rem]
-        min-[1400px]:max-w-[56.25rem]
-        pr-[calc(2.5rem/var(--font-body-scale))]
-        pl-[calc(2.5rem/var(--font-body-scale))]
-        min-[750px]:pr-[5.625rem]
-        min-[750px]:pl-[5.625rem]
         relative
         rounded-[var(--text-boxes-radius)]
         border-solid
@@ -71,14 +60,13 @@
     >
       <div class="w-full my-0" {{ block.shopify_attributes }}>
         {% form 'customer',
-          class: 'inline-block items-center w-full relative min-[750px]:items-start min-[750px]:mx-auto min-[750px]:max-w-[22.5rem]'
+          class: 'inline-block items-center w-full relative min-[750px]:items-start min-[750px]:mx-auto'
         %}
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div
             class="
               inline-block
               w-full
-              max-w-[22.5rem]
             "
           >
             <div
@@ -96,19 +84,6 @@
                 before:rounded-[var(--inputs-radius-outset)]
                 before:shadow-[var(--inputs-shadow-horizontal-offset)_var(--inputs-shadow-vertical-offset)_var(--inputs-shadow-blur-radius)_rgba(var(--color-shadow),var(--inputs-shadow-opacity))]
                 before:z-[-1]
-                after:pointer-events-none
-                after:content-['']
-                after:absolute after:inset-[var(--inputs-border-width)]
-                after:border-[0.0625rem_solid_transparent]
-                after:rounded-[var(--inputs-radius)]
-                after:shadow-[0_0_0_var(--inputs-border-width)_rgba(var(--color-foreground),var(--inputs-border-opacity))]
-                after:transition-shadow
-                after:duration-[var(--duration-short)]
-                after:ease-[cubic-bezier(0.25,0.1,0.25,1)]
-                after:z-[1]
-                hover:after:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_rgba(var(--color-foreground),var(--inputs-border-opacity))]
-                hover:after:outline-none
-                hover:after:rounded-[var(--inputs-radius)]
               "
             >
               <input
@@ -117,30 +92,33 @@
                 name="contact[email]"
                 class="
                   relative
-                  w-full
+                  max-w-full
+                  w-[{{ block.settings.width }}px]
                   box-border
-                  border-0
+                  border-{{  block.settings.border_style }}
+                  border-[{{  block.settings.border_width }}px]
+                  border-[{{ block.settings.border_color }}]
+                  rounded-[{{ block.settings.border_radius }}px]
+                  hover:shadow-[inset_0_0_0_1000px_rgba(0,0,0,0.03)]
+                  duration-200
                   flex-grow
                   text-left
                   text-[1rem]
                   leading-[calc(1+.5/var(--font-body-scale))]
                   tracking-[0.025rem]
-                  text-[rgb(var(--color-foreground))]
+                  text-[{{ block.settings.color }}]
                   h-[2.8125rem]
                   min-h-[calc(var(--inputs-border-width)*2)]
-                  min-w-[calc(4.375rem+(var(--inputs-border-width)*2))]
                   py-[0.9375rem]
                   pr-[3.125rem]
                   pl-[1.25rem]
                   m-[var(--inputs-border-width)]
-                  rounded-[var(--inputs-radius)]
                   appearance-none
-                  bg-transparent
+                  bg-[{{ block.settings.color_background }}]
                   transition-shadow
                   duration-[var(--duration-short)]
                   ease-[cubic-bezier(0.25,0.1,0.25,1)]
                   placeholder:opacity-0
-                  md:bg-[rgb(var(--color-background))]
                   [&::-webkit-search-cancel-button]:hidden
                   focus:pt-[1.375rem]
                   focus:pb-[0.5rem]
@@ -155,11 +133,9 @@
                   [&:not(:placeholder-shown)]:pb-[0.5rem]
                   [&:not(:placeholder-shown)]:pl-[1.25rem]
                   focus:outline-none!
-                  focus:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_rgba(var(--color-foreground))]!
-                  focus:rounded-[var(--inputs-radius)]
+                  focus:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_{{ block.settings.border_color }}]!
                   focus-visible:outline-none!
-                  focus-visible:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_rgba(var(--color-foreground))]!
-                  focus-visible:rounded-[var(--inputs-radius)]
+                  focus-visible:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_{{ block.settings.border_color }}]!
                   peer
                 "
                 value="{{ form.email }}"
@@ -186,7 +162,7 @@
                   pointer-events-none
                   text-[1rem]
                   leading-[1.5]
-                  text-[rgba(var(--color-foreground),0.75)]
+                  text-[{{ block.settings.color }}BF]
                   tracking-[0.0625rem]
                   transition-[top,font-size]
                   duration-[var(--duration-short)]
@@ -204,7 +180,7 @@
                 "
                 for="NewsletterForm--{{ section.id }}"
               >
-                {{ 'newsletter.label' | t }}
+                {{ block.settings.placeholder }}
               </label>
               <button
                 type="submit"
@@ -215,7 +191,7 @@
                   top-0
                   h-full
                   z-[2]
-                  focus-visible:bg-[rgb(var(--color-background))]
+                  focus-visible:bg-[{{ block.settings.color_background }}]
                   focus:shadow-[0_0_0_0.1875rem_rgb(var(--color-background)),0_0_0_0.25rem_rgba(var(--color-foreground))]
                   focus-visible:shadow-[0_0_0_0.1875rem_rgb(var(--color-background)),0_0_0_0.25rem_rgba(var(--color-foreground))]!
                   flex
@@ -224,7 +200,7 @@
                   absolute
                   p-0
                   border-0
-                  text-current
+                  text-[{{ block.settings.color }}BF]
                   cursor-pointer
                   overflow-hidden
                   peer-autofill:text-black
@@ -328,6 +304,132 @@
   "tag": null,
   "class": "div",
   "settings": [
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background color"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
+        { "value": "300", "label": "300" },
+        { "value": "275", "label": "275" },
+        { "value": "250", "label": "250" },
+        { "value": "225", "label": "225" },
+        { "value": "200", "label": "200" },
+        { "value": "175", "label": "175" },
+        { "value": "150", "label": "150" },
+        { "value": "125", "label": "125" },
+        { "value": "100", "label": "100" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "select",
+      "id": "border_style",
+      "label": "Style",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" },
+        { "value": "double", "label": "Double" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Left",
+      "default": 0
+    },
     {
       "type": "header",
       "content": "Layout"
