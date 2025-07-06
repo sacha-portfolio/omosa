@@ -1,24 +1,167 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
-{{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag }}
-
 <div
   id="Banner-{{ section.id }}"
-  class="email-signup-banner banner{% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}"
+  class="
+    relative
+    flex
+    flex-col
+    isolate
+    after:content-['']
+    after:absolute after:inset-0
+    after:w-full
+    after:h-full
+    after:bg-[#000]
+    after:opacity-0
+    after:z-[1]
+    min-[750px]:flex-row
+    max-[749px]:flex-row
+    max-[749px]:flex-wrap
+    max-[749px]:before:hidden!
+    {% if block.settings.flex_basis_style %} basis-[{{ block.settings.flex_basis }}%]{% endif %}
+  "
 >
-  <div class="banner__content">
-    <div class="email-signup-banner__box banner__box newsletter newsletter__wrapper content-container content-container--full-width-mobile">
-      <div {{ block.shopify_attributes }}>
-        {% form 'customer', class: 'newsletter-form' %}
+  <div
+    class="
+      relative
+      flex
+      w-full
+      items-center
+      justify-center
+      z-[2]
+      p-0
+      min-[750px]:p-[3.125rem]
+    "
+  >
+    <div
+      class="
+        min-[750px]:w-full
+        relative
+        z-[1]
+        w-full
+        text-center
+        flex
+        items-center
+        h-fit
+        p-[2.5rem_0.9375rem]
+        break-words
+        max-[749px]:border-none
+        max-[749px]:rounded-none
+        max-[749px]:shadow-none
+        min-[750px]:w-auto
+        min-[750px]:max-w-[44.375rem]
+        min-[750px]:min-w-[28.125rem]
+        min-[750px]:p-[2.5rem_2.1875rem]
+        min-[1400px]:max-w-[56.25rem]
+        pr-[calc(2.5rem/var(--font-body-scale))]
+        pl-[calc(2.5rem/var(--font-body-scale))]
+        min-[750px]:pr-[5.625rem]
+        min-[750px]:pl-[5.625rem]
+        relative
+        rounded-[var(--text-boxes-radius)]
+        border-solid
+        [border-width:var(--text-boxes-border-width)]
+        [border-color:rgba(var(--color-foreground),var(--text-boxes-border-opacity))]
+        after:content-['']
+        after:absolute after:inset-0
+        after:z-[-1]
+        max-[749px]:border-l-0
+        max-[749px]:border-r-0
+        max-[749px]:rounded-none
+        max-[749px]:after:hidden
+      "
+    >
+      <div class="w-full my-0" {{ block.shopify_attributes }}>
+        {% form 'customer',
+          class: 'inline-block items-center w-full relative min-[750px]:items-start min-[750px]:mx-auto min-[750px]:max-w-[22.5rem]'
+        %}
           <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="newsletter-form__field-wrapper">
-            <div class="field">
+          <div
+            class="
+              inline-block
+              w-full
+              max-w-[22.5rem]
+            "
+          >
+            <div
+              class="
+                relative
+                z-0
+                flex
+                w-full
+                transition-shadow
+                duration-[var(--duration-short)]
+                ease-[cubic-bezier(0.25,0.1,0.25,1)]
+                before:pointer-events-none
+                before:content-['']
+                before:absolute before:inset-0
+                before:rounded-[var(--inputs-radius-outset)]
+                before:shadow-[var(--inputs-shadow-horizontal-offset)_var(--inputs-shadow-vertical-offset)_var(--inputs-shadow-blur-radius)_rgba(var(--color-shadow),var(--inputs-shadow-opacity))]
+                before:z-[-1]
+                after:pointer-events-none
+                after:content-['']
+                after:absolute after:inset-[var(--inputs-border-width)]
+                after:border-[0.0625rem_solid_transparent]
+                after:rounded-[var(--inputs-radius)]
+                after:shadow-[0_0_0_var(--inputs-border-width)_rgba(var(--color-foreground),var(--inputs-border-opacity))]
+                after:transition-shadow
+                after:duration-[var(--duration-short)]
+                after:ease-[cubic-bezier(0.25,0.1,0.25,1)]
+                after:z-[1]
+                hover:after:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_rgba(var(--color-foreground),var(--inputs-border-opacity))]
+                hover:after:outline-none
+                hover:after:rounded-[var(--inputs-radius)]
+              "
+            >
               <input
                 id="NewsletterForm--{{ section.id }}"
                 type="email"
                 name="contact[email]"
-                class="field__input"
+                class="
+                  relative
+                  w-full
+                  box-border
+                  border-0
+                  flex-grow
+                  text-left
+                  text-[1rem]
+                  leading-[calc(1+.5/var(--font-body-scale))]
+                  tracking-[0.025rem]
+                  text-[rgb(var(--color-foreground))]
+                  h-[2.8125rem]
+                  min-h-[calc(var(--inputs-border-width)*2)]
+                  min-w-[calc(4.375rem+(var(--inputs-border-width)*2))]
+                  py-[0.9375rem]
+                  pr-[3.125rem]
+                  pl-[1.25rem]
+                  m-[var(--inputs-border-width)]
+                  rounded-[var(--inputs-radius)]
+                  appearance-none
+                  bg-transparent
+                  transition-shadow
+                  duration-[var(--duration-short)]
+                  ease-[cubic-bezier(0.25,0.1,0.25,1)]
+                  placeholder:opacity-0
+                  md:bg-[rgb(var(--color-background))]
+                  [&::-webkit-search-cancel-button]:hidden
+                  focus:pt-[1.375rem]
+                  focus:pb-[0.5rem]
+                  focus:pl-[1.25rem]
+                  focus-visible:pt-[1.375rem]
+                  focus-visible:pb-[0.5rem]
+                  focus-visible:pl-[1.25rem]
+                  autofill:pt-[1.375rem]
+                  autofill:pb-[0.5rem]
+                  autofill:pl-[1.25rem]
+                  [&:not(:placeholder-shown)]:pt-[1.375rem]
+                  [&:not(:placeholder-shown)]:pb-[0.5rem]
+                  [&:not(:placeholder-shown)]:pl-[1.25rem]
+                  focus:outline-none!
+                  focus:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_rgba(var(--color-foreground))]!
+                  focus:rounded-[var(--inputs-radius)]
+                  focus-visible:outline-none!
+                  focus-visible:shadow-[0_0_0_calc(0.0625rem+var(--inputs-border-width))_rgba(var(--color-foreground))]!
+                  focus-visible:rounded-[var(--inputs-radius)]
+                  peer
+                "
                 value="{{ form.email }}"
                 aria-required="true"
                 autocorrect="off"
@@ -34,24 +177,104 @@
                 placeholder="{{ 'newsletter.label' | t }}"
                 required
               >
-              <label class="field__label" for="NewsletterForm--{{ section.id }}">
+              <label
+                class="
+                  absolute
+                  left-[calc(var(--inputs-border-width)+1.25rem)]
+                  top-[calc(0.625rem+var(--inputs-border-width))]
+                  mb-0
+                  pointer-events-none
+                  text-[1rem]
+                  leading-[1.5]
+                  text-[rgba(var(--color-foreground),0.75)]
+                  tracking-[0.0625rem]
+                  transition-[top,font-size]
+                  duration-[var(--duration-short)]
+                  ease-[cubic-bezier(0.25,0.1,0.25,1)]
+                  peer-focus:text-[0.625rem]
+                  peer-autofill:text-[0.625rem]
+                  peer-[&:not(:placeholder-shown)]:text-[0.625rem]
+                  peer-focus:top-[calc(var(--inputs-border-width)+0.3125rem)]
+                  peer-autofill:top-[calc(var(--inputs-border-width)+0.3125rem)]
+                  peer-[&:not(:placeholder-shown)]:top-[calc(var(--inputs-border-width)+0.3125rem)]
+                  peer-focus:tracking-[0.025rem]
+                  peer-autofill:tracking-[0.025rem]
+                  peer-[&:not(:placeholder-shown)]:tracking-[0.025rem]
+                  peer-autofill:text-black
+                "
+                for="NewsletterForm--{{ section.id }}"
+              >
                 {{ 'newsletter.label' | t }}
               </label>
               <button
                 type="submit"
-                class="newsletter-form__button field__button"
+                class="
+                  w-[2.75rem]
+                  m-0
+                  right-[var(--inputs-border-width)]
+                  top-0
+                  h-full
+                  z-[2]
+                  focus-visible:bg-[rgb(var(--color-background))]
+                  focus:shadow-[0_0_0_0.1875rem_rgb(var(--color-background)),0_0_0_0.25rem_rgba(var(--color-foreground))]
+                  focus-visible:shadow-[0_0_0_0.1875rem_rgb(var(--color-background)),0_0_0_0.25rem_rgba(var(--color-foreground))]!
+                  flex
+                  items-center
+                  justify-center
+                  absolute
+                  p-0
+                  border-0
+                  text-current
+                  cursor-pointer
+                  overflow-hidden
+                  peer-autofill:text-black
+                "
                 name="commit"
                 id="Subscribe"
                 aria-label="{{ 'newsletter.button_label' | t }}"
               >
-                <span class="svg-wrapper">
+                <span
+                  class="
+                    inline-flex
+                    justify-center
+                    items-center
+                    w-[25px]
+                    h-[25px]
+                    [&>svg]:h-full
+                    [&>svg]:w-[15px]
+                  "
+                >
                   {{- 'icon-arrow.svg' | inline_asset_content -}}
                 </span>
               </button>
             </div>
             {%- if form.errors -%}
-              <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
-                <span class="svg-wrapper">
+              <small
+                class="
+                  mt-[15px]
+                  justify-center
+                  mb-0
+                  md:justify-start
+                  flex
+                  items-center
+                  text-sm
+                  leading-none
+                "
+                id="Newsletter-error--{{ section.id }}"
+              >
+                <span
+                  class="
+                    inline-flex
+                    justify-center
+                    items-center
+                    w-[20px]
+                    h-[20px]
+                    [&>svg]:flex-shrink-0
+                    [&>svg]:h-[13px]
+                    [&>svg]:w-[13px]
+                    [&>svg]:mr-[5px]
+                  "
+                >
                   {{- 'icon-error.svg' | inline_asset_content -}}
                 </span>
                 {{- form.errors.translated_fields.email | capitalize }}
@@ -61,12 +284,33 @@
           </div>
           {%- if form.posted_successfully? -%}
             <h3
-              class="newsletter-form__message newsletter-form__message--success form__message"
+              class="
+                justify-center
+                mb-0
+                md:justify-start
+                mt-[20px]
+                flex
+                items-center
+                text-sm
+                leading-none
+              "
               id="Newsletter-success--{{ section.id }}"
               tabindex="-1"
               autofocus
             >
-              <span class="svg-wrapper">
+              <span
+                class="
+                  inline-flex
+                  justify-center
+                  items-center
+                  w-[20px]
+                  h-[20px]
+                  [&>svg]:flex-shrink-0
+                  [&>svg]:h-[13px]
+                  [&>svg]:w-[13px]
+                  [&>svg]:mr-[5px]
+                "
+              >
                 {{- 'icon-success.svg' | inline_asset_content -}}
               </span>
               {{- 'newsletter.success' | t }}
