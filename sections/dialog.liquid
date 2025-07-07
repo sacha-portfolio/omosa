@@ -1,5 +1,12 @@
-<div
+<dialog
+  id="{{ section.id }}"
   class="
+    absolute
+    top-[{{ section.settings.top }}px]
+    left-[{{ section.settings.left }}px]
+    right-[{{ section.settings.right }}px]
+    bottom-[{{ section.settings.bottom }}px]
+    z-50
     section-{{ section.id }} wrapper h-[{{ section.settings.height }}]
     bg-[{{ section.settings.color_background }}]
 
@@ -11,17 +18,6 @@
     {% endif %}
 
     {% if section.settings.background_media == 'video' %}relative{% endif %}
-
-    {% if section.settings.is_header %}
-      {% if section.settings.is_sticky_header %}
-        fixed top-0 left-0 right-0 z-50
-      {% endif %}
-
-      {% if section.settings.has_separator_line %}
-        border-b-[{{ section.settings.separator_width }}px]
-        border-b-[{{ section.settings.separator_color }}]
-      {% endif %}
-    {% endif %}
   "
 >
   {% if section.settings.background_media == 'video' %}
@@ -57,62 +53,61 @@
   >
     {% content_for 'blocks' %}
   </div>
-</div>
+</dialog>
 
-{% if section.settings.is_header %}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "name": {{ shop.name | json }},
-      {% if settings.logo %}
-        "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
-      {% endif %}
-      "sameAs": [
-        {{ settings.social_twitter_link | json }},
-        {{ settings.social_facebook_link | json }},
-        {{ settings.social_pinterest_link | json }},
-        {{ settings.social_instagram_link | json }},
-        {{ settings.social_tiktok_link | json }},
-        {{ settings.social_tumblr_link | json }},
-        {{ settings.social_snapchat_link | json }},
-        {{ settings.social_youtube_link | json }},
-        {{ settings.social_vimeo_link | json }}
-      ],
-      "url": {{ request.origin | append: page.url | json }}
-    }
-  </script>
-
-  {%- if request.page_type == 'index' -%}
-    {% assign potential_action_target = request.origin
-      | append: routes.search_url
-      | append: '?q={search_term_string}'
-    %}
-    <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
-        "name": {{ shop.name | json }},
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {{ potential_action_target | json }},
-          "query-input": "required name=search_term_string"
-        },
-        "url": {{ request.origin | append: page.url | json }}
+<script>
+  if (Shopify.designMode) {
+    document.addEventListener('shopify:section:select', function (event) {
+      const sectionId = event.detail.sectionId;
+      const dialog = document.getElementById(sectionId);
+      if (dialog && typeof dialog.showModal === 'function') {
+        dialog.showModal();
       }
-    </script>
-  {%- endif -%}
-{% endif %}
+    });
+
+    document.addEventListener('shopify:section:deselect', function (event) {
+      const sectionId = event.detail.sectionId;
+      const dialog = document.getElementById(sectionId);
+      if (dialog && typeof dialog.close === 'function') {
+        dialog.close();
+      }
+    });
+  }
+</script>
 
 {% schema %}
 {
-  "name": "Section",
+  "name": "Dialog",
   "tag": "section",
-  "disabled_on": {
+  "enabled_on": {
     "groups": ["aside"]
   },
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
+    {
+      "type": "header",
+      "content": "Position"
+    },
+    {
+      "type": "number",
+      "id": "top",
+      "label": "Top"
+    },
+    {
+      "type": "number",
+      "id": "left",
+      "label": "Left"
+    },
+    {
+      "type": "number",
+      "id": "right",
+      "label": "Right"
+    },
+    {
+      "type": "number",
+      "id": "bottom",
+      "label": "Bottom"
+    },
     {
       "type": "header",
       "content": "Attached Collection"
@@ -121,49 +116,6 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
-    },
-    {
-      "type": "header",
-      "content": "Header",
-      "visible_if": "{{ section.settings.is_header }}"
-    },
-    {
-      "type": "checkbox",
-      "id": "is_header",
-      "label": "Header",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "is_sticky_header",
-      "label": "Sticky header",
-      "default": true,
-      "visible_if": "{{ section.settings.is_header }}"
-    },
-    {
-      "type": "checkbox",
-      "id": "has_separator_line",
-      "label": "Separator line",
-      "default": false,
-      "visible_if": "{{ section.settings.is_header }}"
-    },
-    {
-      "type": "range",
-      "id": "separator_width",
-      "min": 1,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Separator line width",
-      "default": 1,
-      "visible_if": "{{ section.settings.is_header and section.settings.has_separator_line }}"
-    },
-    {
-      "type": "color",
-      "id": "separator_color",
-      "label": "Separator line color",
-      "default": "#ECECEC",
-      "visible_if": "{{ section.settings.is_header and section.settings.has_separator_line }}"
     },
     {
       "type": "header",
@@ -439,7 +391,7 @@
   ],
   "presets": [
     {
-      "name": "Section"
+      "name": "Dialog"
     }
   ]
 }
