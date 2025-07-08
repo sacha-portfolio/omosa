@@ -23,6 +23,12 @@
       {{ settings.type_mobile_size_button }}
       {{ settings.type_font_weight_button }}
       {{ settings.type_case_button }}
+    {% elsif block.settings.type_preset == 'menu' %}
+      font-(family-name:{{ settings.type_font_menu }})
+      {{ settings.type_size_menu }}
+      {{ settings.type_mobile_size_menu }}
+      {{ settings.type_font_weight_menu }}
+      {{ settings.type_case_menu }}
     {% elsif block.settings.type_preset == 'h1' %}
       font-(family-name:{{ settings.type_font_h1 }})
       {{ settings.type_size_h1 }}
@@ -178,6 +184,10 @@
         {
           "value": "h1",
           "label": "H1"
+        },
+        {
+          "value": "menu",
+          "label": "Menu"
         },
         {
           "value": "h2",

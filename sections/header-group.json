@@ -58,7 +58,7 @@
                 "text_alignment": "left",
                 "text_decoration": "no-underline",
                 "text_transform": "none",
-                "type_preset": "button",
+                "type_preset": "menu",
                 "font_size": "md:text-base",
                 "mobile_font_size": "text-sm",
                 "font_family": "--font-font-1--family",
