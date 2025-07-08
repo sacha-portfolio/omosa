@@ -240,11 +240,6 @@
       "name": "Section",
       "settings": {
         "collection": "",
-        "is_header": false,
-        "is_sticky_header": true,
-        "has_separator_line": false,
-        "separator_width": 1,
-        "separator_color": "#ececec",
         "padding_top": 100,
         "padding_bottom": 0,
         "apply_page_width": true,
