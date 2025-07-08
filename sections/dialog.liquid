@@ -1,5 +1,5 @@
 <dialog
-  id="{{ section.id }}"
+  id="{{ section.settings.dialog_id }}"
   class="
     absolute
     top-[{{ section.settings.top }}px]
@@ -7,7 +7,7 @@
     right-[{{ section.settings.right }}px]
     bottom-[{{ section.settings.bottom }}px]
     z-50
-    section-{{ section.id }} wrapper h-[{{ section.settings.height }}]
+    {{ section.id }} wrapper h-[{{ section.settings.height }}]
     bg-[{{ section.settings.color_background }}]
 
     {% if section.settings.background_media == 'image' and section.settings.image_url %}
@@ -59,16 +59,16 @@
   if (Shopify.designMode) {
     document.addEventListener('shopify:section:select', function (event) {
       const sectionId = event.detail.sectionId;
-      const dialog = document.getElementById(sectionId);
-      if (dialog && typeof dialog.showModal === 'function') {
+      const dialog = document.querySelector('.{{ section.id }}');
+      if (dialog && dialog.classList.contains(sectionId) && typeof dialog.showModal === 'function') {
         dialog.showModal();
       }
     });
 
     document.addEventListener('shopify:section:deselect', function (event) {
       const sectionId = event.detail.sectionId;
-      const dialog = document.getElementById(sectionId);
-      if (dialog && typeof dialog.close === 'function') {
+      const dialog = document.querySelector('.{{ section.id }}');
+      if (dialog && dialog.classList.contains(sectionId) && typeof dialog.close === 'function') {
         dialog.close();
       }
     });
@@ -84,6 +84,11 @@
   },
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
+    {
+      "type": "text",
+      "id": "dialog_id",
+      "label": "ID"
+    },
     {
       "type": "header",
       "content": "Position"
@@ -391,7 +396,8 @@
   ],
   "presets": [
     {
-      "name": "Dialog"
+      "name": "Dialog",
+      "category": "t:categories.aside"
     }
   ]
 }

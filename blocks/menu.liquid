@@ -106,11 +106,11 @@
 </ul>
 
 {% if block.settings.drawer_on_mobile %}
-  <div
+  <button
     class="
       block
       md:hidden
-      menu-{{ block.id }}
+      {{ block.id }}
     "
   >
     <span
@@ -127,7 +127,18 @@
     >
       {{- 'icon-hamburger.svg' | inline_asset_content -}}
     </span>
-  </div>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dialog = document.getElementById('test-dialog');
+      const burgerButton = document.querySelector('.{{ block.id }}');
+
+      burgerButton.addEventListener('click', () => {
+        dialog.showModal();
+      });
+    });
+  </script>
 {% endif %}
 
 {% schema %}
