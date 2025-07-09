@@ -32,6 +32,35 @@
             "flex_basis": 0
           },
           "blocks": {
+            "text_DpdEWA": {
+              "type": "text",
+              "name": "Text",
+              "settings": {
+                "text": "{{ closest.product.vendor }}",
+                "text_alignment": "left",
+                "text_decoration": "no-underline",
+                "text_transform": "none",
+                "type_preset": "paragraph",
+                "font_size": "md:text-base",
+                "mobile_font_size": "text-sm",
+                "font_family": "--font-font-1--family",
+                "font_weight": "font-normal",
+                "font_style": "not-italic",
+                "color": "",
+                "color_background": "",
+                "add_hover_effect": false,
+                "transition_duration": 0,
+                "hover_color": "",
+                "hover_color_background": "",
+                "link": "",
+                "open_on_new_tab": false,
+                "tag": "div",
+                "flex_basis_style": false,
+                "flex_basis": 0,
+                "max_width": 100
+              },
+              "blocks": {}
+            },
             "image_aniEWk": {
               "type": "image",
               "name": "Image",
@@ -109,6 +138,7 @@
             }
           },
           "block_order": [
+            "text_DpdEWA",
             "image_aniEWk",
             "text_4cHyUG",
             "product_price_UWFXMe"
