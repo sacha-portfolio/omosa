@@ -130,14 +130,20 @@
   </button>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const dialog = document.getElementById('test-dialog');
-      const burgerButton = document.querySelector('.{{ block.id }}');
+    (() => {
+      const initShowModal = () => {
+        const dialog = document.getElementById('{{ block.settings.dialog_id }}');
+        const burgerButton = document.querySelector('.{{ block.id }}');
 
-      burgerButton.addEventListener('click', () => {
-        dialog.showModal();
+        burgerButton.addEventListener('click', () => {
+          dialog.showModal();
+        });
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        initShowModal();
       });
-    });
+      initShowModal();
+    })();
   </script>
 {% endif %}
 
@@ -156,6 +162,12 @@
       "id": "drawer_on_mobile",
       "label": "Drawer on mobile",
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "dialog_id",
+      "label": "Dialog ID",
+      "visible_if": "{{ block.settings.drawer_on_mobile }}"
     },
     {
       "type": "header",

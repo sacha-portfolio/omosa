@@ -32,15 +32,26 @@
     {% endif %}
     {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, class: video_classes }}
   {% endif %}
+  <div class="p-4">
+    <button
+      id="close-{{ section.id }}"
+      class="
+        flex
+        cursor-pointer
+        [&>svg]:w-[20px]
+      "
+    >
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </button>
+  </div>
   <div
     class="
       h-full
       mx-auto!
       pt-[{{ section.settings.padding_top }}px]!
       pb-[{{ section.settings.padding_bottom }}px]!
-      {%- if section.settings.apply_page_width %}
-      page-width
-      {%- endif %}
+      pt-[{{ section.settings.padding_right }}px]!
+      pb-[{{ section.settings.padding_left }}px]!
       flex
       {{ section.settings.mobile_flex_direction }}
       md:{{ section.settings.flex_direction }}
@@ -56,23 +67,32 @@
 </dialog>
 
 <script>
-  if (Shopify.designMode) {
-    document.addEventListener('shopify:section:select', function (event) {
-      const sectionId = event.detail.sectionId;
-      const dialog = document.querySelector('.{{ section.id }}');
-      if (dialog && dialog.classList.contains(sectionId) && typeof dialog.showModal === 'function') {
-        dialog.showModal();
-      }
-    });
+  (() => {
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:section:select', function (event) {
+        const sectionId = event.detail.sectionId;
+        const dialog = document.querySelector('.{{ section.id }}');
+        if (dialog && dialog.classList.contains(sectionId) && typeof dialog.showModal === 'function') {
+          dialog.showModal();
+        }
+      });
 
-    document.addEventListener('shopify:section:deselect', function (event) {
-      const sectionId = event.detail.sectionId;
-      const dialog = document.querySelector('.{{ section.id }}');
-      if (dialog && dialog.classList.contains(sectionId) && typeof dialog.close === 'function') {
-        dialog.close();
-      }
+      document.addEventListener('shopify:section:deselect', function (event) {
+        const sectionId = event.detail.sectionId;
+        const dialog = document.querySelector('.{{ section.id }}');
+        if (dialog && dialog.classList.contains(sectionId) && typeof dialog.close === 'function') {
+          dialog.close();
+        }
+      });
+    }
+
+    const dialog = document.querySelector('.{{ section.id }}');
+    const closeBtn = document.getElementById('close-{{ section.id }}');
+
+    closeBtn.addEventListener('click', () => {
+      dialog.close();
     });
-  }
+  })();
 </script>
 
 {% schema %}
@@ -147,14 +167,28 @@
       "default": 0
     },
     {
-      "type": "header",
-      "content": "Layout"
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Right",
+      "default": 0
     },
     {
-      "type": "checkbox",
-      "id": "apply_page_width",
-      "label": "Apply page width",
-      "default": true
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Left",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Layout"
     },
     {
       "type": "select",
