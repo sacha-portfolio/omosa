@@ -14,10 +14,10 @@
   "
 >
   {% if block.settings.image_url and block.settings.image_url != '' %}
-    {% capture image_classes %}h-auto max-w-[{{ block.settings.width }}px] max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px]{% endcapture %}
+    {% capture image_classes %}h-auto max-w-[{{ block.settings.width }}px] max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{ block.settings.border_style }} border-[{{ block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px]{% endcapture %}
     {{ block.settings.image_url | image_url: width: 1500 | image_tag: class: image_classes | strip }}
   {% else %}
-    {% capture placeholder_classes %}h-full w-full max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{  block.settings.border_style }} border-[{{  block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px] placeholder-svg{% endcapture %}
+    {% capture placeholder_classes %}h-full w-full max-w-full max-h-[{{ block.settings.height }}px] object-cover aspect-[{{ block.settings.aspect_ratio_width | default: 'auto' }}/{{ block.settings.aspect_ratio_height | default: 'auto' }}] border-{{ block.settings.border_style }} border-[{{ block.settings.border_width }}px] border-[{{ block.settings.border_color }}] rounded-[{{ block.settings.border_radius }}px] placeholder-svg{% endcapture %}
     {{ 'hero-apparel-1' | placeholder_svg_tag: placeholder_classes | strip }}
   {% endif %}
 </{{ block.settings.tag }}>

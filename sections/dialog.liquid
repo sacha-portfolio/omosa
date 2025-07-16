@@ -1,5 +1,12 @@
-<div
+<dialog
+  id="{{ section.id }}"
   class="
+    absolute
+    top-[{{ section.settings.top }}px]
+    left-[{{ section.settings.left }}px]
+    right-[{{ section.settings.right }}px]
+    bottom-[{{ section.settings.bottom }}px]
+    z-50
     section-{{ section.id }} wrapper h-[{{ section.settings.height }}]
     bg-[{{ section.settings.color_background }}]
 
@@ -46,17 +53,61 @@
   >
     {% content_for 'blocks' %}
   </div>
-</div>
+</dialog>
+
+<script>
+  if (Shopify.designMode) {
+    document.addEventListener('shopify:section:select', function (event) {
+      const sectionId = event.detail.sectionId;
+      const dialog = document.getElementById(sectionId);
+      if (dialog && typeof dialog.showModal === 'function') {
+        dialog.showModal();
+      }
+    });
+
+    document.addEventListener('shopify:section:deselect', function (event) {
+      const sectionId = event.detail.sectionId;
+      const dialog = document.getElementById(sectionId);
+      if (dialog && typeof dialog.close === 'function') {
+        dialog.close();
+      }
+    });
+  }
+</script>
 
 {% schema %}
 {
-  "name": "Section",
+  "name": "Dialog",
   "tag": "section",
-  "disabled_on": {
+  "enabled_on": {
     "groups": ["aside"]
   },
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
+    {
+      "type": "header",
+      "content": "Position"
+    },
+    {
+      "type": "number",
+      "id": "top",
+      "label": "Top"
+    },
+    {
+      "type": "number",
+      "id": "left",
+      "label": "Left"
+    },
+    {
+      "type": "number",
+      "id": "right",
+      "label": "Right"
+    },
+    {
+      "type": "number",
+      "id": "bottom",
+      "label": "Bottom"
+    },
     {
       "type": "header",
       "content": "Attached Collection"
@@ -340,7 +391,7 @@
   ],
   "presets": [
     {
-      "name": "Section"
+      "name": "Dialog"
     }
   ]
 }

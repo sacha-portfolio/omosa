@@ -11,6 +11,15 @@
     {% endif %}
 
     {% if section.settings.background_media == 'video' %}relative{% endif %}
+
+    {% if section.settings.is_sticky_header %}
+      fixed top-0 left-0 right-0 z-50
+    {% endif %}
+
+    {% if section.settings.has_separator_line %}
+      border-b-[{{ section.settings.separator_width }}px]
+      border-b-[{{ section.settings.separator_color }}]
+    {% endif %}
   "
 >
   {% if section.settings.background_media == 'video' %}
@@ -48,23 +57,88 @@
   </div>
 </div>
 
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if settings.logo %}
+      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tiktok_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
+
 {% schema %}
 {
-  "name": "Section",
+  "name": "Header",
   "tag": "section",
-  "disabled_on": {
-    "groups": ["aside"]
+  "enabled_on": {
+    "groups": ["header"]
   },
   "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "settings": [
     {
       "type": "header",
-      "content": "Attached Collection"
+      "content": "Header settings"
     },
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
+      "type": "checkbox",
+      "id": "is_sticky_header",
+      "label": "Sticky header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "has_separator_line",
+      "label": "Separator line",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "separator_width",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Separator line width",
+      "default": 1,
+      "visible_if": "{{ section.settings.has_separator_line }}"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator line color",
+      "default": "#ECECEC",
+      "visible_if": "{{ section.settings.has_separator_line }}"
     },
     {
       "type": "header",
@@ -340,7 +414,8 @@
   ],
   "presets": [
     {
-      "name": "Section"
+      "name": "Header",
+      "category": "t:categories.header"
     }
   ]
 }

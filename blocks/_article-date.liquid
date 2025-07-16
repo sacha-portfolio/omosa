@@ -7,37 +7,50 @@
 
     {% if block.settings.type_preset == 'custom' %}
       {{ block.settings.font_size }}
+      {{ block.settings.mobile_font_size }}
       {{ block.settings.font_style }}
       {{ block.settings.font_weight }}
       font-(family-name:{{ block.settings.font_family }})
     {% elsif block.settings.type_preset == 'paragraph' %}
       font-(family-name:{{ settings.type_font_paragraph }})
       {{ settings.type_size_paragraph }}
+      {{ settings.type_mobile_size_paragraph }}
       {{ settings.type_font_weight_paragraph }}
       {{ settings.type_case_paragraph }}
     {% elsif block.settings.type_preset == 'button' %}
       font-(family-name:{{ settings.type_font_button }})
       {{ settings.type_size_button }}
+      {{ settings.type_mobile_size_button }}
       {{ settings.type_font_weight_button }}
       {{ settings.type_case_button }}
+    {% elsif block.settings.type_preset == 'menu' %}
+      font-(family-name:{{ settings.type_font_menu }})
+      {{ settings.type_size_menu }}
+      {{ settings.type_mobile_size_menu }}
+      {{ settings.type_font_weight_menu }}
+      {{ settings.type_case_menu }}
     {% elsif block.settings.type_preset == 'h1' %}
       font-(family-name:{{ settings.type_font_h1 }})
       {{ settings.type_size_h1 }}
+      {{ settings.type_mobile_size_h1 }}
       {{ settings.type_font_weight_h1 }}
       {{ settings.type_case_h1 }}
     {% elsif block.settings.type_preset == 'h2' %}
       font-(family-name:{{ settings.type_font_h2 }})
       {{ settings.type_size_h2 }}
+      {{ settings.type_mobile_size_h2 }}
       {{ settings.type_font_weight_h2 }}
       {{ settings.type_case_h2 }}
     {% elsif block.settings.type_preset == 'h3' %}
       font-(family-name:{{ settings.type_font_h3 }})
       {{ settings.type_size_h3 }}
+      {{ settings.type_mobile_size_h3 }}
       {{ settings.type_font_weight_h3 }}
       {{ settings.type_case_h3 }}
     {% elsif block.settings.type_preset == 'h4' %}
       font-(family-name:{{ settings.type_font_h4 }})
       {{ settings.type_size_h4 }}
+      {{ settings.type_mobile_size_h4 }}
       {{ settings.type_font_weight_h4 }}
       {{ settings.type_case_h4 }}
     {% endif %}
@@ -133,6 +146,10 @@
           "label": "Button"
         },
         {
+          "value": "menu",
+          "label": "Menu"
+        },
+        {
           "value": "h1",
           "label": "H1"
         },
@@ -160,6 +177,24 @@
       "id": "font_size",
       "label": "Font size",
       "options": [
+        { "value": "md:text-5xl", "label": "5xl (48px)" },
+        { "value": "md:text-4xl", "label": "4xl (36px)" },
+        { "value": "md:text-3xl", "label": "3xl (30px)" },
+        { "value": "md:text-2xl", "label": "2xl (24px)" },
+        { "value": "md:text-xl", "label": "xl (20px)" },
+        { "value": "md:text-lg", "label": "lg (18px)" },
+        { "value": "md:text-base", "label": "base (16px)" },
+        { "value": "md:text-sm", "label": "sm (14px)" },
+        { "value": "md:text-xs", "label": "xs (12px)" }
+      ],
+      "default": "md:text-base",
+      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "mobile_font_size",
+      "label": "Mobile font size",
+      "options": [
         { "value": "text-5xl", "label": "5xl (48px)" },
         { "value": "text-4xl", "label": "4xl (36px)" },
         { "value": "text-3xl", "label": "3xl (30px)" },
@@ -170,7 +205,7 @@
         { "value": "text-sm", "label": "sm (14px)" },
         { "value": "text-xs", "label": "xs (12px)" }
       ],
-      "default": "text-base",
+      "default": "text-sm",
       "visible_if": "{{ block.settings.type_preset == 'custom' }}"
     },
     {

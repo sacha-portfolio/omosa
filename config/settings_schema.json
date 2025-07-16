@@ -165,6 +165,23 @@
         "id": "type_size_paragraph",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_paragraph",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -175,7 +192,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -243,6 +260,23 @@
         "id": "type_size_button",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_button",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -253,7 +287,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -275,6 +309,101 @@
       {
         "type": "select",
         "id": "type_case_button",
+        "label": "t:settings_schema.typography.text_case",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:settings_schema.typography.default"
+          },
+          {
+            "value": "uppercase",
+            "label": "t:settings_schema.typography.uppercase"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.typography.menu"
+      },
+      {
+        "type": "select",
+        "id": "type_font_menu",
+        "label": "t:settings_schema.typography.font",
+        "options": [
+          {
+            "value": "--font-font-1--family",
+            "label": "t:settings_schema.typography.font-1"
+          },
+          {
+            "value": "--font-font-2--family",
+            "label": "t:settings_schema.typography.font-2"
+          },
+          {
+            "value": "--font-font-3--family",
+            "label": "t:settings_schema.typography.font-3"
+          },
+          {
+            "value": "--font-font-4--family",
+            "label": "t:settings_schema.typography.font-4"
+          }
+        ],
+        "default": "--font-font-1--family"
+      },
+      {
+        "type": "select",
+        "id": "type_size_menu",
+        "label": "t:settings_schema.typography.size",
+        "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_menu",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
+          { "value": "text-5xl", "label": "5xl (48px)" },
+          { "value": "text-4xl", "label": "4xl (36px)" },
+          { "value": "text-3xl", "label": "3xl (30px)" },
+          { "value": "text-2xl", "label": "2xl (24px)" },
+          { "value": "text-xl", "label": "xl (20px)" },
+          { "value": "text-lg", "label": "lg (18px)" },
+          { "value": "text-base", "label": "base (16px)" },
+          { "value": "text-sm", "label": "sm (14px)" },
+          { "value": "text-xs", "label": "xs (12px)" }
+        ],
+        "default": "text-sm"
+      },
+      {
+        "type": "select",
+        "id": "type_font_weight_menu",
+        "label": "t:settings_schema.typography.font_weight",
+        "options": [
+          { "value": "font-thin", "label": "Thin" },
+          { "value": "font-extralight", "label": "Extra Light" },
+          { "value": "font-light", "label": "Light" },
+          { "value": "font-normal", "label": "Normal" },
+          { "value": "font-medium", "label": "Medium" },
+          { "value": "font-semibold", "label": "Semi Bold" },
+          { "value": "font-bold", "label": "Bold" },
+          { "value": "font-extrabold", "label": "Extra Bold" },
+          { "value": "font-black", "label": "Black" }
+        ],
+        "default": "font-normal"
+      },
+      {
+        "type": "select",
+        "id": "type_case_menu",
         "label": "t:settings_schema.typography.text_case",
         "options": [
           {
@@ -321,6 +450,23 @@
         "id": "type_size_h1",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h1",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -331,7 +477,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -399,6 +545,23 @@
         "id": "type_size_h2",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h2",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -409,7 +572,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -477,6 +640,23 @@
         "id": "type_size_h3",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h3",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -487,7 +667,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -555,6 +735,23 @@
         "id": "type_size_h4",
         "label": "t:settings_schema.typography.size",
         "options": [
+          { "value": "md:text-5xl", "label": "5xl (48px)" },
+          { "value": "md:text-4xl", "label": "4xl (36px)" },
+          { "value": "md:text-3xl", "label": "3xl (30px)" },
+          { "value": "md:text-2xl", "label": "2xl (24px)" },
+          { "value": "md:text-xl", "label": "xl (20px)" },
+          { "value": "md:text-lg", "label": "lg (18px)" },
+          { "value": "md:text-base", "label": "base (16px)" },
+          { "value": "md:text-sm", "label": "sm (14px)" },
+          { "value": "md:text-xs", "label": "xs (12px)" }
+        ],
+        "default": "md:text-base"
+      },
+      {
+        "type": "select",
+        "id": "type_mobile_size_h4",
+        "label": "t:settings_schema.typography.mobile_size",
+        "options": [
           { "value": "text-5xl", "label": "5xl (48px)" },
           { "value": "text-4xl", "label": "4xl (36px)" },
           { "value": "text-3xl", "label": "3xl (30px)" },
@@ -565,7 +762,7 @@
           { "value": "text-sm", "label": "sm (14px)" },
           { "value": "text-xs", "label": "xs (12px)" }
         ],
-        "default": "text-base"
+        "default": "text-sm"
       },
       {
         "type": "select",
@@ -999,6 +1196,162 @@
       {
         "type": "range",
         "id": "button_hover_border_radius_secondary",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.hover_border_radius",
+        "default": 0,
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.buttons.link"
+      },
+      {
+        "type": "color",
+        "id": "button_color_link",
+        "label": "t:settings_schema.buttons.color"
+      },
+      {
+        "type": "color",
+        "id": "button_color_background_link",
+        "label": "t:settings_schema.buttons.color_background"
+      },
+      {
+        "type": "select",
+        "id": "button_border_style_link",
+        "label": "t:settings_schema.buttons.border_style",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "solid", "label": "Solid" },
+          { "value": "dashed", "label": "Dashed" },
+          { "value": "dotted", "label": "Dotted" },
+          { "value": "double", "label": "Double" }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "range",
+        "id": "button_border_width_link",
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.border_width",
+        "default": 1
+      },
+      {
+        "type": "color",
+        "id": "button_border_color_link",
+        "label": "t:settings_schema.buttons.border_color"
+      },
+      {
+        "type": "range",
+        "id": "button_border_radius_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.border_radius",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "button_padding_top_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_top",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "button_padding_bottom_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_bottom",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "button_padding_left_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_left",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "button_padding_right_link",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.padding_right",
+        "default": 10
+      },
+      {
+        "type": "checkbox",
+        "id": "button_add_hover_effect_link",
+        "label": "t:settings_schema.buttons.add_hover_effect",
+        "default": false,
+      },
+      {
+        "type": "range",
+        "id": "button_transition_duration_link",
+        "min": 0,
+        "max": 1,
+        "step": 0.1,
+        "unit": "s",
+        "label": "t:settings_schema.buttons.transition_duration",
+        "default": 0,
+      },
+      {
+        "type": "color",
+        "id": "button_hover_color_link",
+        "label": "t:settings_schema.buttons.hover_color",
+      },
+      {
+        "type": "color",
+        "id": "button_hover_color_background_link",
+        "label": "t:settings_schema.buttons.hover_color_background",
+      },
+      {
+        "type": "select",
+        "id": "button_hover_border_style_link",
+        "label": "t:settings_schema.buttons.hover_border_style",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "solid", "label": "Solid" },
+          { "value": "dashed", "label": "Dashed" },
+          { "value": "dotted", "label": "Dotted" },
+          { "value": "double", "label": "Double" }
+        ],
+        "default": "none",
+      },
+      {
+        "type": "range",
+        "id": "button_hover_border_width_link",
+        "min": 1,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "t:settings_schema.buttons.hover_border_width",
+        "default": 1,
+      },
+      {
+        "type": "color",
+        "id": "button_hover_border_color_link",
+        "label": "t:settings_schema.buttons.hover_border_color",
+      },
+      {
+        "type": "range",
+        "id": "button_hover_border_radius_link",
         "min": 0,
         "max": 100,
         "step": 1,
